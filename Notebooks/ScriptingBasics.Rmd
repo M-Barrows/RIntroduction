@@ -1,0 +1,245 @@
+---
+title: "R Basics"
+author: "Michael Barrows"
+date: "Last Update: `r Sys.Date()`"
+output: 
+  html_notebook:
+    highlight: pygments
+    theme: darkly
+    toc: yes
+    toc_float: yes
+---
+
+## Preface
+
+Before I begin to outline the basics of R, please not that there are many great (and more thorough) resources for learning this content out there. In fact, I suggest you read [this document](http://uc-r.github.io/basics) by [Brad Boehmke](https://github.com/bradleyboehmke) (as well as his other material) and treat this document here as a slightly longer *cheat sheet*. I will highlight the basics that will get you started as well as call attention to some of the common pitfalls that peole have when starting to learn *R*. 
+
+Alright, let's get into it! 
+
+## Common Data Types
+
+Like any language, *R* has some common data types. These include: 
+
+* `r class(T)`
+* `r class("Character")`
+* `r class(as.factor("Factor"))`
+* `r class(20)`
+* `r class(Sys.Date())`
+* `r NA`
+
+## Case sensitivity
+
+*R* is case sensitive ALL THE TIME! This means that calling the function to.Date() and To.Date() might yield two very different results. Because of this, there are some naming and style conventions that are associated with R. While there is not one *correct* convention, the general rule is to pick one and stick with it. For the most part, I try to follow [this style guide](http://uc-r.github.io/basics#style) with a few exceptions. Namely: 
+
+* I use lower camel case (variableNameHere) instead of underscores
+* I try to comment less and write more self-documenting code
+
+
+## Script, Not Suggestion
+
+Most documents written in R (with the partial exception of R Shiny Apps) run as scripts, meaning they execute from top to bottom. This means that you must define variables and functions before you can use them. We don't have a [Tardis](https://en.wikipedia.org/wiki/TARDIS) so there is no going back in time!
+
+## Basic opperations
+
+You can perform basic algebraic opperations within R with ease. Remember that all opperations follow PEMDAS. For example: 
+
+```{r}
+1 + 1 
+sqrt((9+1)^2*25)
+```
+
+You can also assign values to variables for use later with the `<-` operator. In R, the assignment operator looks like an arrow. We always point the arrow to the left and the thing being assigned is on the **right** and the variable it is being assigned to is on the **left**.
+
+```{r}
+x <- 1
+y <- x + 5
+
+x + y
+```
+
+## Reading in Data 
+
+Creating your own data in the R console is nice and all but it won't get you very far! So, how do you read in data? There are several ways to do this, especially if you install packages from the internet, but the right way often depends on your data type. Do you have a `.csv` file? Is it tab delimited or comma delimited? Do you have an Excel file? What about json data? You can read all of them in without much issue as long as you know how.
+
+By using the functions built in to R, you can get pretty far. For instance, if we want to read in the example CSV in the "Data" folder, we can do the following: 
+
+```{r}
+read.csv("../Data/ExampleCSV.csv")
+```
+
+Take note that we need the full file path (including the extension) in quotations. I use the "../" shortcut to navigate one folder up from my current working directory. If the file was tab delimited instead of comma separated, we would do the following: 
+
+```{r}
+read.csv("../Data/ExampleTSV.txt", sep = "\t")
+```
+
+You can also download datasets directly from the internet if you want: 
+
+```{r}
+head(read.csv("https://data.cincinnati-oh.gov/api/views/6agd-vtn9/rows.csv"), 10)
+```
+
+If you want to use more exotic files like Excel files (xls or xlsx), then you will want to install the `readxl` package or the `data.table` package for larger, more complex files.
+
+```{r}
+require(readxl)
+read_excel("../Data/ExampleXLSX.xlsx", sheet=1)
+```
+
+
+
+## Data Structures 
+
+### Vector
+
+This is a simple one dimensional data structure used for storing *ordered* collections of items of the same data type. For instance, we can store the numbers 10 through 20 and then call the first item in that collection (10) by doing the following: 
+
+```{r}
+x <- 10:20
+x[1]
+```
+
+We can also store the letters A through J and retrieve either the fourth item *or* the letter D.
+
+```{r}
+y <- letters[1:10]
+y[4]
+which(y=="d")
+```
+
+
+Notice that *R* is 1-indexed, not 0-indexed like many other languages (Python, C#, etc.)
+
+### Matrix
+
+A two dimensional collection of data. All elements in a matrix ***Must*** be of a consistant type (i.e. all numeric or all character). Because matricies are two dimentional, they have two indicies that can be specified to recal a value. If we create a 3x3 matrix that looks like this: 
+
+|     | col 1 | col 2 | col 3 |
+|-----|-------|-------|-------|
+|Row 1| 1     | 2     | 3     |
+|Row 2| 4     | 5     | 6     |
+|Row 3| 7     | 8     | 9     |
+
+we can recall the value `8` by getting the value in the third row and second column. This can be accomplished as so: 
+
+```{r}
+matrixData <- matrix(1:9, nrow = 3, ncol = 3, byrow = T)
+matrixData[3,2]
+```
+
+As you can see, the `[]` operator is used to subset a data object. In the case of a vector, we only require one number (corresponding to the index). However, in the case of a matrix, we require two numbers. The first number is the row number and the second number is the column number. 
+
+We can also subset matricies by name.
+
+```{r}
+colnames(matrixData) <- c("col 1", "col 2", "col 3")
+row.names(matrixData) <- c("row 1", "row 2", "row 3")
+matrixData['row 3','col 2']
+```
+
+### Data Frame
+
+A data frame is a very popular data structure since it is like a matrix but can hold different types of data. This is a lot like what you expect to find in an Excel file. Below is a dataset that is built into R and is also an example of a data frame: 
+
+```{r}
+iris
+```
+
+Notice that this dataset not only includes numerical variables but also a character (specifically factor) variable. This flexibility is what makes data frames popular. 
+
+### List
+
+The last common data structure is a list. Like the data frame, lists can hold multiple data types and can even hold a Data Frame within it. For example, let's create three different data sources: a vector, matrix, and data frame: 
+
+```{r}
+v <- 1:10
+m <- matrix(1:9,3,3,T)
+df <- iris
+```
+
+Now, let's add all three of these items to a list:
+
+```{r}
+l <- list(v,m,df)
+```
+
+We can check the structure of our list with the `str()` command:
+
+```{r}
+str(l)
+```
+
+With this output, you can tell that `l` is a list with three items. The first item is an int vector, the second is an int matrix and the third is a data frame with 150 observations.
+
+If we wanted to recall one of these items in the list, we still use the `[]` operator but we need **double** brackets this time. For example, the following will simply print out the first and third items in the list.
+
+```{r}
+l[[1]]
+l[[3]]
+```
+
+but the following will print the item in the first row and fourth column of the data frame (third item in the list)
+
+```{r}
+l[[3]][1,4]
+```
+
+## Vectorization
+
+While you can write For/While loops in R, you can also write vectorized loops that perform much better and are much easier to read. 
+
+For example, if we want to create two vectors of numbers and then print the sum of the two vectors, we could write a for loop: 
+
+```{r}
+x <- c(1,2,3,4,5)
+y <- c(6,7,8,9,10)
+
+for(i in x){
+  print(x[i]+y[i])
+}
+```
+
+Alternatively, we could create, add, and print these vectors using the vactorized approach
+
+```{r}
+x <- 1:5
+y <- 6:10
+
+x + y
+```
+
+
+## Creating Custom Functions 
+
+While there are many out-of-the-box functions available in R (we have seen several already), there are going to be times when you will need to create your own. When this time arrises, the basic concept is very simple. All you need to do is place your new function logic inside the function wrapper: 
+
+```
+newFunction <- function(x,y)
+{
+  
+  
+}
+```
+
+where `newFunciton` is the name of your new function and `x` and `y` are the required parameters for your function. For example, a function to take two numbers and subtract them (with one number defaulting to `1`) might look like this: 
+
+```{r}
+subtractTwoNumbers <- function(num1, num2=1){
+  num1 - num2
+}
+subtractTwoNumbers(1,3)
+subtractTwoNumbers(1)
+```
+
+As you can see, the first parameter is mandatory but the second is optional because it already has a default value. You can also explicitly assign parameter values. If you don't, they will be assigned in the order they appear in the function definition.
+
+```{r}
+subtractTwoNumbers(num1 = 5, num2 = 10) # Explicit, natural order
+subtractTwoNumbers(num2 = 6, num1 = 5) # Esplicit, reverse order
+subtractTwoNumbers(num1 =5) # Explicit, using defaults
+subtractTwoNumbers(6,5) # Implicit, natural order
+```
+
+## Continue Learning
+
+Now that you know the basics, continue on to learn the basics of analysis <a href = "BasicAnalysis.nb.html"><button> GO! </button></a>
