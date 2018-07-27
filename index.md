@@ -1,0 +1,52 @@
+# TQLTraining
+
+
+So you're interested in R huh? Great! The documents in this repository will help you get started in data analytics using one of the most powerful open source tools for the job. Below is a suggested reading heirarchy but feel free to skip around as you see fit.  Many of these documents will either be refferenced or influenced by other sources around the internet. If this is the case, I will be sure to either link directly to the source or provide refferences where appropriate.
+
+Before you get started, you will need to download [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/) for your operating system. The Windows 10 versions are [here](https://cran.mtu.edu/bin/windows/base/R-3.5.1-win.exe) and [here](https://download1.rstudio.org/RStudio-1.1.456.exe)
+
+## 1. [Introduction](Notebooks/RIntroduction.nb.html)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. Workflow
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i. [R Projects](http://uc-r.github.io/r_projects)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ii. [Git]() (Optional)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e. [Document Types]
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c. [Styleguide](http://adv-r.had.co.nz/Style.html)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [also available in RStudio](Images/StyleGuideOptions.PNG)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. [Data Structures](Notebooks/DataStructures.nb.html)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d. [Packages]
+
+  
+## 2. Import
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. From a flat file
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. From the internet
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c. From a database
+
+## 3. Transform
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. Cleaning
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. Pivoting
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c. Joining
+
+## 4. Model
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. Correlation/Regression 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. Machine Learning
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i. k-nearest neighbors
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ii. decision trees
