@@ -1,0 +1,48 @@
+---
+title: "Document Types"
+author: "Michael Barrows"
+date: "Updated `r Sys.Date()`"
+output:
+  html_notebook:
+    toc: yes
+    toc_float: yes
+  html_document:
+    df_print: paged
+    toc: yes
+  pdf_document:
+    toc: yes
+---
+
+## Script
+
+This is the most basic R document. It functions as a pre-programmed list of console commands that run in order from top to bottom without interruption. For example, if you open the script file "/Scripts/HelloWorld.R", select all text, and click the run button, you will notice that all code runs and you eventually receive the output: "Hello World". However, you will notice that several new items are available in your global environment. This is because earlier in the script we created two new values (`blueFish`, `redFish`) and one new function (`newFunc()`).
+
+In addition to running an entire script file at once, you can also run smaller pieces individually. For instance change the value of `blueFish` to `"Three Fish"`, highlight that line and click the run button. You will notice that only that line ran in the console and that the `blueFish` value has been changed in your global environment. Take note however, that this only works because that line of code is independent from anything else. For example, if you try to change line number 16 to read `extraNewFunc(12, "string")` and run the script again, the process will fail with an error (`could not find function "extraNewFunc"`). This is because you haven't yet defined the function `extraNewFunc()`.
+
+In short, script files are a nice start toward reproducibility but can often get confusing if you use them as a glorified console. In general, before you share your script file with anyone else, you should at minimum make sure that it will run completely from top to bottom as this will make for a much better experience for your end user.
+
+
+## RMarkdown  {.tabset .tabset-pills}
+
+RMarkdown files take traditional [markdown language](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) (used for universal styling of text documents) and fuse it with R to make extremely reproducible docuemntes with styled annotations. In essense, an RMarkdown file allows you to write an R script file that is broken up by paragraphs written in Markdown. Additionally, if published as an RNotebook (ike this page is), all code for the file can be downloaded straight from the document! 
+
+Since I mentioned publishing as an Rnotebook file, I will elaborate to say that when viewing a ".rmd" file, you have the option to output several file types including: 
+
+* HTML
+* Notebook
+* PDF
+* Word
+* etc.
+
+While you can output as HTML, Notebook, or Word out of the box, you will need to download additional files to be able to output PDFs or other file types. That said, let's talk about the subtle difference between an HTML output and a Notebook output
+
+### HTML
+
+This is a lightweight document that can be viewed either in RStudio or in a user's web browser. It is a representation of the rmd file with all markdown/html/css styling applied. Outputing an HTML file is possible out of the box with R and Rstudio and is a quick an easy way to share your work.
+
+
+### Notebooks
+
+R notebooks have all of the perks of HTML with the added benefit of bundling a downloadable version of the accompanying markdown document all in one file. This makes the shared file a bit larger but greatly increases the reproducibility of the report. 
+
+## Shiny App 
