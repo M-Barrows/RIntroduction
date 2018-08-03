@@ -1,4 +1,5 @@
 name: "R Training"
+output_dir: '.'
 navbar:
   title: "R Training"
   left:
