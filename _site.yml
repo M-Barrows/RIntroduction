@@ -1,0 +1,9 @@
+name: "R Training"
+output_dir: 'docs'
+navbar:
+  title: "R Training"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Source Code"
+      href: https://github.com/MBarrows20/RIntroduction

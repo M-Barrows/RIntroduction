@@ -13,7 +13,7 @@ Before you get started, you will need to download [R](https://www.r-project.org/
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ii. [Git]() (Optional)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e. [Document Types]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e. [Document Types](Notebooks/DocumentTypes.nb.html)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c. [Styleguide](http://adv-r.had.co.nz/Style.html)
 
