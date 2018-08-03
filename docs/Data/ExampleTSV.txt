@@ -1,6 +1,0 @@
-Col1	Col2	Col3
-1	This	T
-2	Is	F
-3	A	T
-4	Character	F
-5	Variable	F

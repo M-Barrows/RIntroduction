@@ -1,5 +1,5 @@
 name: "R Training"
-output_dir: 'docs'
+output_dir: '.'
 navbar:
   title: "R Training"
   left:
