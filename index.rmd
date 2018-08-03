@@ -10,21 +10,21 @@ So you're interested in R huh? Great! The documents in this repository will help
 
 Before you get started, you will need to download [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/) for your operating system. The Windows 10 versions are [here](https://cran.mtu.edu/bin/windows/base/R-3.5.1-win.exe) and [here](https://download1.rstudio.org/RStudio-1.1.456.exe)
 
-## 1. [Introduction](Notebooks/RIntroduction.nb.html)
+## 1. [Introduction](Files/Notebooks/RIntroduction.nb.html)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a. Workflow
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i. [R Projects](http://uc-r.github.io/r_projects)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ii. [Git]() (Optional)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ii. Git (Optional)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e. [Document Types](Notebooks/DocumentTypes.nb.html)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e. [Document Types](Files/Notebooks/DocumentTypes.nb.html)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c. [Styleguide](http://adv-r.had.co.nz/Style.html)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [also available in RStudio](Images/StyleGuideOptions.PNG)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [also available in RStudio](Files/Images/StyleGuideOptions.PNG)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. [Data Structures](Notebooks/DataStructures.nb.html)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b. [Data Structures](Files/Notebooks/DataStructures.nb.html)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d. [Packages]
 

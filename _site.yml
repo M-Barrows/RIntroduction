@@ -1,9 +1,40 @@
 name: "R Training"
 output_dir: '.'
+output: 
+  html_document:
+    css: style.css
+    theme: flatly
+    highlight: espresso
 navbar:
-  title: "R Training"
+  title: "<img id=\"logo\" style=\"width: 40px; height: 40px; vertical-align: middle;\" src=\"R.png\" />"
   left:
     - text: "Home"
       href: index.html
-    - text: "Source Code"
+    - text: "Topics"
+      menu:
+        - text: "1. Intro"
+          href: Intro.html
+        - text: "2. Import"
+          href: Import.html
+        - text: "3. Transform"
+          href: Transform.html
+        - text: "4. Model"
+          href: Model.html
+    - text: "Recommended Courses"
+      menu: 
+        - text: "UC-r"
+          icon: "fa-external-link-alt"
+          href: http://uc-r.github.io/data_wrangling
+        - text: "Coursera"
+          icon: "fa-external-link-alt"
+          href: https://www.coursera.org/learn/r-programming
+        - text: "Pluralsight"
+          icon: "fa-external-link-alt"
+          href: https://www.pluralsight.com/courses/r-programming-fundamentals
+  right: 
+    - icon: "fa-code"
       href: https://github.com/MBarrows20/RIntroduction
+    - icon: "fa-github"
+      href: https://github.com/MBarrows20
+    - icon: 'fa-linkedin'
+      href: https://www.linkedin.com/in/michaelabarrows

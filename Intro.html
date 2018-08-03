@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Introduction</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><img id="logo" style="width: 40px; height: 40px; vertical-align: middle;" src="R.png" /></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Topics
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Intro.html">1. Intro</a>
+    </li>
+    <li>
+      <a href="Import.html">2. Import</a>
+    </li>
+    <li>
+      <a href="Transform.html">3. Transform</a>
+    </li>
+    <li>
+      <a href="Model.html">4. Model</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Recommended Courses
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="http://uc-r.github.io/data_wrangling">
+        <span class="fa fa-external-link-alt"></span>
+         
+        UC-r
+      </a>
+    </li>
+    <li>
+      <a href="https://www.coursera.org/learn/r-programming">
+        <span class="fa fa-external-link-alt"></span>
+         
+        Coursera
+      </a>
+    </li>
+    <li>
+      <a href="https://www.pluralsight.com/courses/r-programming-fundamentals">
+        <span class="fa fa-external-link-alt"></span>
+         
+        Pluralsight
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/MBarrows20/RIntroduction">
+    <span class="fa fa-code"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/MBarrows20">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/michaelabarrows">
+    <span class="fa fa-linkedin"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Introduction</h1>
+<h4 class="date"><em>Updated: 2018-08-03</em></h4>
+
+</div>
+
+
+<div id="section" class="section level1 tabset tabset-fade">
+<h1></h1>
+<div id="about" class="section level2">
+<h2>About</h2>
+<div id="what-is-r" class="section level3">
+<h3>What is <em>R</em>?</h3>
+<p><em>R</em> is a powerful open source statistical programming language. It was developed in 1995 at the University of Auckland, New Zealand and is a derivative of the S language.<sup><a href="https://www.r-project.org/about.html">1</a></sup> When you <a href="https://cran.r-project.org/bin/windows/base/R-3.5.1-win.exe">download R</a>, it comes with it’s own IDE but most users turn to <a href="https://www.rstudio.com/">R Studio</a> for all of their needs.</p>
+</div>
+<div id="why-use-r" class="section level3">
+<h3>Why use <em>R</em>?</h3>
+<div id="its-free" class="section level4">
+<h4>It’s Free!</h4>
+<p>Not much more needs to be said here. <em>R</em> is full-featured, flexible, and most importantly - FREE!</p>
+</div>
+<div id="reproducibility" class="section level4">
+<h4>Reproducibility</h4>
+<p>Much like SSRS, creating documents in <em>R</em>, gives you the ability to serve up scripts, reports, and even web applications that are not only packed with statistical findings, but are also completely reproducible and dynamic. With <em>R</em>, you can work with flat files, data downloaded from the internet, or directly query databases. Regardless of your data sourcing method, creating programatic analyses in <em>R</em> allows your findings to change as your data source changes without the need for manual intervention.</p>
+</div>
+<div id="flexibility" class="section level4">
+<h4>Flexibility</h4>
+<p>Since <em>R</em> is open source, the list of available functions/packages is ever growing. Furthermore, since <em>R</em> is a programming language, you can write your own custom functions or alter existing functions to better suit your needs. Furthermore, the combination of <em>R</em> and RStudio allows you to create many different types of documents to present your findings in the most inuitive way. Some of the document types include:</p>
+<ul>
+<li>HTML</li>
+<li>PDF</li>
+<li>Slideshow</li>
+<li>Word</li>
+<li>JPG</li>
+<li>Web Application</li>
+</ul>
+</div>
+<div id="support" class="section level4">
+<h4>Support</h4>
+<p>As <em>R</em> has been steadily growing in popularity, there are many large communities available for support. Most notably, <a href="https://stackoverflow.com/questions/tagged/r?sort=frequent&amp;pageSize=15">Stack Overflow</a> and <a href="https://www.r-bloggers.com/">R Bloggers</a> are great resources for getting help.</p>
+</div>
+</div>
+<div id="other-options" class="section level3">
+<h3>Other Options</h3>
+<p><em>R</em> is by no means the only options for programatic statistical modeling. Some of the other alternatives include:</p>
+<ul>
+<li>SAS / SPSS: These options are fairly old and usually come with a high cost to scale</li>
+<li>Python: Leading competitor, Jack of all trades but not as strong in modeling</li>
+</ul>
+<p><img src="Files/Images/SoftwareComparison.png" /></p>
+</div>
+</div>
+<div id="workflow" class="section level2">
+<h2>Workflow</h2>
+<div id="projects" class="section level3">
+<h3>Projects</h3>
+</div>
+<div id="git" class="section level3">
+<h3>Git</h3>
+</div>
+</div>
+<div id="document-types" class="section level2">
+<h2>Document Types</h2>
+<div id="script" class="section level3">
+<h3>Script</h3>
+<p>This is the most basic R document. It functions as a pre-programmed list of console commands that run in order from top to bottom without interruption. For example, if you open the script file “/Scripts/HelloWorld.R”, select all text, and click the run button, you will notice that all code runs and you eventually receive the output: “Hello World” in the console. However, you will notice that several new items are available in your global environment. This is because earlier in the script we created two new values (<code>blueFish</code>, <code>redFish</code>) and one new function (<code>newFunc()</code>).</p>
+<p>In addition to running an entire script file at once, you can also run smaller pieces individually. For instance change the value of <code>blueFish</code> to <code>&quot;Three Fish&quot;</code>, highlight that line and click the run button. You will notice that only that line ran in the console and that the <code>blueFish</code> value has been changed in your global environment. Take note however, that this only works because that line of code is independent from anything else. For example, if you try to change line number 16 to read <code>extraNewFunc(12, &quot;string&quot;)</code> and run the script again, the process will fail with an error (<code>could not find function &quot;extraNewFunc&quot;</code>). This is because you haven’t yet defined the function <code>extraNewFunc()</code>.</p>
+<p>In short, script files are a nice start toward reproducibility but can often get confusing if you use them as a glorified console. In general, before you share your script file with anyone else, you should at minimum make sure that it will run completely from top to bottom as this will make for a much better experience for your end user.</p>
+</div>
+<div id="rmarkdown" class="section level3">
+<h3>RMarkdown</h3>
+<p>RMarkdown files take traditional <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown language</a> (used for universal styling of text documents) and fuse it with R to make extremely reproducible documents with styled annotations. In essence, an RMarkdown file allows you to write an R script file that is broken up by paragraphs written in Markdown. Additionally, if published as an RNotebook (like this page is), all code for the file can be downloaded straight from the document!</p>
+<p>Since I mentioned publishing as an Rnotebook file, I will elaborate to say that when writing a “.rmd” file, you have the option to output several file types including:</p>
+<ul>
+<li>HTML</li>
+<li>RNotebook</li>
+<li>PDF</li>
+<li>Word</li>
+<li>etc.</li>
+</ul>
+<p>While you can output as HTML, Notebook, or Word out of the box, you will need to download additional files to be able to output PDFs or other file types. That said, let’s talk about the subtle difference between an HTML output and a Notebook output</p>
+<div id="html" class="section level4">
+<h4>HTML</h4>
+<p>This is a lightweight document that can be viewed either in RStudio or in a user’s web browser. It is a representation of the rmd file with all markdown/html/css styling applied. Outputing an HTML file is possible out of the box with R and Rstudio and is a quick an easy way to share your work.</p>
+</div>
+<div id="notebooks" class="section level4">
+<h4>Notebooks</h4>
+<p>R notebooks have all of the perks of HTML with the added benefit of bundling a downloadable version of the accompanying markdown document all in one file. This makes the shared file a bit larger but greatly increases the reproducibility of the report. If you are security conscious and don’t want to share the inner workings of your document, then publish an HTML file instead.</p>
+</div>
+</div>
+<div id="shiny-app" class="section level3">
+<h3>Shiny App</h3>
+<p>Shiny Applications are a fantastic way to allow end users to not only view your data but to <em>interact</em> with it as well. Shiny apps can either be deployed locally on an end user’s machine or hosted on a server. They can function as stand alone objects or be embedded within other documents (like HTML or RNotebooks). For example, the default app that is created for you when you create a new shiny app is below:</p>
+<div style="width: 100% ; height: 700px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div>
+<p>Unfortunately, if you are viewing this page from GitHub pages, you won’t see the application. this is because you need to <em>run</em> the app first. You can accomplish this by downloading the code for this page and then running it in RStudio.</p>
+<p>As you can see (if you took the time to run it), the benefit of a shiny app is dynamic, interactive, and reproducible content. You will also notice that the image size of the figure is reactive to your window size. Shrink and expand the document to watch the layout of the figure change to fit the screen size! If you just want to create standalone applications instead of embedding them in markdown files, you can do that as well. You can find a bunch of great example apps <a href="https://shiny.rstudio.com/gallery/">here</a> or <a href="https://www.rstudio.com/products/shiny/shiny-user-showcase/">here</a> or <a href="https://www.showmeshiny.com/">here</a>.</p>
+</div>
+</div>
+<div id="style-guide" class="section level2">
+<h2>Style Guide</h2>
+<p>Even though many people argue that programming is a form of expression, you shouldn’t get too creative with your code styling. Instead, it’s often preferred to follow a style guide and keep your formatting consistent. This increases readibility by someone new to a file/project or even yourself when you return to a piece of code later on. Two recommended style guides are <a href="https://google.github.io/styleguide/Rguide.xml">Google’s</a> and <a href="http://adv-r.had.co.nz/Style.html">Hadley Wickham’s (Chief Scientist at RStudio)</a> R Style guides<sup><a href="http://uc-r.github.io/basics#style">2</a></sup>. Some highlights of these guides with my own personal preferences are below.</p>
+<p><strong>Naming:</strong></p>
+<p>Naming variables is something that Google and Hadley completely dissagree on. My philosophy is pick one style and stick with it. In general, my preference is to use underscores and be short but descriptive.</p>
+<ul>
+<li>Good: <code>new_variable</code> <code>new_variable_units</code></li>
+<li>OK: <code>newVariable</code> or <code>NewVariable</code></li>
+<li>Bad: <code>newvariable</code> or <code>new.variable</code> or <code>plot1</code></li>
+</ul>
+<p><strong>Spacing and Syntax</strong></p>
+<p>In general, more space is easier to read but makes for a longer document. Because of this, when you are new to R or are writing code that is meant to be shared, more space is better. For example:</p>
+<ul>
+<li>Good:</li>
+</ul>
+<pre><code>if (x + 3 == 2) {
+  z &lt;- 0
+} else {
+  z &lt;- 1
+}</code></pre>
+<ul>
+<li>Bad:</li>
+</ul>
+<pre><code>if (x+3==2){z&lt;-0} else {z&lt;-1}</code></pre>
+<p>While both of the above lines are fairly short and technically achieve the same result, the first one is far easier to read at a glance.</p>
+<p><strong>Assignment</strong></p>
+<p>While many languages use <code>=</code> to assign new variables, and even though you still <em>can</em> do so in R, it’s not recommended. Instead, the assignment opperator for variables in R is <code>&lt;-</code> where the variable is on the left and the value is on the right.</p>
+<ul>
+<li>Good: <code>x &lt;- 5</code></li>
+<li>Bad: <code>x = 5</code> or <code>x -&gt; 5</code></li>
+</ul>
+</div>
+<div id="data-structures" class="section level2">
+<h2>Data Structures</h2>
+<div id="vector" class="section level3">
+<h3>Vector</h3>
+<p>This is a simple one dimensional data structure used for storing <em>ordered</em> collections of items of the same data type. For instance, we can store the numbers 10 through 20 and then call the first item in that collection (10) by doing the following:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">x[<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<p>We can also store the letters A through J and retrieve either the fourth item <em>or</em> the letter D.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">y &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">y[<span class="dv">4</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;d&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">which</span>(y <span class="op">==</span><span class="st"> &quot;d&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Notice that <em>R</em> is 1-indexed, not 0-indexed like many other languages (Python, C#, etc.)</p>
+</div>
+<div id="matrix" class="section level3">
+<h3>Matrix</h3>
+<p>A two dimensional collection of data. All elements in a matrix <strong><em>Must</em></strong> be of a consistant type (i.e. all numeric or all character). Because matricies are two dimentional, they have two indicies that can be specified to recal a value. If we create a 3x3 matrix that looks like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>col 1</th>
+<th>col 2</th>
+<th>col 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Row 1</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>Row 2</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>Row 3</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<p>we can recall the value <code>8</code> by getting the value in the third row and second column. This can be accomplished as so:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">matrixData &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> T)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">matrixData[<span class="dv">3</span>,<span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<p>As you can see, the <code>[]</code> operator is used to subset a data object. In the case of a vector, we only require one number (corresponding to the index). However, in the case of a matrix, we require two numbers. The first number is the row number and the second number is the column number.</p>
+<p>We can also subset matricies by name.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">colnames</span>(matrixData) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;col 1&quot;</span>, <span class="st">&quot;col 2&quot;</span>, <span class="st">&quot;col 3&quot;</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">row.names</span>(matrixData) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;row 1&quot;</span>, <span class="st">&quot;row 2&quot;</span>, <span class="st">&quot;row 3&quot;</span>)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">matrixData[<span class="st">&#39;row 3&#39;</span>,<span class="st">&#39;col 2&#39;</span>]</a></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+</div>
+<div id="data-frame" class="section level3">
+<h3>Data Frame</h3>
+<p>A data frame is a very popular data structure since it is like a matrix but can hold different types of data. This is a lot like what you expect to find in an Excel file. Below is a dataset that is built into R and is also an example of a data frame:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">iris</a></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1            5.1         3.5          1.4         0.2     setosa
+## 2            4.9         3.0          1.4         0.2     setosa
+## 3            4.7         3.2          1.3         0.2     setosa
+## 4            4.6         3.1          1.5         0.2     setosa
+## 5            5.0         3.6          1.4         0.2     setosa
+## 6            5.4         3.9          1.7         0.4     setosa
+## 7            4.6         3.4          1.4         0.3     setosa
+## 8            5.0         3.4          1.5         0.2     setosa
+## 9            4.4         2.9          1.4         0.2     setosa
+## 10           4.9         3.1          1.5         0.1     setosa
+## 11           5.4         3.7          1.5         0.2     setosa
+## 12           4.8         3.4          1.6         0.2     setosa
+## 13           4.8         3.0          1.4         0.1     setosa
+## 14           4.3         3.0          1.1         0.1     setosa
+## 15           5.8         4.0          1.2         0.2     setosa
+## 16           5.7         4.4          1.5         0.4     setosa
+## 17           5.4         3.9          1.3         0.4     setosa
+## 18           5.1         3.5          1.4         0.3     setosa
+## 19           5.7         3.8          1.7         0.3     setosa
+## 20           5.1         3.8          1.5         0.3     setosa
+## 21           5.4         3.4          1.7         0.2     setosa
+## 22           5.1         3.7          1.5         0.4     setosa
+## 23           4.6         3.6          1.0         0.2     setosa
+## 24           5.1         3.3          1.7         0.5     setosa
+## 25           4.8         3.4          1.9         0.2     setosa
+## 26           5.0         3.0          1.6         0.2     setosa
+## 27           5.0         3.4          1.6         0.4     setosa
+## 28           5.2         3.5          1.5         0.2     setosa
+## 29           5.2         3.4          1.4         0.2     setosa
+## 30           4.7         3.2          1.6         0.2     setosa
+## 31           4.8         3.1          1.6         0.2     setosa
+## 32           5.4         3.4          1.5         0.4     setosa
+## 33           5.2         4.1          1.5         0.1     setosa
+## 34           5.5         4.2          1.4         0.2     setosa
+## 35           4.9         3.1          1.5         0.2     setosa
+## 36           5.0         3.2          1.2         0.2     setosa
+## 37           5.5         3.5          1.3         0.2     setosa
+## 38           4.9         3.6          1.4         0.1     setosa
+## 39           4.4         3.0          1.3         0.2     setosa
+## 40           5.1         3.4          1.5         0.2     setosa
+## 41           5.0         3.5          1.3         0.3     setosa
+## 42           4.5         2.3          1.3         0.3     setosa
+## 43           4.4         3.2          1.3         0.2     setosa
+## 44           5.0         3.5          1.6         0.6     setosa
+## 45           5.1         3.8          1.9         0.4     setosa
+## 46           4.8         3.0          1.4         0.3     setosa
+## 47           5.1         3.8          1.6         0.2     setosa
+## 48           4.6         3.2          1.4         0.2     setosa
+## 49           5.3         3.7          1.5         0.2     setosa
+## 50           5.0         3.3          1.4         0.2     setosa
+## 51           7.0         3.2          4.7         1.4 versicolor
+## 52           6.4         3.2          4.5         1.5 versicolor
+## 53           6.9         3.1          4.9         1.5 versicolor
+## 54           5.5         2.3          4.0         1.3 versicolor
+## 55           6.5         2.8          4.6         1.5 versicolor
+## 56           5.7         2.8          4.5         1.3 versicolor
+## 57           6.3         3.3          4.7         1.6 versicolor
+## 58           4.9         2.4          3.3         1.0 versicolor
+## 59           6.6         2.9          4.6         1.3 versicolor
+## 60           5.2         2.7          3.9         1.4 versicolor
+## 61           5.0         2.0          3.5         1.0 versicolor
+## 62           5.9         3.0          4.2         1.5 versicolor
+## 63           6.0         2.2          4.0         1.0 versicolor
+## 64           6.1         2.9          4.7         1.4 versicolor
+## 65           5.6         2.9          3.6         1.3 versicolor
+## 66           6.7         3.1          4.4         1.4 versicolor
+## 67           5.6         3.0          4.5         1.5 versicolor
+## 68           5.8         2.7          4.1         1.0 versicolor
+## 69           6.2         2.2          4.5         1.5 versicolor
+## 70           5.6         2.5          3.9         1.1 versicolor
+## 71           5.9         3.2          4.8         1.8 versicolor
+## 72           6.1         2.8          4.0         1.3 versicolor
+## 73           6.3         2.5          4.9         1.5 versicolor
+## 74           6.1         2.8          4.7         1.2 versicolor
+## 75           6.4         2.9          4.3         1.3 versicolor
+## 76           6.6         3.0          4.4         1.4 versicolor
+## 77           6.8         2.8          4.8         1.4 versicolor
+## 78           6.7         3.0          5.0         1.7 versicolor
+## 79           6.0         2.9          4.5         1.5 versicolor
+## 80           5.7         2.6          3.5         1.0 versicolor
+## 81           5.5         2.4          3.8         1.1 versicolor
+## 82           5.5         2.4          3.7         1.0 versicolor
+## 83           5.8         2.7          3.9         1.2 versicolor
+## 84           6.0         2.7          5.1         1.6 versicolor
+## 85           5.4         3.0          4.5         1.5 versicolor
+## 86           6.0         3.4          4.5         1.6 versicolor
+## 87           6.7         3.1          4.7         1.5 versicolor
+## 88           6.3         2.3          4.4         1.3 versicolor
+## 89           5.6         3.0          4.1         1.3 versicolor
+## 90           5.5         2.5          4.0         1.3 versicolor
+## 91           5.5         2.6          4.4         1.2 versicolor
+## 92           6.1         3.0          4.6         1.4 versicolor
+## 93           5.8         2.6          4.0         1.2 versicolor
+## 94           5.0         2.3          3.3         1.0 versicolor
+## 95           5.6         2.7          4.2         1.3 versicolor
+## 96           5.7         3.0          4.2         1.2 versicolor
+## 97           5.7         2.9          4.2         1.3 versicolor
+## 98           6.2         2.9          4.3         1.3 versicolor
+## 99           5.1         2.5          3.0         1.1 versicolor
+## 100          5.7         2.8          4.1         1.3 versicolor
+## 101          6.3         3.3          6.0         2.5  virginica
+## 102          5.8         2.7          5.1         1.9  virginica
+## 103          7.1         3.0          5.9         2.1  virginica
+## 104          6.3         2.9          5.6         1.8  virginica
+## 105          6.5         3.0          5.8         2.2  virginica
+## 106          7.6         3.0          6.6         2.1  virginica
+## 107          4.9         2.5          4.5         1.7  virginica
+## 108          7.3         2.9          6.3         1.8  virginica
+## 109          6.7         2.5          5.8         1.8  virginica
+## 110          7.2         3.6          6.1         2.5  virginica
+## 111          6.5         3.2          5.1         2.0  virginica
+## 112          6.4         2.7          5.3         1.9  virginica
+## 113          6.8         3.0          5.5         2.1  virginica
+## 114          5.7         2.5          5.0         2.0  virginica
+## 115          5.8         2.8          5.1         2.4  virginica
+## 116          6.4         3.2          5.3         2.3  virginica
+## 117          6.5         3.0          5.5         1.8  virginica
+## 118          7.7         3.8          6.7         2.2  virginica
+## 119          7.7         2.6          6.9         2.3  virginica
+## 120          6.0         2.2          5.0         1.5  virginica
+## 121          6.9         3.2          5.7         2.3  virginica
+## 122          5.6         2.8          4.9         2.0  virginica
+## 123          7.7         2.8          6.7         2.0  virginica
+## 124          6.3         2.7          4.9         1.8  virginica
+## 125          6.7         3.3          5.7         2.1  virginica
+## 126          7.2         3.2          6.0         1.8  virginica
+## 127          6.2         2.8          4.8         1.8  virginica
+## 128          6.1         3.0          4.9         1.8  virginica
+## 129          6.4         2.8          5.6         2.1  virginica
+## 130          7.2         3.0          5.8         1.6  virginica
+## 131          7.4         2.8          6.1         1.9  virginica
+## 132          7.9         3.8          6.4         2.0  virginica
+## 133          6.4         2.8          5.6         2.2  virginica
+## 134          6.3         2.8          5.1         1.5  virginica
+## 135          6.1         2.6          5.6         1.4  virginica
+## 136          7.7         3.0          6.1         2.3  virginica
+## 137          6.3         3.4          5.6         2.4  virginica
+## 138          6.4         3.1          5.5         1.8  virginica
+## 139          6.0         3.0          4.8         1.8  virginica
+## 140          6.9         3.1          5.4         2.1  virginica
+## 141          6.7         3.1          5.6         2.4  virginica
+## 142          6.9         3.1          5.1         2.3  virginica
+## 143          5.8         2.7          5.1         1.9  virginica
+## 144          6.8         3.2          5.9         2.3  virginica
+## 145          6.7         3.3          5.7         2.5  virginica
+## 146          6.7         3.0          5.2         2.3  virginica
+## 147          6.3         2.5          5.0         1.9  virginica
+## 148          6.5         3.0          5.2         2.0  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
+<p>Notice that this dataset not only includes numerical variables but also a character (specifically factor) variable. This flexibility is what makes data frames popular.</p>
+</div>
+<div id="list" class="section level3">
+<h3>List</h3>
+<p>The last common data structure is a list. Like the data frame, lists can hold multiple data types and can even hold a Data Frame within it. For example, let’s create three different data sources: a vector, matrix, and data frame:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">v &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">3</span>,T)</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">df &lt;-<span class="st"> </span>iris</a></code></pre></div>
+<p>Now, let’s add all three of these items to a list:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">l &lt;-<span class="st"> </span><span class="kw">list</span>(v,m,df)</a></code></pre></div>
+<p>We can check the structure of our list with the <code>str()</code> command:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">str</span>(l)</a></code></pre></div>
+<pre><code>## List of 3
+##  $ : int [1:10] 1 2 3 4 5 6 7 8 9 10
+##  $ : int [1:3, 1:3] 1 4 7 2 5 8 3 6 9
+##  $ :&#39;data.frame&#39;:    150 obs. of  5 variables:
+##   ..$ Sepal.Length: num [1:150] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##   ..$ Sepal.Width : num [1:150] 3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##   ..$ Petal.Length: num [1:150] 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##   ..$ Petal.Width : num [1:150] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##   ..$ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<p>With this output, you can tell that <code>l</code> is a list with three items. The first item is an int vector, the second is an int matrix and the third is a data frame with 150 observations.</p>
+<p>If we wanted to recall one of these items in the list, we still use the <code>[]</code> operator but we need <strong>double</strong> brackets this time. For example, the following will simply print out the first and third items in the list.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">l[[<span class="dv">1</span>]]</a></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">l[[<span class="dv">3</span>]]</a></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1            5.1         3.5          1.4         0.2     setosa
+## 2            4.9         3.0          1.4         0.2     setosa
+## 3            4.7         3.2          1.3         0.2     setosa
+## 4            4.6         3.1          1.5         0.2     setosa
+## 5            5.0         3.6          1.4         0.2     setosa
+## 6            5.4         3.9          1.7         0.4     setosa
+## 7            4.6         3.4          1.4         0.3     setosa
+## 8            5.0         3.4          1.5         0.2     setosa
+## 9            4.4         2.9          1.4         0.2     setosa
+## 10           4.9         3.1          1.5         0.1     setosa
+## 11           5.4         3.7          1.5         0.2     setosa
+## 12           4.8         3.4          1.6         0.2     setosa
+## 13           4.8         3.0          1.4         0.1     setosa
+## 14           4.3         3.0          1.1         0.1     setosa
+## 15           5.8         4.0          1.2         0.2     setosa
+## 16           5.7         4.4          1.5         0.4     setosa
+## 17           5.4         3.9          1.3         0.4     setosa
+## 18           5.1         3.5          1.4         0.3     setosa
+## 19           5.7         3.8          1.7         0.3     setosa
+## 20           5.1         3.8          1.5         0.3     setosa
+## 21           5.4         3.4          1.7         0.2     setosa
+## 22           5.1         3.7          1.5         0.4     setosa
+## 23           4.6         3.6          1.0         0.2     setosa
+## 24           5.1         3.3          1.7         0.5     setosa
+## 25           4.8         3.4          1.9         0.2     setosa
+## 26           5.0         3.0          1.6         0.2     setosa
+## 27           5.0         3.4          1.6         0.4     setosa
+## 28           5.2         3.5          1.5         0.2     setosa
+## 29           5.2         3.4          1.4         0.2     setosa
+## 30           4.7         3.2          1.6         0.2     setosa
+## 31           4.8         3.1          1.6         0.2     setosa
+## 32           5.4         3.4          1.5         0.4     setosa
+## 33           5.2         4.1          1.5         0.1     setosa
+## 34           5.5         4.2          1.4         0.2     setosa
+## 35           4.9         3.1          1.5         0.2     setosa
+## 36           5.0         3.2          1.2         0.2     setosa
+## 37           5.5         3.5          1.3         0.2     setosa
+## 38           4.9         3.6          1.4         0.1     setosa
+## 39           4.4         3.0          1.3         0.2     setosa
+## 40           5.1         3.4          1.5         0.2     setosa
+## 41           5.0         3.5          1.3         0.3     setosa
+## 42           4.5         2.3          1.3         0.3     setosa
+## 43           4.4         3.2          1.3         0.2     setosa
+## 44           5.0         3.5          1.6         0.6     setosa
+## 45           5.1         3.8          1.9         0.4     setosa
+## 46           4.8         3.0          1.4         0.3     setosa
+## 47           5.1         3.8          1.6         0.2     setosa
+## 48           4.6         3.2          1.4         0.2     setosa
+## 49           5.3         3.7          1.5         0.2     setosa
+## 50           5.0         3.3          1.4         0.2     setosa
+## 51           7.0         3.2          4.7         1.4 versicolor
+## 52           6.4         3.2          4.5         1.5 versicolor
+## 53           6.9         3.1          4.9         1.5 versicolor
+## 54           5.5         2.3          4.0         1.3 versicolor
+## 55           6.5         2.8          4.6         1.5 versicolor
+## 56           5.7         2.8          4.5         1.3 versicolor
+## 57           6.3         3.3          4.7         1.6 versicolor
+## 58           4.9         2.4          3.3         1.0 versicolor
+## 59           6.6         2.9          4.6         1.3 versicolor
+## 60           5.2         2.7          3.9         1.4 versicolor
+## 61           5.0         2.0          3.5         1.0 versicolor
+## 62           5.9         3.0          4.2         1.5 versicolor
+## 63           6.0         2.2          4.0         1.0 versicolor
+## 64           6.1         2.9          4.7         1.4 versicolor
+## 65           5.6         2.9          3.6         1.3 versicolor
+## 66           6.7         3.1          4.4         1.4 versicolor
+## 67           5.6         3.0          4.5         1.5 versicolor
+## 68           5.8         2.7          4.1         1.0 versicolor
+## 69           6.2         2.2          4.5         1.5 versicolor
+## 70           5.6         2.5          3.9         1.1 versicolor
+## 71           5.9         3.2          4.8         1.8 versicolor
+## 72           6.1         2.8          4.0         1.3 versicolor
+## 73           6.3         2.5          4.9         1.5 versicolor
+## 74           6.1         2.8          4.7         1.2 versicolor
+## 75           6.4         2.9          4.3         1.3 versicolor
+## 76           6.6         3.0          4.4         1.4 versicolor
+## 77           6.8         2.8          4.8         1.4 versicolor
+## 78           6.7         3.0          5.0         1.7 versicolor
+## 79           6.0         2.9          4.5         1.5 versicolor
+## 80           5.7         2.6          3.5         1.0 versicolor
+## 81           5.5         2.4          3.8         1.1 versicolor
+## 82           5.5         2.4          3.7         1.0 versicolor
+## 83           5.8         2.7          3.9         1.2 versicolor
+## 84           6.0         2.7          5.1         1.6 versicolor
+## 85           5.4         3.0          4.5         1.5 versicolor
+## 86           6.0         3.4          4.5         1.6 versicolor
+## 87           6.7         3.1          4.7         1.5 versicolor
+## 88           6.3         2.3          4.4         1.3 versicolor
+## 89           5.6         3.0          4.1         1.3 versicolor
+## 90           5.5         2.5          4.0         1.3 versicolor
+## 91           5.5         2.6          4.4         1.2 versicolor
+## 92           6.1         3.0          4.6         1.4 versicolor
+## 93           5.8         2.6          4.0         1.2 versicolor
+## 94           5.0         2.3          3.3         1.0 versicolor
+## 95           5.6         2.7          4.2         1.3 versicolor
+## 96           5.7         3.0          4.2         1.2 versicolor
+## 97           5.7         2.9          4.2         1.3 versicolor
+## 98           6.2         2.9          4.3         1.3 versicolor
+## 99           5.1         2.5          3.0         1.1 versicolor
+## 100          5.7         2.8          4.1         1.3 versicolor
+## 101          6.3         3.3          6.0         2.5  virginica
+## 102          5.8         2.7          5.1         1.9  virginica
+## 103          7.1         3.0          5.9         2.1  virginica
+## 104          6.3         2.9          5.6         1.8  virginica
+## 105          6.5         3.0          5.8         2.2  virginica
+## 106          7.6         3.0          6.6         2.1  virginica
+## 107          4.9         2.5          4.5         1.7  virginica
+## 108          7.3         2.9          6.3         1.8  virginica
+## 109          6.7         2.5          5.8         1.8  virginica
+## 110          7.2         3.6          6.1         2.5  virginica
+## 111          6.5         3.2          5.1         2.0  virginica
+## 112          6.4         2.7          5.3         1.9  virginica
+## 113          6.8         3.0          5.5         2.1  virginica
+## 114          5.7         2.5          5.0         2.0  virginica
+## 115          5.8         2.8          5.1         2.4  virginica
+## 116          6.4         3.2          5.3         2.3  virginica
+## 117          6.5         3.0          5.5         1.8  virginica
+## 118          7.7         3.8          6.7         2.2  virginica
+## 119          7.7         2.6          6.9         2.3  virginica
+## 120          6.0         2.2          5.0         1.5  virginica
+## 121          6.9         3.2          5.7         2.3  virginica
+## 122          5.6         2.8          4.9         2.0  virginica
+## 123          7.7         2.8          6.7         2.0  virginica
+## 124          6.3         2.7          4.9         1.8  virginica
+## 125          6.7         3.3          5.7         2.1  virginica
+## 126          7.2         3.2          6.0         1.8  virginica
+## 127          6.2         2.8          4.8         1.8  virginica
+## 128          6.1         3.0          4.9         1.8  virginica
+## 129          6.4         2.8          5.6         2.1  virginica
+## 130          7.2         3.0          5.8         1.6  virginica
+## 131          7.4         2.8          6.1         1.9  virginica
+## 132          7.9         3.8          6.4         2.0  virginica
+## 133          6.4         2.8          5.6         2.2  virginica
+## 134          6.3         2.8          5.1         1.5  virginica
+## 135          6.1         2.6          5.6         1.4  virginica
+## 136          7.7         3.0          6.1         2.3  virginica
+## 137          6.3         3.4          5.6         2.4  virginica
+## 138          6.4         3.1          5.5         1.8  virginica
+## 139          6.0         3.0          4.8         1.8  virginica
+## 140          6.9         3.1          5.4         2.1  virginica
+## 141          6.7         3.1          5.6         2.4  virginica
+## 142          6.9         3.1          5.1         2.3  virginica
+## 143          5.8         2.7          5.1         1.9  virginica
+## 144          6.8         3.2          5.9         2.3  virginica
+## 145          6.7         3.3          5.7         2.5  virginica
+## 146          6.7         3.0          5.2         2.3  virginica
+## 147          6.3         2.5          5.0         1.9  virginica
+## 148          6.5         3.0          5.2         2.0  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
+<p>but the following will print the item in the first row and fourth column of the data frame (third item in the list)</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">l[[<span class="dv">3</span>]][<span class="dv">1</span>,<span class="dv">4</span>]</a></code></pre></div>
+<pre><code>## [1] 0.2</code></pre>
+</div>
+</div>
+<div id="packages" class="section level2">
+<h2>Packages</h2>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

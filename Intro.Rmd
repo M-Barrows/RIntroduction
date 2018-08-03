@@ -1,0 +1,246 @@
+---
+title: "Introduction"
+output: html_document
+date: 'Updated: `r Sys.Date()`'
+---
+
+# {.tabset .tabset-fade}
+
+## About
+
+### What is *R*?
+
+*R* is a powerful open source statistical programming language. It was developed in 1995 at the University of Auckland, New Zealand and is a derivative of the S language.<sup>[1](https://www.r-project.org/about.html)</sup> When you [download R](https://cran.r-project.org/bin/windows/base/R-3.5.1-win.exe), it comes with it's own IDE but most users turn to [R Studio](https://www.rstudio.com/) for all of their needs. 
+
+### Why use *R*?
+
+#### It's Free! 
+
+Not much more needs to be said here. *R* is full-featured, flexible, and most importantly - FREE!
+
+#### Reproducibility
+
+Much like SSRS, creating documents in *R*, gives you the ability to serve up scripts, reports, and even web applications that are not only packed with statistical findings, but are also completely reproducible and dynamic. With *R*, you can work with flat files, data downloaded from the internet, or directly query databases. Regardless of your data sourcing method, creating programatic analyses in *R* allows your findings to change as your data source changes without the need for manual intervention. 
+
+#### Flexibility
+
+Since *R* is open source, the list of available functions/packages is ever growing. Furthermore, since *R* is a programming language, you can write your own custom functions or alter existing functions to better suit your needs. Furthermore, the combination of *R* and RStudio allows you to create many different types of documents to present your findings in the most inuitive way. Some of the document types include:
+
+* HTML
+* PDF
+* Slideshow
+* Word
+* JPG
+* Web Application
+
+#### Support
+
+As *R* has been steadily growing in popularity, there are many large communities available for support. Most notably, [Stack Overflow](https://stackoverflow.com/questions/tagged/r?sort=frequent&pageSize=15) and [R Bloggers](https://www.r-bloggers.com/) are great resources for getting help.
+
+### Other Options
+
+*R* is by no means the only options for programatic statistical modeling. Some of the other alternatives include:
+
+* SAS / SPSS: These options are fairly old and usually come with a high cost to scale
+* Python: Leading competitor, Jack of all trades but not as strong in modeling
+
+![](Files/Images/SoftwareComparison.png)
+
+## Workflow
+
+Before you start creating R files and saving (or dooming) the world with machine learning, let's talk about project flow.
+
+### Projects
+
+There are several steps you can take in order to make your projects more reporducible and reliable. The first of which is using *Projects*. [Here](http://uc-r.github.io/r_projects) is a nice write-up of how to get started with Projects. The main idea behind Projects is that all related files are bundled together in an organized file structure, making it easier to work with and share with others. 
+
+### Git
+
+## Document Types
+
+### Script
+
+This is the most basic R document. It functions as a pre-programmed list of console commands that run in order from top to bottom without interruption. For example, if you open the script file "/Scripts/HelloWorld.R", select all text, and click the run button, you will notice that all code runs and you eventually receive the output: "Hello World" in the console. However, you will notice that several new items are available in your global environment. This is because earlier in the script we created two new values (`blueFish`, `redFish`) and one new function (`newFunc()`).
+
+In addition to running an entire script file at once, you can also run smaller pieces individually. For instance change the value of `blueFish` to `"Three Fish"`, highlight that line and click the run button. You will notice that only that line ran in the console and that the `blueFish` value has been changed in your global environment. Take note however, that this only works because that line of code is independent from anything else. For example, if you try to change line number 16 to read `extraNewFunc(12, "string")` and run the script again, the process will fail with an error (`could not find function "extraNewFunc"`). This is because you haven't yet defined the function `extraNewFunc()`.
+
+In short, script files are a nice start toward reproducibility but can often get confusing if you use them as a glorified console. In general, before you share your script file with anyone else, you should at minimum make sure that it will run completely from top to bottom as this will make for a much better experience for your end user.
+
+
+### RMarkdown
+
+RMarkdown files take traditional [markdown language](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) (used for universal styling of text documents) and fuse it with R to make extremely reproducible documents with styled annotations. In essence, an RMarkdown file allows you to write an R script file that is broken up by paragraphs written in Markdown. Additionally, if published as an RNotebook (like this page is), all code for the file can be downloaded straight from the document! 
+
+Since I mentioned publishing as an Rnotebook file, I will elaborate to say that when writing a ".rmd" file, you have the option to output several file types including: 
+
+* HTML
+* RNotebook
+* PDF
+* Word
+* etc.
+
+While you can output as HTML, Notebook, or Word out of the box, you will need to download additional files to be able to output PDFs or other file types. That said, let's talk about the subtle difference between an HTML output and a Notebook output
+
+#### HTML
+
+This is a lightweight document that can be viewed either in RStudio or in a user's web browser. It is a representation of the rmd file with all markdown/html/css styling applied. Outputing an HTML file is possible out of the box with R and Rstudio and is a quick an easy way to share your work.
+
+
+#### Notebooks
+
+R notebooks have all of the perks of HTML with the added benefit of bundling a downloadable version of the accompanying markdown document all in one file. This makes the shared file a bit larger but greatly increases the reproducibility of the report. If you are security conscious and don't want to share the inner workings of your document, then publish an HTML file instead.
+
+### Shiny App 
+
+Shiny Applications are a fantastic way to allow end users to not only view your data but to *interact* with it as well. Shiny apps can either be deployed locally on an end user's machine or hosted on a server. They can function as stand alone objects or be embedded within other documents (like HTML or RNotebooks). For example, the default app that is created for you when you create a new shiny app is below: 
+
+```{r, echo = FALSE}
+library(shiny)
+shinyAppDir(
+  'Files/ShinyTemplate',
+  options = list(width = "100%", height = 700)
+)
+
+```
+
+Unfortunately, if you are viewing this page from GitHub pages, you won't see the application. this is because you need to *run* the app first. You can accomplish this by downloading the code for this page and then running it in RStudio.
+
+As you can see (if you took the time to run it), the benefit of a shiny app is dynamic, interactive, and reproducible content. You will also notice that the image size of the figure is reactive to your window size. Shrink and expand the document to watch the layout of the figure change to fit the screen size! If you just want to create standalone applications instead of embedding them in markdown files, you can do that as well. You can find a bunch of great example apps [here](https://shiny.rstudio.com/gallery/) or [here](https://www.rstudio.com/products/shiny/shiny-user-showcase/) or [here](https://www.showmeshiny.com/).
+
+## Style Guide
+
+Even though many people argue that programming is a form of expression, you shouldn't get too creative with your code styling. Instead, it's often preferred to follow a style guide and keep your formatting consistent. This increases readibility by someone new to a file/project or even yourself when you return to a piece of code later on. Two recommended style guides are [Google's](https://google.github.io/styleguide/Rguide.xml) and [Hadley Wickham's (Chief Scientist at RStudio)](http://adv-r.had.co.nz/Style.html) R Style guides<sup>[2](http://uc-r.github.io/basics#style)</sup>. Some highlights of these guides with my own personal preferences are below.
+
+**Naming**
+
+Naming variables is something that Google and Hadley completely dissagree on. My philosophy is pick one style and stick with it. In general, my preference is to use underscores and be short but descriptive.
+
+* Good: `new_variable` or `new_variable_units`
+* OK: `newVariable` or `NewVariable`
+* Bad: `newvariable` or `new.variable` or `plot1`
+
+**Spacing and Syntax**
+
+In general, more space is easier to read but makes for a longer document. Because of this, when you are new to R or are writing code that is meant to be shared, more space is better. For example: 
+
+* Good:
+```
+if (x + 3 == 2) {
+  z <- 0
+} else {
+  z <- 1
+}
+```
+* Bad: 
+```
+if (x+3==2){z<-0} else {z<-1}
+```
+
+While both of the above lines are fairly short and technically achieve the same result, the first one is far easier to read at a glance.
+
+**Assignment**
+
+While many languages use `=` to assign new variables, and even though you still *can* do so in R, it's not recommended. Instead, the assignment opperator for variables in R is `<-` where the variable is on the left and the value is on the right. 
+
+* Good: `x <- 5`
+* Bad: `x = 5` or `x -> 5`
+
+
+## Data Structures
+
+### Vector
+
+This is a simple one dimensional data structure used for storing *ordered* collections of items of the same data type. For instance, we can store the numbers 10 through 20 and then call the first item in that collection (10) by doing the following: 
+
+```{r}
+x <- 10:20
+x[1]
+```
+
+We can also store the letters A through J and retrieve either the fourth item *or* the letter D.
+
+```{r}
+y <- letters[1:10]
+y[4]
+which(y == "d")
+```
+
+
+Notice that *R* is 1-indexed, not 0-indexed like many other languages (Python, C#, etc.)
+
+### Matrix
+
+A two dimensional collection of data. All elements in a matrix ***Must*** be of a consistant type (i.e. all numeric or all character). Because matricies are two dimentional, they have two indicies that can be specified to recal a value. If we create a 3x3 matrix that looks like this: 
+
+|     | col 1 | col 2 | col 3 |
+|-----|-------|-------|-------|
+|Row 1| 1     | 2     | 3     |
+|Row 2| 4     | 5     | 6     |
+|Row 3| 7     | 8     | 9     |
+
+we can recall the value `8` by getting the value in the third row and second column. This can be accomplished as so: 
+
+```{r}
+matrixData <- matrix(1:9, nrow = 3, ncol = 3, byrow = T)
+matrixData[3,2]
+```
+
+As you can see, the `[]` operator is used to subset a data object. In the case of a vector, we only require one number (corresponding to the index). However, in the case of a matrix, we require two numbers. The first number is the row number and the second number is the column number. 
+
+We can also subset matricies by name.
+
+```{r}
+colnames(matrixData) <- c("col 1", "col 2", "col 3")
+row.names(matrixData) <- c("row 1", "row 2", "row 3")
+matrixData['row 3','col 2']
+```
+
+### Data Frame
+
+A data frame is a very popular data structure since it is like a matrix but can hold different types of data. This is a lot like what you expect to find in an Excel file. Below is a dataset that is built into R and is also an example of a data frame: 
+
+```{r}
+iris
+```
+
+Notice that this dataset not only includes numerical variables but also a character (specifically factor) variable. This flexibility is what makes data frames popular. 
+
+### List
+
+The last common data structure is a list. Like the data frame, lists can hold multiple data types and can even hold a Data Frame within it. For example, let's create three different data sources: a vector, matrix, and data frame: 
+
+```{r}
+v <- 1:10
+m <- matrix(1:9,3,3,T)
+df <- iris
+```
+
+Now, let's add all three of these items to a list:
+
+```{r}
+l <- list(v,m,df)
+```
+
+We can check the structure of our list with the `str()` command:
+
+```{r}
+str(l)
+```
+
+With this output, you can tell that `l` is a list with three items. The first item is an int vector, the second is an int matrix and the third is a data frame with 150 observations.
+
+If we wanted to recall one of these items in the list, we still use the `[]` operator but we need **double** brackets this time. For example, the following will simply print out the first and third items in the list.
+
+```{r}
+l[[1]]
+l[[3]]
+```
+
+but the following will print the item in the first row and fourth column of the data frame (third item in the list)
+
+```{r}
+l[[3]][1,4]
+```
+
+
+## Packages
