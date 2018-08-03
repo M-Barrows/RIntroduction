@@ -1,0 +1,148 @@
+---
+title: "Basic Analysis with R"
+author: "Michael Barrows"
+date: "Last Update: `r Sys.Date()`"
+output: 
+  html_notebook:
+    toc: yes
+    toc_float: yes
+    highlight: pygments
+    theme: darkly
+---
+
+This Document will provide an overview for many different statistical analyses that can be done in R. The intricacies of each of these methods will need to be further explored but this will provide you with a starting point. 
+
+## Linear Regression
+
+Linear Regression is a model fitting method which attempts to prdict an value, usually numeric (i.e. brokerage) using one or more explanitory variables (i.e. day of week, distance, truck bill).
+
+### Basic Regression
+
+For our examples, we will be using the `mtcars` dataset which is built into R. This dataset is very common and has several numeric variables about vehicles. They are: 
+
+```{r}
+names(mtcars)
+```
+
+if we preview the first 10 rows of data, we can get a better sense for what we are dealing with. 
+
+```{r, echo=T}
+head(mtcars,10)
+```
+
+you can also learn more about this dataset by typing `help(mtcars)` into the console.
+
+Now, after receiving this information, our first hypothesis might be that an increase in engine displacement (`disp`) would tend to indicate a decrease in fuel efficiency (`mpg`). To determine whether or not this hypothesis holds significant statistical value, we can perform a linear regression. We do this with the following command: 
+
+```{r}
+lmcars <- summary(lm(mpg~disp, data = mtcars))
+lmcars
+```
+
+The results above tell us several things. First, the formula of the linear regression is printed again. Then, we recive basic statistics about our residuals. Residuals are basically the variance between your actual data and your predicted data. The smaller your variance, the better your model. After the residual statistics, we receive information about the coeeficients. Here we are interested in several things. 
+
+1. Is `disp` a significant predictor of `mpg`? 
+2. What change in `mpg` is effected by a 1-unit change in `disp` (i.e. slope of our regression line)?
+3. What is the y-intercept of our regression line? 
+
+The answers to these questions are as follows: 
+
+1. We can determine displacement to be a significant predictor of `mpg` because its p-value is less than 0.05. In fact, it is `r lmcars$coefficients[2,4]`. We could also tell this by the three asterics to the right of the p-value. 1+ asterics means that the p-value is at least smaller than 0.05. 
+
+2. The slope of our regression line is the 'Estimate' value for `disp`. In this case, it is `r lmcars$coefficients[2,1]`. Notice, that a negative number here indicates that as `disp` increases, `mpg` will decrease.
+
+3. Finally, the y-intercept is the 'Estimate' value for the '(intercept)' value. In this case it is `r lmcars$coefficients[1.1]`. 
+
+Now that we have answered all three of our questions. We can say with statistical confidence that **yes**, an increase in `disp` will tend to indicate a decrease in `mpg`. The equation for this regresssion relationship is $$ mpg = -0.0412(disp) + 29.60 $$
+
+
+### Model Variable Selection
+
+While this analysis might be sufficient for quick estimation of `mpg`, we have several more variables available to us that could potentially provide a more accurate estimation. While we could add all of the variables into the equation and gain a very accurate equation, this method is not very flexible or practical at scale. Therefore, we need to select which variables are important enough to keep. This is the processs of variable selection.
+
+A common method for variable selection is stepwise selection. In this method you can take several paths: 
+
+1. [Simple Model] Start with one explanatory variable and add on one at a time until it no longer explains a significant amount of variation
+2. [Complex Model] Start with all of the explanatory variables and remove one at a time until all variables explain a significant amount of variation
+3. Do both at the same time and compare the results
+
+The key values when doing stepwise model selection are the AIC/BIC values as well as the adjusted r-square value of the model as a whole. The goal in finding a good model is to minimize the AIC/BIC value and to maximize the r-square value.
+
+If we return to our `mtcars` dataset, we can use this strategy to determine a better model for estimating `mpg`. 
+
+As a reminder, our dataset contains several numeric variables: `r names(mtcars[,c(1:7, 10, 11)])` and two indicator variables: `r names(mtcars[,8:9])`. Within the numeric values, `cyl`, `gear`, and `carb` are discrete variables and will be ignored. For now, we will just try to use the continuous numeric values to predict `mpg` for ease of interpretation. Additionally, since `qsec` is not really a characteristic of the car but rather a performance metric, we will leave it out of our analysis as well.
+
+Our first attempt will be to fit the model in a backwards fashion. This will generally maintain a maximum accuracy at the cost of increased complexity. As you can see below, the step function evaluates a model object (`model1`). It tests the full model first and then removes variables that don't significantly explain a change in `mpg` until it ends up at the "best" model. 
+
+```{r}
+model1 <- lm(mpg~disp+hp+drat+wt, data = mtcars)
+step(model1, direction = 'backward')
+```
+
+In this case, the best model is determined to be `mpg ~ hp + wt` this means that even though we found `disp` to be a significant predictor of `mpg` in our simple regression equation, the combination of `hp` and `wt` actually offers "better" predictive power.
+
+In order to run the model *foreward* we need to do a few extra steps. The first is to reduce the dataset to only the 5 variables we will need. The next step is to build a null model (model with no predictor variables) and a full model (the starting model of our previous method). These are what define the scope of our forward stepwise regression. 
+
+```{r}
+mtcarsSlim <- mtcars[,c(1,3:6)]
+model2_null <- lm(mpg~1,data = mtcarsSlim)
+model2_full <- lm(mpg~., data = mtcarsSlim)
+step(model2_null, scope = list(lower = model2_null,upper = model2_full), direction = 'forward')
+```
+
+From the output above you notice that the model starts with just the intercept. Then, it adds `wt`, then `hp` to arrive at the final model which happens to be the same as our first method. While the results are not *always* the same, it is common. 
+
+Finally, we will run the stepwise linear regression from both ends for good measure. This will essentially run both of these previous tests simultaneously and return the "best" model. Since both forward and backward selection returned the same model, we can expect this final method to be the same. 
+```{r}
+step(model1, direction = 'both')
+```
+
+As we predicited, the final model _**is**_ the same as before. Knowing this, we can run a simple linear regression again to compare our values from earlier: 
+
+```{r}
+(lm1 <- summary(lm(mpg~disp, data = mtcars)))
+(lm2 <- summary(lm(mpg~hp+wt, data=mtcars)))
+```
+
+You can see that while all variables in each of our models are significant (p-value < 0.05) and the overall models are significant (p-value <0.05), the second model actually explains about 10% more variation in `mpg`. We can tell this because the Adjusted R-squared values are `r round(lm1$r.squared,3)` and `r round(lm2$r.squared,3)` for the first and second model respectively. 
+
+With a good understanding of our models from a numeric standpoint, let's review a few key figures. First, lets take a look at the first model with the regression equation plotted. We can do this with plotting functions built into R as such: 
+
+```{r}
+plot(mpg~disp, data = mtcars)
+abline(lm1)
+```
+
+However, many users of R agree that the `ggplot2` package offers many desirable plotting functions and therefore is used quite frequently. if we want to build the same figure in `ggplot2` syntax, we do the following: 
+
+```{r}
+library(ggplot2)
+ggplot(mtcars, aes(disp,mpg)) + 
+  geom_point() +
+  geom_smooth(method = 'lm', se = F)
+```
+
+You will notice that using `ggplot2` prevents you from having to build a linear model first. Instead, you can just use the geom_smooth() option. `ggplot2` can be confusing at first but there are several good resources out there, including [their own documentation](https://ggplot2.tidyverse.org/reference/). 
+
+The fundamental difference between the built-in plotting functions and `ggplot2` is that the base R function builds layered immages and ggplot2 builds one cohesive image file. This makes the base functions arguably more flexible because each layer doesn't care about what's in the other layers. However, it also means that there is potential for unintentional plotting of incorrect information. I encourage you to try both and experience where each method excels. 
+
+Now, since the second model uses two explanatory variables, we have some options for how we want to display the information. The first option is to plot the first variable (hp) as normal and then code the second variable (wt) as something else (i.e. color, size, shape, etc). To demonstrate, let's code it as color where darker colors indicate a heavier car.
+
+```{r}
+ggplot(mtcars, aes(hp,mpg, color = wt)) +
+  geom_point()
+```
+
+The next option is to plot the values in three dimensional space. For this we will need another package called `plotly`
+
+```{r}
+require(plotly)
+plot_ly(mtcars, x= ~wt, y = ~hp, z = ~mpg) %>%
+  add_markers()
+```
+
+
+## ANOVA
+
+
+## Clustering
