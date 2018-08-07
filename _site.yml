@@ -2,6 +2,7 @@ name: "R Training"
 output_dir: '.'
 output: 
   html_document:
+    df_print: paged
     css: style.css
     theme: flatly
     highlight: espresso

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Transform and Visualize</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><img id="logo" style="width: 40px; height: 40px; vertical-align: middle;" src="R.png" /></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Topics
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Intro.html">1. Intro</a>
+    </li>
+    <li>
+      <a href="Import.html">2. Import</a>
+    </li>
+    <li>
+      <a href="Transform.html">3. Transform</a>
+    </li>
+    <li>
+      <a href="Model.html">4. Model</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Recommended Courses
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="http://uc-r.github.io/data_wrangling">
+        <span class="fa fa-external-link-alt"></span>
+         
+        UC-r
+      </a>
+    </li>
+    <li>
+      <a href="https://www.coursera.org/learn/r-programming">
+        <span class="fa fa-external-link-alt"></span>
+         
+        Coursera
+      </a>
+    </li>
+    <li>
+      <a href="https://www.pluralsight.com/courses/r-programming-fundamentals">
+        <span class="fa fa-external-link-alt"></span>
+         
+        Pluralsight
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/MBarrows20/RIntroduction">
+    <span class="fa fa-code"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/MBarrows20">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/michaelabarrows">
+    <span class="fa fa-linkedin"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Transform and Visualize</h1>
+<h4 class="date"><em>Updated: 2018-08-07</em></h4>
+
+</div>
+
+
+<p>Welcome to the transformation step. This is where 90% of your time will likely be spent in R (and data science as a whole). Before you begin this step in any project, it is highly recommended to install necessary packages from <code>tidyverse</code>. While installing all of tidyverse is an option, it often takes a lot of time and space so it may not always be the <em>best</em> option. For now, we decided to be lazy and install the entire thing with <code>install.packages('tidyverse')</code> and load it with</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<pre><code>## -- Attaching packages ------------------------ tidyverse 1.2.1 --</code></pre>
+<pre><code>## v tibble  1.4.2     v purrr   0.2.5
+## v tidyr   0.8.1     v dplyr   0.7.6
+## v readr   1.1.1     v stringr 1.3.1
+## v tibble  1.4.2     v forcats 0.3.0</code></pre>
+<pre><code>## -- Conflicts --------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks plotly::filter(), stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<p>For beginner users, the main package within tidyverse is dplyr. An overview of dplyr can be found below:</p>
+<div id="dplyr-tidyr" class="section level2">
+<h2>dplyr / tidyr</h2>
+<p><code>dplyr</code> and <code>tidyr</code> are two very powerful tools for data transformation as they use easy to write (and read) syntax and do a lot of behind-the-scenes work to make your job easier. For instance, say we have the large library dataset from the <a href="Import.html">import</a> page. We can import it with the same <code>read.csv()</code> function but then select only the columns we are interested in and rename them with the <code>select()</code> function. Additionally, instead of nesting functions inside one another, we can use the pipe (<code>%&gt;%</code>) operator to accomplish the same thing. The way the pipe operator works is by passing the object on the left into the first argument of the object on the right. This means that the first argument of the object on the right MUST take a data object. Otherwise, in most other cases you can specify <code>data = .</code>. Let’s look at this example below:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">library &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://data.sfgov.org/api/views/qzz6-2jup/rows.csv&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="dt">Patron_Type =</span> Patron.Type.Definition, <span class="dt">checkouts =</span> Total.Checkouts,</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">         <span class="dt">active_month =</span> Circulation.Active.Month)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">head</span>(library)</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Patron_Type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["checkouts"],"name":[2],"type":["int"],"align":["right"]},{"label":["active_month"],"name":[3],"type":["fctr"],"align":["left"]}],"data":[{"1":"SENIOR","2":"28","3":"November","_rn_":"1"},{"1":"ADULT","2":"21","3":"October","_rn_":"2"},{"1":"ADULT","2":"275","3":"January","_rn_":"3"},{"1":"ADULT","2":"73","3":"February","_rn_":"4"},{"1":"ADULT","2":"182","3":"July","_rn_":"5"},{"1":"SENIOR","2":"1","3":"July","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Now say that we wanted to shrink the data so that every observation (row) represented the average number of checkouts for a particular patron type in a particular month. We could accomplish this as such:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">head</span>(library &lt;-<span class="st"> </span>library <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(Patron_Type, active_month) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">checkouts_avg =</span> <span class="kw">floor</span>(<span class="kw">mean</span>(checkouts, <span class="dt">na.rm =</span> T))),<span class="dv">15</span>)</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Patron_Type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["active_month"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["checkouts_avg"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"ADULT","2":"April","3":"104"},{"1":"ADULT","2":"August","3":"94"},{"1":"ADULT","2":"December","3":"91"},{"1":"ADULT","2":"February","3":"94"},{"1":"ADULT","2":"January","3":"104"},{"1":"ADULT","2":"July","3":"358"},{"1":"ADULT","2":"June","3":"140"},{"1":"ADULT","2":"March","3":"97"},{"1":"ADULT","2":"May","3":"113"},{"1":"ADULT","2":"None","3":"0"},{"1":"ADULT","2":"November","3":"87"},{"1":"ADULT","2":"October","3":"90"},{"1":"ADULT","2":"September","3":"96"},{"1":"AT USER ADULT","2":"April","3":"122"},{"1":"AT USER ADULT","2":"August","3":"136"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>There are two things to notice with the above code. First is that we used the <code>%&gt;%</code> operator twice in a row to progressivly manipulate our data. The first time was to group our data by patron type <em>then</em> active month and the second was to take the result of the grouping and find the average number of checkouts for each group. The second thing to take note of was the use of two new functions: <code>group_by()</code> and <code>summarise()</code>.</p>
+<p><strong>group_by():</strong></p>
+<p>unlike select() and summarise() the group_by function doesn’t actually change the structure of our data. Instead, it creates symbolic groups within our data over which we can perform summarizing functions (sum, mean, standard deviation).</p>
+<p><strong>summarise():</strong></p>
+<p>applies a function for all observations within each group. If no group is present, then the function is applied columnwise. In this particualr instance, we found the average average (<code>mean(.,na.rm=T)</code>) number of checkouts per patron type for each month of the year (<code>group_by(Patron_Type, active_month)</code>). We then rounded all numbers down to the nearest whole number with the <code>floor()</code> function.</p>
+<p>If we wanted to pivot the data and have a column for each active month, we could do so using:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">head</span>(library <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">       </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">       </span><span class="kw">spread</span>(active_month,checkouts_avg) </a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">)</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Patron_Type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["April"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["August"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["December"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["February"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["January"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["July"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["June"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["March"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["May"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["November"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["October"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["September"],"name":[13],"type":["dbl"],"align":["right"]}],"data":[{"1":"ADULT","2":"104","3":"94","4":"91","5":"94","6":"104","7":"358","8":"140","9":"97","10":"113","11":"87","12":"90","13":"96"},{"1":"AT USER ADULT","2":"122","3":"136","4":"115","5":"161","6":"172","7":"496","8":"350","9":"44","10":"182","11":"117","12":"66","13":"104"},{"1":"AT USER JUVENILE","2":"24","3":"27","4":"19","5":"1","6":"16","7":"205","8":"73","9":"121","10":"12","11":"5","12":"33","13":"27"},{"1":"AT USER SENIOR","2":"29","3":"345","4":"457","5":"61","6":"1049","7":"324","8":"74","9":"183","10":"16","11":"95","12":"12","13":"2"},{"1":"AT USER TEEN","2":"NA","3":"87","4":"14","5":"232","6":"69","7":"559","8":"64","9":"4","10":"45","11":"13","12":"7","13":"53"},{"1":"AT USER WELCOME","2":"3","3":"1","4":"NA","5":"NA","6":"521","7":"1","8":"1","9":"1","10":"2","11":"108","12":"1","13":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Additionally, we could add a total column with the <code>rowwise()</code> and <code>mutate()</code> functions:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">library <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">spread</span>(active_month,checkouts_avg, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(January, February, March, April, May, June, July, August, September, October, November, December) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Total =</span> <span class="kw">sum</span>(January, February, March, April, May, June, July, August, September, October, November, December))</a></code></pre></div>
+<pre><code>## Adding missing grouping variables: `Patron_Type`</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Patron_Type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["January"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["February"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["March"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["April"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["May"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["June"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["July"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["August"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["September"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["October"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["November"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["December"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["Total"],"name":[14],"type":["dbl"],"align":["right"]}],"data":[{"1":"ADULT","2":"104","3":"94","4":"97","5":"104","6":"113","7":"140","8":"358","9":"94","10":"96","11":"90","12":"87","13":"91","14":"1468"},{"1":"AT USER ADULT","2":"172","3":"161","4":"44","5":"122","6":"182","7":"350","8":"496","9":"136","10":"104","11":"66","12":"117","13":"115","14":"2065"},{"1":"AT USER JUVENILE","2":"16","3":"1","4":"121","5":"24","6":"12","7":"73","8":"205","9":"27","10":"27","11":"33","12":"5","13":"19","14":"563"},{"1":"AT USER SENIOR","2":"1049","3":"61","4":"183","5":"29","6":"16","7":"74","8":"324","9":"345","10":"2","11":"12","12":"95","13":"457","14":"2647"},{"1":"AT USER TEEN","2":"69","3":"232","4":"4","5":"0","6":"45","7":"64","8":"559","9":"87","10":"53","11":"7","12":"13","13":"14","14":"1147"},{"1":"AT USER WELCOME","2":"521","3":"0","4":"1","5":"3","6":"2","7":"1","8":"1","9":"1","10":"1","11":"1","12":"108","13":"0","14":"640"},{"1":"BOOKS BY MAIL","2":"296","3":"422","4":"82","5":"410","6":"257","7":"304","8":"844","9":"33","10":"62","11":"196","12":"75","13":"117","14":"3098"},{"1":"DIGITAL ACCESS CARD","2":"6","3":"30","4":"13","5":"0","6":"7","7":"49","8":"6","9":"1","10":"12","11":"41","12":"92","13":"7","14":"264"},{"1":"FRIENDS FOR LIFE","2":"1726","3":"810","4":"91","5":"204","6":"400","7":"238","8":"715","9":"481","10":"0","11":"356","12":"7","13":"0","14":"5028"},{"1":"JUVENILE","2":"94","3":"95","4":"89","5":"109","6":"142","7":"183","8":"330","9":"80","10":"85","11":"72","12":"80","13":"83","14":"1442"},{"1":"RETIRED STAFF","2":"848","3":"285","4":"627","5":"689","6":"672","7":"610","8":"1387","9":"711","10":"329","11":"470","12":"333","13":"584","14":"7545"},{"1":"SENIOR","2":"186","3":"179","4":"178","5":"191","6":"200","7":"241","8":"676","9":"164","10":"145","11":"157","12":"160","13":"166","14":"2643"},{"1":"SPECIAL","2":"174","3":"279","4":"231","5":"237","6":"346","7":"296","8":"553","9":"187","10":"80","11":"162","12":"135","13":"207","14":"2887"},{"1":"STAFF","2":"229","3":"162","4":"267","5":"304","6":"352","7":"440","8":"1207","9":"422","10":"187","11":"180","12":"202","13":"276","14":"4228"},{"1":"TEACHER CARD","2":"21","3":"29","4":"41","5":"42","6":"65","7":"86","8":"150","9":"29","10":"40","11":"61","12":"23","13":"27","14":"614"},{"1":"VISITOR","2":"11","3":"13","4":"21","5":"32","6":"9","7":"14","8":"19","9":"10","10":"14","11":"19","12":"8","13":"14","14":"184"},{"1":"WELCOME","2":"4","3":"4","4":"12","5":"4","6":"4","7":"7","8":"6","9":"7","10":"6","11":"3","12":"5","13":"11","14":"73"},{"1":"YOUNG ADULT","2":"203","3":"183","4":"188","5":"198","6":"230","7":"330","8":"506","9":"166","10":"174","11":"183","12":"170","13":"183","14":"2714"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>If we only care about the five patron types with the highest average number of annual checkouts, we could add the <code>top_n()</code> function. Then we might choose to arrange them from largest to smallest value and only display the patron type and total average number of checkouts:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">library <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">    </span><span class="kw">spread</span>(active_month,checkouts_avg, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">    </span><span class="kw">select</span>(January, February, March, April, May, June, July, August, September, October, November, December) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">    </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Total =</span> <span class="kw">sum</span>(January, February, March, April, May, June, July, August, September, October, November, December)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="st">    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="st">    </span><span class="kw">top_n</span>(<span class="dv">5</span>,Total) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Total)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="st">    </span><span class="kw">select</span>(Patron_Type, Total)</a></code></pre></div>
+<pre><code>## Adding missing grouping variables: `Patron_Type`</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Patron_Type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["Total"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"RETIRED STAFF","2":"7545"},{"1":"FRIENDS FOR LIFE","2":"5028"},{"1":"STAFF","2":"4228"},{"1":"BOOKS BY MAIL","2":"3098"},{"1":"SPECIAL","2":"2887"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>As demonstrated by the process above, using plyr and dplyr creates a natural, readible code chunk that performs powerful transformations. Let’s take a look at our last code chunk again, this time with comments outlining the purpose of each step:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">library <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Select the library dataset</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filter for every month except those labled as &#39;None&#39;</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw">spread</span>(active_month,checkouts_avg, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Create new columns for every month containing the average checkouts as values</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(January, February, March, April, May, June, July, August, September, October, November, December) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># rearrange the month order</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># the following calculation will be done for each row instead of each column</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Total =</span> <span class="kw">sum</span>(January, February, March, April, May, June, July, August, September, October, November, December)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Add a total column that adds the values for each month</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Stop calculating values on each row</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>,Total) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select the top 5 rows based on the total column</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Total)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># sort them from greatest to least Total value</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="st">  </span><span class="kw">select</span>(Patron_Type, Total) <span class="co"># display only the patron_type and total columns</span></a></code></pre></div>
+<p>You can see that the dplyr syntax is almost as easily readible (and shorter) than plain English. This is what makes it so powerful.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

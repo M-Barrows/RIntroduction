@@ -20,6 +20,8 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
 <script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
 <script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
@@ -331,75 +333,41 @@ $(document).ready(function () {
 <h2>CSV/TSV</h2>
 <p><strong>C</strong>omma <strong>S</strong>epparated <strong>V</strong>alues or <strong>T</strong>ab <strong>S</strong>epparated <strong>V</strong>alues are a common document type that organizes individual observations separated by (you guessed it) either commas or tab characters. R has a built-in function called <code>read.csv()</code> that can store information which as been saved as either a “.csv” or “.tsv” file in the R environment. This can be done with either locally saved files (i.e. C:/Users/UserName/Files/file.csv) or externally hosted files (i.e. <a href="http://example.com/data.csv" class="uri">http://example.com/data.csv</a>). Below you can see an example of both methods.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleCSV.csv&quot;</span>) <span class="co">#Local File</span></a></code></pre></div>
-<pre><code>##   Col1      Col2  Col3
-## 1    1     This   TRUE
-## 2    2       Is  FALSE
-## 3    3         A  TRUE
-## 4    4 Character FALSE
-## 5    5  Variable FALSE</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">head</span>(<span class="kw">read.csv</span>(<span class="st">&quot;https://data.sfgov.org/api/views/qzz6-2jup/rows.csv&quot;</span>)) <span class="co">#External File</span></a></code></pre></div>
-<pre><code>##   Patron.Type.Code Patron.Type.Definition Total.Checkouts Total.Renewals
-## 1                3                 SENIOR              28             13
-## 2                0                  ADULT              21             10
-## 3                0                  ADULT             275            559
-## 4                0                  ADULT              73             38
-## 5                0                  ADULT             182             90
-## 6                3                 SENIOR               1              0
-##        Age.Range Home.Library.Code Home.Library.Definition
-## 1 65 to 74 years                 X            Main Library
-## 2 55 to 59 years                 X            Main Library
-## 3 60 to 64 years                 X            Main Library
-## 4 45 to 54 years                M8             Mission Bay
-## 5 45 to 54 years                 X            Main Library
-## 6 65 to 74 years                 X            Main Library
-##   Circulation.Active.Month Circulation.Active.Year Notice.Preference.Code
-## 1                 November                    2012                      z
-## 2                  October                    2015                      z
-## 3                  January                    2015                      z
-## 4                 February                    2016                      z
-## 5                     July                    2016                      z
-## 6                     July                    2004                      z
-##   Notice.Preference.Definition Provided.Email.Address
-## 1                        email                   true
-## 2                        email                   true
-## 3                        email                   true
-## 4                        email                   true
-## 5                        email                   true
-## 6                        email                   true
-##   Year.Patron.Registered Outside.of.County Supervisor.District
-## 1                   2003              true                  NA
-## 2                   2003             false                  NA
-## 3                   2003              true                  NA
-## 4                   2003             false                  NA
-## 5                   2003             false                  NA
-## 6                   2003              true                  NA</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Col1"],"name":[1],"type":["int"],"align":["right"]},{"label":["Col2"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["Col3"],"name":[3],"type":["lgl"],"align":["right"]}],"data":[{"1":"1","2":"This","3":"TRUE"},{"1":"2","2":"Is","3":"FALSE"},{"1":"3","2":"A","3":"TRUE"},{"1":"4","2":"Character","3":"FALSE"},{"1":"5","2":"Variable","3":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">head</span>(<span class="kw">read.csv</span>(<span class="st">&quot;https://data.sfgov.org/api/views/qzz6-2jup/rows.csv&quot;</span>)) <span class="co">#External File</span></a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Patron.Type.Code"],"name":[1],"type":["int"],"align":["right"]},{"label":["Patron.Type.Definition"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["Total.Checkouts"],"name":[3],"type":["int"],"align":["right"]},{"label":["Total.Renewals"],"name":[4],"type":["int"],"align":["right"]},{"label":["Age.Range"],"name":[5],"type":["fctr"],"align":["left"]},{"label":["Home.Library.Code"],"name":[6],"type":["fctr"],"align":["left"]},{"label":["Home.Library.Definition"],"name":[7],"type":["fctr"],"align":["left"]},{"label":["Circulation.Active.Month"],"name":[8],"type":["fctr"],"align":["left"]},{"label":["Circulation.Active.Year"],"name":[9],"type":["fctr"],"align":["left"]},{"label":["Notice.Preference.Code"],"name":[10],"type":["fctr"],"align":["left"]},{"label":["Notice.Preference.Definition"],"name":[11],"type":["fctr"],"align":["left"]},{"label":["Provided.Email.Address"],"name":[12],"type":["fctr"],"align":["left"]},{"label":["Year.Patron.Registered"],"name":[13],"type":["int"],"align":["right"]},{"label":["Outside.of.County"],"name":[14],"type":["fctr"],"align":["left"]},{"label":["Supervisor.District"],"name":[15],"type":["int"],"align":["right"]}],"data":[{"1":"3","2":"SENIOR","3":"28","4":"13","5":"65 to 74 years","6":"X","7":"Main Library","8":"November","9":"2012","10":"z","11":"email","12":"true","13":"2003","14":"true","15":"NA","_rn_":"1"},{"1":"0","2":"ADULT","3":"21","4":"10","5":"55 to 59 years","6":"X","7":"Main Library","8":"October","9":"2015","10":"z","11":"email","12":"true","13":"2003","14":"false","15":"NA","_rn_":"2"},{"1":"0","2":"ADULT","3":"275","4":"559","5":"60 to 64 years","6":"X","7":"Main Library","8":"January","9":"2015","10":"z","11":"email","12":"true","13":"2003","14":"true","15":"NA","_rn_":"3"},{"1":"0","2":"ADULT","3":"73","4":"38","5":"45 to 54 years","6":"M8","7":"Mission Bay","8":"February","9":"2016","10":"z","11":"email","12":"true","13":"2003","14":"false","15":"NA","_rn_":"4"},{"1":"0","2":"ADULT","3":"182","4":"90","5":"45 to 54 years","6":"X","7":"Main Library","8":"July","9":"2016","10":"z","11":"email","12":"true","13":"2003","14":"false","15":"NA","_rn_":"5"},{"1":"3","2":"SENIOR","3":"1","4":"0","5":"65 to 74 years","6":"X","7":"Main Library","8":"July","9":"2004","10":"z","11":"email","12":"true","13":"2003","14":"true","15":"NA","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <p>As you can see, I wrapped the second file in the <code>head()</code> function. This was just so that we only returned the first 6 rows instead of all 423 thousand rows. Instead of just displaying the results, you could instead save them to an R variable for use later. This is especially usefull when working with large datasets and also greatly reduces the number of times you need to type <code>read.csv</code>!</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">example_CSV &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleCSV.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">example_CSV &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleCSV.csv&quot;</span>)</a></code></pre></div>
 <p>If, instead of a CSV file, we have TSV file, we only need to change the <code>sep</code> argument (which defaults to “,”).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">example_TSV &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleTSV.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">example_TSV &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleTSV.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
 </div>
 <div id="excel" class="section level2">
 <h2>Excel</h2>
 <p>Unfortunately, R does not have a built-in function to read in Excel files. However, we can download a package that will provide us this functionality with <code>install.packages('readxl')</code>. I’ve already installed it to this project so we will load it using:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">require</span>(readxl)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">require</span>(readxl)</a></code></pre></div>
 <pre><code>## Loading required package: readxl</code></pre>
 <p>There is an example XLSX file in the “/Files/Data” folder which we can now read in using:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">example_xl &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">head</span>(example_xl)</a></code></pre></div>
-<pre><code>## # A tibble: 5 x 3
-##    Col1 Col2   Col3 
-##   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
-## 1     1 This   T    
-## 2     2 Is     F    
-## 3     3 Sheet  T    
-## 4     4 Number F    
-## 5     5 One    F</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">example_xl &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">head</span>(example_xl)</a></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Col1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Col2"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Col3"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"This","3":"T"},{"1":"2","2":"Is","3":"F"},{"1":"3","2":"Sheet","3":"T"},{"1":"4","2":"Number","3":"F"},{"1":"5","2":"One","3":"F"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <p>Notice with excel files, we need to specify the sheet number. This is because R has now way of specifying different sheets like Excel can. However, if you need more than one sheet in the same object, you could read every sheet into a list item as such:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">sheet_list &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(<span class="kw">excel_sheets</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>))) {</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">  sheet_list[[i]] &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>, <span class="dt">sheet =</span> i)</a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw">head</span>(sheet_list)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">sheet_list &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(<span class="kw">excel_sheets</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>))) {</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">  sheet_list[[i]] &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>, <span class="dt">sheet =</span> i)</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">head</span>(sheet_list)</a></code></pre></div>
 <pre><code>## [[1]]
 ## # A tibble: 5 x 3
 ##    Col1 Col2   Col3 
@@ -428,7 +396,7 @@ $(document).ready(function () {
 <h2>Database</h2>
 <p>The <a href="https://db.rstudio.com/rstudio/connections/">conections pane</a> offers a GUI option for connecting to a database but below you will find the programatic way to do so.</p>
 <p>The recommended package for this task can be installed using <code>install.packages('odbc')</code>. Again, this has already been installed so we will simply load it using:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">require</span>(odbc)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">require</span>(odbc)</a></code></pre></div>
 <pre><code>## Loading required package: odbc</code></pre>
 <p>All code below is psuedo-code and will not actually run. This is because we are not connecting to a real database. However, if you are using most common Db management software, you should be able to replace the provided code with names and connection details appropriate for your system and be good to go!</p>
 <p>Creating a database connection is simple enough, just pass it the driver information, server name, database name, and whether or not it is a trusted connection:</p>

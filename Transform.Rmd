@@ -1,0 +1,99 @@
+---
+title: "Transform and Visualize "
+date: "Updated: `r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set()
+```
+
+Welcome to the transformation step. This is where 90% of your time will likely be spent in R (and data science as a whole). Before you begin this step in any project, it is highly recommended to install necessary packages from `tidyverse`. While installing all of tidyverse is an option, it often takes a lot of time and space so it may not always be the *best* option. For now, we decided to be lazy and install the entire thing with `install.packages('tidyverse')` and load it with 
+
+```{r}
+library(tidyverse)
+```
+
+For beginner users, the main package within tidyverse is dplyr. An overview of dplyr can be found below:
+
+## dplyr / tidyr
+
+`dplyr` and `tidyr` are two very powerful tools for data transformation as they use easy to write (and read) syntax and do a lot of behind-the-scenes work to make your job easier. For instance, say we have the large library dataset from the [import](Import.html) page. We can import it with the same `read.csv()` function but then select only the columns we are interested in and rename them with the `select()` function. Additionally, instead of nesting functions inside one another, we can use the pipe (`%>%`) operator to accomplish the same thing. The way the pipe operator works is by passing the object on the left into the first argument of the object on the right. This means that the first argument of the object on the right MUST take a data object. Otherwise, in most other cases you can specify `data = .`. Let's look at this example below: 
+
+```{r}
+library <- read.csv("https://data.sfgov.org/api/views/qzz6-2jup/rows.csv") %>%
+  select(Patron_Type = Patron.Type.Definition, checkouts = Total.Checkouts,
+         active_month = Circulation.Active.Month)
+head(library)
+```
+
+Now say that we wanted to shrink the data so that every observation (row) represented the average number of checkouts for a particular patron type in a particular month. We could accomplish this as such: 
+
+```{r}
+head(library <- library %>%
+  group_by(Patron_Type, active_month) %>%
+  summarise(checkouts_avg = floor(mean(checkouts, na.rm = T))),15)
+```
+
+There are two things to notice with the above code. First is that we used the `%>%` operator twice in a row to progressivly manipulate our data. The first time was to group our data by patron type *then* active month and the second was to take the result of the grouping and find the average number of checkouts for each group. The second thing to take note of was the use of two new functions: `group_by()` and `summarise()`. 
+
+**group_by():**
+
+unlike select() and summarise() the group_by function doesn't actually change the structure of our data. Instead, it creates symbolic groups within our data over which we can perform summarizing functions (sum, mean, standard deviation). 
+
+**summarise():**
+
+applies a function for all observations within each group. If no group is present, then the function is applied columnwise. In this particualr instance, we found the average average (`mean(.,na.rm=T)`) number of checkouts per patron type for each month of the year (`group_by(Patron_Type, active_month)`). We then rounded all numbers down to the nearest whole number with the `floor()` function. 
+
+If we wanted to pivot the data and have a column for each active month, we could do so using: 
+
+```{r}
+head(library %>%
+       filter(active_month != "None") %>%
+       spread(active_month,checkouts_avg) 
+)
+```
+
+Additionally, we could add a total column with the `rowwise()` and `mutate()` functions: 
+
+```{r}
+library %>%
+  filter(active_month != "None") %>%
+  spread(active_month,checkouts_avg, fill = 0) %>%
+  select(January, February, March, April, May, June, July, August, September, October, November, December) %>%
+  rowwise() %>%
+  mutate(Total = sum(January, February, March, April, May, June, July, August, September, October, November, December))
+```
+
+If we only care about the five patron types with the highest average number of annual checkouts, we could add the `top_n()` function. Then we might choose to arrange them from largest to smallest value and only display the patron type and total average number of checkouts: 
+
+```{r}
+library %>%
+    filter(active_month != "None") %>%
+    spread(active_month,checkouts_avg, fill = 0) %>%
+    select(January, February, March, April, May, June, July, August, September, October, November, December) %>%
+    rowwise() %>%
+    mutate(Total = sum(January, February, March, April, May, June, July, August, September, October, November, December)) %>%
+    ungroup() %>%
+    top_n(5,Total) %>%
+    arrange(desc(Total)) %>%
+    select(Patron_Type, Total)
+```
+
+As demonstrated by the process above, using plyr and dplyr creates a natural, readible code chunk that performs powerful transformations. Let's take a look at our last code chunk again, this time with comments outlining the purpose of each step: 
+
+```{r, eval=FALSE}
+library %>% # Select the library dataset
+  filter(active_month != "None") %>% # filter for every month except those labled as 'None'
+  spread(active_month,checkouts_avg, fill = 0) %>% # Create new columns for every month containing the average checkouts as values
+  select(January, February, March, April, May, June, July, August, September, October, November, December) %>% # rearrange the month order
+  rowwise() %>% # the following calculation will be done for each row instead of each column
+  mutate(Total = sum(January, February, March, April, May, June, July, August, September, October, November, December)) %>% #Add a total column that adds the values for each month
+  ungroup() %>% # Stop calculating values on each row
+  top_n(5,Total) %>% # select the top 5 rows based on the total column
+  arrange(desc(Total)) %>% # sort them from greatest to least Total value
+  select(Patron_Type, Total) # display only the patron_type and total columns
+```
+
+You can see that the dplyr syntax is almost as easily readible (and shorter) than plain English. This is what makes it so powerful. 
