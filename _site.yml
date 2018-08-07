@@ -6,6 +6,8 @@ output:
     css: style.css
     theme: flatly
     highlight: espresso
+    include:
+      after_body: footer.html
 navbar:
   title: "<img id=\"logo\" style=\"width: 40px; height: 40px; vertical-align: middle;\" src=\"R.png\" />"
   left:

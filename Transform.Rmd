@@ -61,7 +61,7 @@ Additionally, we could add a total column with the `rowwise()` and `mutate()` fu
 library %>%
   filter(active_month != "None") %>%
   spread(active_month,checkouts_avg, fill = 0) %>%
-  select(January, February, March, April, May, June, July, August, September, October, November, December) %>%
+  select(Patron_Type, January, February, March, April, May, June, July, August, September, October, November, December) %>%
   rowwise() %>%
   mutate(Total = sum(January, February, March, April, May, June, July, August, September, October, November, December))
 ```
@@ -72,7 +72,7 @@ If we only care about the five patron types with the highest average number of a
 library %>%
     filter(active_month != "None") %>%
     spread(active_month,checkouts_avg, fill = 0) %>%
-    select(January, February, March, April, May, June, July, August, September, October, November, December) %>%
+    select(Patron_Type, January, February, March, April, May, June, July, August, September, October, November, December) %>%
     rowwise() %>%
     mutate(Total = sum(January, February, March, April, May, June, July, August, September, October, November, December)) %>%
     ungroup() %>%
@@ -87,7 +87,7 @@ As demonstrated by the process above, using plyr and dplyr creates a natural, re
 library %>% # Select the library dataset
   filter(active_month != "None") %>% # filter for every month except those labled as 'None'
   spread(active_month,checkouts_avg, fill = 0) %>% # Create new columns for every month containing the average checkouts as values
-  select(January, February, March, April, May, June, July, August, September, October, November, December) %>% # rearrange the month order
+  select(Patron_Type, January, February, March, April, May, June, July, August, September, October, November, December) %>% # rearrange the month order
   rowwise() %>% # the following calculation will be done for each row instead of each column
   mutate(Total = sum(January, February, March, April, May, June, July, August, September, October, November, December)) %>% #Add a total column that adds the values for each month
   ungroup() %>% # Stop calculating values on each row
