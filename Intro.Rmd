@@ -52,9 +52,24 @@ Before you start creating R files and saving (or dooming) the world with machine
 
 ### Projects
 
-There are several steps you can take in order to make your projects more reporducible and reliable. The first of which is using *Projects*. [Here](http://uc-r.github.io/r_projects) is a nice write-up of how to get started with Projects. The main idea behind Projects is that all related files are bundled together in an organized file structure, making it easier to work with and share with others. 
+There are several steps you can take in order to make your projects more reporducible and reliable. The first of which is using *Projects*. [Here](http://uc-r.github.io/r_projects) is a nice write-up of how to get started with Projects. The main idea behind Projects is that all related files are bundled together in an organized file structure, making it easier to work with and share with others. Additionally, you are able to open your work, including data, scripts, environment, and history, with one file (*.Rproj). In general, you should always start a new project with a new Rproj file (funny how that works out!).  
 
 ### Git
+
+If you want to take your reproducibility one step further, you can host your project on GitHub (or any other version control platform). While public GitHub accounts are only able to host fully public projects, a student or enterprise account will allow you to create private repositories. If you have not already done so, you can click the 'Source Code' button in the upper right to view the GitHub repo for this project.
+
+If you are new to GitHub, I recommend [Git's documentation](https://try.github.io/), *The Coding Train*'s [youtube series](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV), or any number of other resources out there that will help you get started. It was confusing for me but practice makes perfect! 
+
+As far as setting up your R project in Github, there are a few things you will need to do first.
+
+1. Create a version control account (usually [GitHub](https://github.com/) but there **are** other options)
+2. Create a repository
+3. [Download Git](https://git-scm.com/downloads)
+4. [Create an R project using Version Control](http://happygitwithr.com/rstudio-git-github.html#clone-the-new-github-repository-to-your-computer-via-rstudio)
+
+After you complete these 4 steps, you should be able to freely commit, push, and pull your way to victory! 
+
+
 
 ## Document Types
 
@@ -200,7 +215,7 @@ matrixData['row 3','col 2']
 A data frame is a very popular data structure since it is like a matrix but can hold different types of data. This is a lot like what you expect to find in an Excel file. Below is a dataset that is built into R and is also an example of a data frame: 
 
 ```{r}
-iris
+head(iris,10)
 ```
 
 Notice that this dataset not only includes numerical variables but also a character (specifically factor) variable. This flexibility is what makes data frames popular. 
@@ -244,3 +259,23 @@ l[[3]][1,4]
 
 
 ## Packages
+
+Packages in R add a lot of functionality on top of the base R functions for increased efficiency and flexiblity. They are installed with the `install.packages()` command and then must be loaded with the `library()` command. Some examples of common packages are: 
+
+* ggplot2
+* dplyr
+* mass
+* plotly
+* readxl
+* car
+
+Additionally, there is a package called [tidyverse](https://www.tidyverse.org/) that is actually a package of packages. Once installed, `tidyverse` will install a list of very useful packages that share the common theme and syntax. The goal of these packages is to create tidy data sets that are easy to work with.  
+
+The downside of packages is they are installed on the client side. This means that you need to do one of several things to ensure reproducibility of your work: 
+
+* Write an install command in your script that runs every time (very bad idea)
+* Instruct the user to install the packages themselves (better but not fool-proof)
+* Write a command to install packages only if they are not already installed (fairly good)
+* use [Packrat](https://rstudio.github.io/packrat/) to manage packages (Best option)
+
+Through the use of both R Projects and Packrat, you can greatly reduce the amount of work your end-user needs to do in order to reproduce the hard work you've done. The magic behind Packrat is that it installs all packages and relevent system information (R version, OS version, etc.) necessary to duplicate working conditions as closely as possible. While you can do so at anytime, it is highly recommended to use both Packrat and R Projectes before you start work as it reduces the chance of incompatibility or issues during the setup process.

@@ -321,7 +321,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Introduction</h1>
-<h4 class="date"><em>Updated: 2018-08-03</em></h4>
+<h4 class="date"><em>Updated: 2018-08-07</em></h4>
 
 </div>
 
@@ -373,11 +373,23 @@ $(document).ready(function () {
 </div>
 <div id="workflow" class="section level2">
 <h2>Workflow</h2>
+<p>Before you start creating R files and saving (or dooming) the world with machine learning, let’s talk about project flow.</p>
 <div id="projects" class="section level3">
 <h3>Projects</h3>
+<p>There are several steps you can take in order to make your projects more reporducible and reliable. The first of which is using <em>Projects</em>. <a href="http://uc-r.github.io/r_projects">Here</a> is a nice write-up of how to get started with Projects. The main idea behind Projects is that all related files are bundled together in an organized file structure, making it easier to work with and share with others. Additionally, you are able to open your work, including data, scripts, environment, and history, with one file (*.Rproj). In general, you should always start a new project with a new Rproj file (funny how that works out!).</p>
 </div>
 <div id="git" class="section level3">
 <h3>Git</h3>
+<p>If you want to take your reproducibility one step further, you can host your project on GitHub (or any other version control platform). While public GitHub accounts are only able to host fully public projects, a student or enterprise account will allow you to create private repositories. If you have not already done so, you can click the ‘Source Code’ button in the upper right to view the GitHub repo for this project.</p>
+<p>If you are new to GitHub, I recommend <a href="https://try.github.io/">Git’s documentation</a>, <em>The Coding Train</em>’s <a href="https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV">youtube series</a>, or any number of other resources out there that will help you get started. It was confusing for me but practice makes perfect!</p>
+<p>As far as setting up your R project in Github, there are a few things you will need to do first.</p>
+<ol style="list-style-type: decimal">
+<li>Create a version control account (usually <a href="https://github.com/">GitHub</a> but there <strong>are</strong> other options)</li>
+<li>Create a repository</li>
+<li><a href="https://git-scm.com/downloads">Download Git</a></li>
+<li><a href="http://happygitwithr.com/rstudio-git-github.html#clone-the-new-github-repository-to-your-computer-via-rstudio">Create an R project using Version Control</a></li>
+</ol>
+<p>After you complete these 4 steps, you should be able to freely commit, push, and pull your way to victory!</p>
 </div>
 </div>
 <div id="document-types" class="section level2">
@@ -420,10 +432,10 @@ $(document).ready(function () {
 <div id="style-guide" class="section level2">
 <h2>Style Guide</h2>
 <p>Even though many people argue that programming is a form of expression, you shouldn’t get too creative with your code styling. Instead, it’s often preferred to follow a style guide and keep your formatting consistent. This increases readibility by someone new to a file/project or even yourself when you return to a piece of code later on. Two recommended style guides are <a href="https://google.github.io/styleguide/Rguide.xml">Google’s</a> and <a href="http://adv-r.had.co.nz/Style.html">Hadley Wickham’s (Chief Scientist at RStudio)</a> R Style guides<sup><a href="http://uc-r.github.io/basics#style">2</a></sup>. Some highlights of these guides with my own personal preferences are below.</p>
-<p><strong>Naming:</strong></p>
+<p><strong>Naming</strong></p>
 <p>Naming variables is something that Google and Hadley completely dissagree on. My philosophy is pick one style and stick with it. In general, my preference is to use underscores and be short but descriptive.</p>
 <ul>
-<li>Good: <code>new_variable</code> <code>new_variable_units</code></li>
+<li>Good: <code>new_variable</code> or <code>new_variable_units</code></li>
 <li>OK: <code>newVariable</code> or <code>NewVariable</code></li>
 <li>Bad: <code>newvariable</code> or <code>new.variable</code> or <code>plot1</code></li>
 </ul>
@@ -512,158 +524,18 @@ $(document).ready(function () {
 <div id="data-frame" class="section level3">
 <h3>Data Frame</h3>
 <p>A data frame is a very popular data structure since it is like a matrix but can hold different types of data. This is a lot like what you expect to find in an Excel file. Below is a dataset that is built into R and is also an example of a data frame:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">iris</a></code></pre></div>
-<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-## 1            5.1         3.5          1.4         0.2     setosa
-## 2            4.9         3.0          1.4         0.2     setosa
-## 3            4.7         3.2          1.3         0.2     setosa
-## 4            4.6         3.1          1.5         0.2     setosa
-## 5            5.0         3.6          1.4         0.2     setosa
-## 6            5.4         3.9          1.7         0.4     setosa
-## 7            4.6         3.4          1.4         0.3     setosa
-## 8            5.0         3.4          1.5         0.2     setosa
-## 9            4.4         2.9          1.4         0.2     setosa
-## 10           4.9         3.1          1.5         0.1     setosa
-## 11           5.4         3.7          1.5         0.2     setosa
-## 12           4.8         3.4          1.6         0.2     setosa
-## 13           4.8         3.0          1.4         0.1     setosa
-## 14           4.3         3.0          1.1         0.1     setosa
-## 15           5.8         4.0          1.2         0.2     setosa
-## 16           5.7         4.4          1.5         0.4     setosa
-## 17           5.4         3.9          1.3         0.4     setosa
-## 18           5.1         3.5          1.4         0.3     setosa
-## 19           5.7         3.8          1.7         0.3     setosa
-## 20           5.1         3.8          1.5         0.3     setosa
-## 21           5.4         3.4          1.7         0.2     setosa
-## 22           5.1         3.7          1.5         0.4     setosa
-## 23           4.6         3.6          1.0         0.2     setosa
-## 24           5.1         3.3          1.7         0.5     setosa
-## 25           4.8         3.4          1.9         0.2     setosa
-## 26           5.0         3.0          1.6         0.2     setosa
-## 27           5.0         3.4          1.6         0.4     setosa
-## 28           5.2         3.5          1.5         0.2     setosa
-## 29           5.2         3.4          1.4         0.2     setosa
-## 30           4.7         3.2          1.6         0.2     setosa
-## 31           4.8         3.1          1.6         0.2     setosa
-## 32           5.4         3.4          1.5         0.4     setosa
-## 33           5.2         4.1          1.5         0.1     setosa
-## 34           5.5         4.2          1.4         0.2     setosa
-## 35           4.9         3.1          1.5         0.2     setosa
-## 36           5.0         3.2          1.2         0.2     setosa
-## 37           5.5         3.5          1.3         0.2     setosa
-## 38           4.9         3.6          1.4         0.1     setosa
-## 39           4.4         3.0          1.3         0.2     setosa
-## 40           5.1         3.4          1.5         0.2     setosa
-## 41           5.0         3.5          1.3         0.3     setosa
-## 42           4.5         2.3          1.3         0.3     setosa
-## 43           4.4         3.2          1.3         0.2     setosa
-## 44           5.0         3.5          1.6         0.6     setosa
-## 45           5.1         3.8          1.9         0.4     setosa
-## 46           4.8         3.0          1.4         0.3     setosa
-## 47           5.1         3.8          1.6         0.2     setosa
-## 48           4.6         3.2          1.4         0.2     setosa
-## 49           5.3         3.7          1.5         0.2     setosa
-## 50           5.0         3.3          1.4         0.2     setosa
-## 51           7.0         3.2          4.7         1.4 versicolor
-## 52           6.4         3.2          4.5         1.5 versicolor
-## 53           6.9         3.1          4.9         1.5 versicolor
-## 54           5.5         2.3          4.0         1.3 versicolor
-## 55           6.5         2.8          4.6         1.5 versicolor
-## 56           5.7         2.8          4.5         1.3 versicolor
-## 57           6.3         3.3          4.7         1.6 versicolor
-## 58           4.9         2.4          3.3         1.0 versicolor
-## 59           6.6         2.9          4.6         1.3 versicolor
-## 60           5.2         2.7          3.9         1.4 versicolor
-## 61           5.0         2.0          3.5         1.0 versicolor
-## 62           5.9         3.0          4.2         1.5 versicolor
-## 63           6.0         2.2          4.0         1.0 versicolor
-## 64           6.1         2.9          4.7         1.4 versicolor
-## 65           5.6         2.9          3.6         1.3 versicolor
-## 66           6.7         3.1          4.4         1.4 versicolor
-## 67           5.6         3.0          4.5         1.5 versicolor
-## 68           5.8         2.7          4.1         1.0 versicolor
-## 69           6.2         2.2          4.5         1.5 versicolor
-## 70           5.6         2.5          3.9         1.1 versicolor
-## 71           5.9         3.2          4.8         1.8 versicolor
-## 72           6.1         2.8          4.0         1.3 versicolor
-## 73           6.3         2.5          4.9         1.5 versicolor
-## 74           6.1         2.8          4.7         1.2 versicolor
-## 75           6.4         2.9          4.3         1.3 versicolor
-## 76           6.6         3.0          4.4         1.4 versicolor
-## 77           6.8         2.8          4.8         1.4 versicolor
-## 78           6.7         3.0          5.0         1.7 versicolor
-## 79           6.0         2.9          4.5         1.5 versicolor
-## 80           5.7         2.6          3.5         1.0 versicolor
-## 81           5.5         2.4          3.8         1.1 versicolor
-## 82           5.5         2.4          3.7         1.0 versicolor
-## 83           5.8         2.7          3.9         1.2 versicolor
-## 84           6.0         2.7          5.1         1.6 versicolor
-## 85           5.4         3.0          4.5         1.5 versicolor
-## 86           6.0         3.4          4.5         1.6 versicolor
-## 87           6.7         3.1          4.7         1.5 versicolor
-## 88           6.3         2.3          4.4         1.3 versicolor
-## 89           5.6         3.0          4.1         1.3 versicolor
-## 90           5.5         2.5          4.0         1.3 versicolor
-## 91           5.5         2.6          4.4         1.2 versicolor
-## 92           6.1         3.0          4.6         1.4 versicolor
-## 93           5.8         2.6          4.0         1.2 versicolor
-## 94           5.0         2.3          3.3         1.0 versicolor
-## 95           5.6         2.7          4.2         1.3 versicolor
-## 96           5.7         3.0          4.2         1.2 versicolor
-## 97           5.7         2.9          4.2         1.3 versicolor
-## 98           6.2         2.9          4.3         1.3 versicolor
-## 99           5.1         2.5          3.0         1.1 versicolor
-## 100          5.7         2.8          4.1         1.3 versicolor
-## 101          6.3         3.3          6.0         2.5  virginica
-## 102          5.8         2.7          5.1         1.9  virginica
-## 103          7.1         3.0          5.9         2.1  virginica
-## 104          6.3         2.9          5.6         1.8  virginica
-## 105          6.5         3.0          5.8         2.2  virginica
-## 106          7.6         3.0          6.6         2.1  virginica
-## 107          4.9         2.5          4.5         1.7  virginica
-## 108          7.3         2.9          6.3         1.8  virginica
-## 109          6.7         2.5          5.8         1.8  virginica
-## 110          7.2         3.6          6.1         2.5  virginica
-## 111          6.5         3.2          5.1         2.0  virginica
-## 112          6.4         2.7          5.3         1.9  virginica
-## 113          6.8         3.0          5.5         2.1  virginica
-## 114          5.7         2.5          5.0         2.0  virginica
-## 115          5.8         2.8          5.1         2.4  virginica
-## 116          6.4         3.2          5.3         2.3  virginica
-## 117          6.5         3.0          5.5         1.8  virginica
-## 118          7.7         3.8          6.7         2.2  virginica
-## 119          7.7         2.6          6.9         2.3  virginica
-## 120          6.0         2.2          5.0         1.5  virginica
-## 121          6.9         3.2          5.7         2.3  virginica
-## 122          5.6         2.8          4.9         2.0  virginica
-## 123          7.7         2.8          6.7         2.0  virginica
-## 124          6.3         2.7          4.9         1.8  virginica
-## 125          6.7         3.3          5.7         2.1  virginica
-## 126          7.2         3.2          6.0         1.8  virginica
-## 127          6.2         2.8          4.8         1.8  virginica
-## 128          6.1         3.0          4.9         1.8  virginica
-## 129          6.4         2.8          5.6         2.1  virginica
-## 130          7.2         3.0          5.8         1.6  virginica
-## 131          7.4         2.8          6.1         1.9  virginica
-## 132          7.9         3.8          6.4         2.0  virginica
-## 133          6.4         2.8          5.6         2.2  virginica
-## 134          6.3         2.8          5.1         1.5  virginica
-## 135          6.1         2.6          5.6         1.4  virginica
-## 136          7.7         3.0          6.1         2.3  virginica
-## 137          6.3         3.4          5.6         2.4  virginica
-## 138          6.4         3.1          5.5         1.8  virginica
-## 139          6.0         3.0          4.8         1.8  virginica
-## 140          6.9         3.1          5.4         2.1  virginica
-## 141          6.7         3.1          5.6         2.4  virginica
-## 142          6.9         3.1          5.1         2.3  virginica
-## 143          5.8         2.7          5.1         1.9  virginica
-## 144          6.8         3.2          5.9         2.3  virginica
-## 145          6.7         3.3          5.7         2.5  virginica
-## 146          6.7         3.0          5.2         2.3  virginica
-## 147          6.3         2.5          5.0         1.9  virginica
-## 148          6.5         3.0          5.2         2.0  virginica
-## 149          6.2         3.4          5.4         2.3  virginica
-## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">head</span>(iris,<span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1           5.1         3.5          1.4         0.2  setosa
+## 2           4.9         3.0          1.4         0.2  setosa
+## 3           4.7         3.2          1.3         0.2  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+## 5           5.0         3.6          1.4         0.2  setosa
+## 6           5.4         3.9          1.7         0.4  setosa
+## 7           4.6         3.4          1.4         0.3  setosa
+## 8           5.0         3.4          1.5         0.2  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 10          4.9         3.1          1.5         0.1  setosa</code></pre>
 <p>Notice that this dataset not only includes numerical variables but also a character (specifically factor) variable. This flexibility is what makes data frames popular.</p>
 </div>
 <div id="list" class="section level3">
@@ -848,6 +720,24 @@ $(document).ready(function () {
 </div>
 <div id="packages" class="section level2">
 <h2>Packages</h2>
+<p>Packages in R add a lot of functionality on top of the base R functions for increased efficiency and flexiblity. They are installed with the <code>install.packages()</code> command and then must be loaded with the <code>library()</code> command. Some examples of common packages are:</p>
+<ul>
+<li>ggplot2</li>
+<li>dplyr</li>
+<li>mass</li>
+<li>plotly</li>
+<li>readxl</li>
+<li>car</li>
+</ul>
+<p>Additionally, there is a package called <a href="https://www.tidyverse.org/">tidyverse</a> that is actually a package of packages. Once installed, <code>tidyverse</code> will install a list of very useful packages that share the common theme and syntax. The goal of these packages is to create tidy data sets that are easy to work with.</p>
+<p>The downside of packages is they are installed on the client side. This means that you need to do one of several things to ensure reproducibility of your work:</p>
+<ul>
+<li>Write an install command in your script that runs every time (very bad idea)</li>
+<li>Instruct the user to install the packages themselves (better but not fool-proof)</li>
+<li>Write a command to install packages only if they are not already installed (fairly good)</li>
+<li>use <a href="https://rstudio.github.io/packrat/">Packrat</a> to manage packages (Best option)</li>
+</ul>
+<p>Through the use of both R Projects and Packrat, you can greatly reduce the amount of work your end-user needs to do in order to reproduce the hard work you’ve done. The magic behind Packrat is that it installs all packages and relevent system information (R version, OS version, etc.) necessary to duplicate working conditions as closely as possible. While you can do so at anytime, it is highly recommended to use both Packrat and R Projectes before you start work as it reduces the chance of incompatibility or issues during the setup process.</p>
 </div>
 </div>
 
