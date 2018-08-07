@@ -1,0 +1,89 @@
+---
+title: "Import"
+date: "Updated: `r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Now that you are familiar with R and the basics of projects, packages, data structures, and document types, let's talk about importing data! 
+
+## CSV/TSV
+
+**C**omma **S**epparated **V**alues or **T**ab **S**epparated **V**alues are a common document type that organizes individual observations separated by (you guessed it) either commas or tab characters. R has a built-in function called `read.csv()` that can store information which as been saved as either a ".csv" or ".tsv" file in the R environment. This can be done with either locally saved files (i.e. C:/Users/UserName/Files/file.csv) or externally hosted files (i.e. http://example.com/data.csv). Below you can see an example of both methods. 
+
+```{r}
+read.csv("./Files/Data/ExampleCSV.csv") #Local File
+head(read.csv("https://data.sfgov.org/api/views/qzz6-2jup/rows.csv")) #External File
+```
+
+As you can see, I wrapped the second file in the `head()` function. This was just so that we only returned the first 6 rows instead of all 423 thousand rows. Instead of just displaying the results, you could instead save them to an R variable for use later. This is especially usefull when working with large datasets and also greatly reduces the number of times you need to type `read.csv`! 
+
+```{r}
+example_CSV <- read.csv("./Files/Data/ExampleCSV.csv")
+```
+
+If, instead of a CSV file, we have TSV file, we only need to change the `sep` argument (which defaults to ","). 
+
+```{r}
+example_TSV <- read.csv("./Files/Data/ExampleTSV.txt", sep = "\t")
+```
+
+## Excel
+
+Unfortunately, R does not have a built-in function to read in Excel files. However, we can download a package that will provide us this functionality with `install.packages('readxl')`. I've already installed it to this project so we will load it using: 
+
+```{r}
+require(readxl)
+```
+
+There is an example XLSX file in the "/Files/Data" folder which we can now read in using: 
+
+```{r}
+example_xl <- read_excel("./Files/Data/ExampleXLSX.xlsx", sheet = 1)
+head(example_xl)
+```
+
+Notice with excel files, we need to specify the sheet number. This is because R has now way of specifying different sheets like Excel can. However, if you need more than one sheet in the same object, you could read every sheet into a list item as such: 
+
+```{r}
+sheet_list <- list()
+for (i in 1:length(excel_sheets("./Files/Data/ExampleXLSX.xlsx"))) {
+  sheet_list[[i]] <- read_excel("./Files/Data/ExampleXLSX.xlsx", sheet = i)
+}
+head(sheet_list)
+```
+
+
+## JSON
+
+JSON data is determined to be a form of structured data but despite this, is often messy. Therefore, there is not one fool-proof way to read it in but [this](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html) page offers some insight to working with different forms of messy JSON data. In general, the `jsonlite` package is a good option for retreiving the information and storing it as an object but the cleaning and organizing for use in R might take more massaging.
+
+## Database 
+
+The [conections pane](https://db.rstudio.com/rstudio/connections/) offers a GUI option for connecting to a database but below you will find the programatic way to do so.
+
+The recommended package for this task can be installed using `install.packages('odbc')`. Again, this has already been installed so we will simply load it using: 
+
+```{r}
+require(odbc)
+```
+
+All code below is psuedo-code and will not actually run. This is because we are not connecting to a real database. However, if you are using most common Db management software, you should be able to replace the provided code with names and connection details appropriate for your system and be good to go! 
+
+Creating a database connection is simple enough, just pass it the driver information, server name, database name, and whether or not it is a trusted connection: 
+
+``` dbconnection <- odbcDriverConnect('driver={SQL Server};server=mysqlhost;database=mydbname;trusted_connection=true') ```
+
+Then, you can query your database using the `sqlQuery()` function.
+
+``` results <- sqlQuery(dbconnection, 'select * from schema.table where condition = 1' ```
+
+Once you are finished with your connection, you want to make sure to close it with `odbcClose(dbconnection)`
+
+
+If, like some, you are more comfortable in tSQL than in R, you can actually [run R code within your tSQL](https://www.datacamp.com/community/tutorials/execute-r-python-sql)! I won't cover this here but it is an interesting option that some might find useful! 
+
+

@@ -248,7 +248,7 @@ If we wanted to recall one of these items in the list, we still use the `[]` ope
 
 ```{r}
 l[[1]]
-l[[3]]
+head(l[[3]],10)
 ```
 
 but the following will print the item in the first row and fourth column of the data frame (third item in the list)

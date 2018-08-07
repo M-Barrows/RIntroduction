@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Import</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #2a211c;
+    color: #bdae9d;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+div.sourceCode
+  { color: #bdae9d; background-color: #2a211c; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ffff00; } /* Alert */
+code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #44aa43; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #049b0a; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+code span.dt { text-decoration: underline; } /* DataType */
+code span.dv { color: #44aa43; } /* DecVal */
+code span.er { color: #ffff00; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #44aa43; } /* Float */
+code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+code span.op { } /* Operator */
+code span.pp { font-weight: bold; } /* Preprocessor */
+code span.sc { color: #049b0a; } /* SpecialChar */
+code span.ss { color: #049b0a; } /* SpecialString */
+code span.st { color: #049b0a; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #049b0a; } /* VerbatimString */
+code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><img id="logo" style="width: 40px; height: 40px; vertical-align: middle;" src="R.png" /></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Topics
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Intro.html">1. Intro</a>
+    </li>
+    <li>
+      <a href="Import.html">2. Import</a>
+    </li>
+    <li>
+      <a href="Transform.html">3. Transform</a>
+    </li>
+    <li>
+      <a href="Model.html">4. Model</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Recommended Courses
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="http://uc-r.github.io/data_wrangling">
+        <span class="fa fa-external-link-alt"></span>
+         
+        UC-r
+      </a>
+    </li>
+    <li>
+      <a href="https://www.coursera.org/learn/r-programming">
+        <span class="fa fa-external-link-alt"></span>
+         
+        Coursera
+      </a>
+    </li>
+    <li>
+      <a href="https://www.pluralsight.com/courses/r-programming-fundamentals">
+        <span class="fa fa-external-link-alt"></span>
+         
+        Pluralsight
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/MBarrows20/RIntroduction">
+    <span class="fa fa-code"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/MBarrows20">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/michaelabarrows">
+    <span class="fa fa-linkedin"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Import</h1>
+<h4 class="date"><em>Updated: 2018-08-07</em></h4>
+
+</div>
+
+
+<p>Now that you are familiar with R and the basics of projects, packages, data structures, and document types, let’s talk about importing data!</p>
+<div id="csvtsv" class="section level2">
+<h2>CSV/TSV</h2>
+<p><strong>C</strong>omma <strong>S</strong>epparated <strong>V</strong>alues or <strong>T</strong>ab <strong>S</strong>epparated <strong>V</strong>alues are a common document type that organizes individual observations separated by (you guessed it) either commas or tab characters. R has a built-in function called <code>read.csv()</code> that can store information which as been saved as either a “.csv” or “.tsv” file in the R environment. This can be done with either locally saved files (i.e. C:/Users/UserName/Files/file.csv) or externally hosted files (i.e. <a href="http://example.com/data.csv" class="uri">http://example.com/data.csv</a>). Below you can see an example of both methods.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleCSV.csv&quot;</span>) <span class="co">#Local File</span></a></code></pre></div>
+<pre><code>##   Col1      Col2  Col3
+## 1    1     This   TRUE
+## 2    2       Is  FALSE
+## 3    3         A  TRUE
+## 4    4 Character FALSE
+## 5    5  Variable FALSE</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">head</span>(<span class="kw">read.csv</span>(<span class="st">&quot;https://data.sfgov.org/api/views/qzz6-2jup/rows.csv&quot;</span>)) <span class="co">#External File</span></a></code></pre></div>
+<pre><code>##   Patron.Type.Code Patron.Type.Definition Total.Checkouts Total.Renewals
+## 1                3                 SENIOR              28             13
+## 2                0                  ADULT              21             10
+## 3                0                  ADULT             275            559
+## 4                0                  ADULT              73             38
+## 5                0                  ADULT             182             90
+## 6                3                 SENIOR               1              0
+##        Age.Range Home.Library.Code Home.Library.Definition
+## 1 65 to 74 years                 X            Main Library
+## 2 55 to 59 years                 X            Main Library
+## 3 60 to 64 years                 X            Main Library
+## 4 45 to 54 years                M8             Mission Bay
+## 5 45 to 54 years                 X            Main Library
+## 6 65 to 74 years                 X            Main Library
+##   Circulation.Active.Month Circulation.Active.Year Notice.Preference.Code
+## 1                 November                    2012                      z
+## 2                  October                    2015                      z
+## 3                  January                    2015                      z
+## 4                 February                    2016                      z
+## 5                     July                    2016                      z
+## 6                     July                    2004                      z
+##   Notice.Preference.Definition Provided.Email.Address
+## 1                        email                   true
+## 2                        email                   true
+## 3                        email                   true
+## 4                        email                   true
+## 5                        email                   true
+## 6                        email                   true
+##   Year.Patron.Registered Outside.of.County Supervisor.District
+## 1                   2003              true                  NA
+## 2                   2003             false                  NA
+## 3                   2003              true                  NA
+## 4                   2003             false                  NA
+## 5                   2003             false                  NA
+## 6                   2003              true                  NA</code></pre>
+<p>As you can see, I wrapped the second file in the <code>head()</code> function. This was just so that we only returned the first 6 rows instead of all 423 thousand rows. Instead of just displaying the results, you could instead save them to an R variable for use later. This is especially usefull when working with large datasets and also greatly reduces the number of times you need to type <code>read.csv</code>!</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">example_CSV &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleCSV.csv&quot;</span>)</a></code></pre></div>
+<p>If, instead of a CSV file, we have TSV file, we only need to change the <code>sep</code> argument (which defaults to “,”).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">example_TSV &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleTSV.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
+</div>
+<div id="excel" class="section level2">
+<h2>Excel</h2>
+<p>Unfortunately, R does not have a built-in function to read in Excel files. However, we can download a package that will provide us this functionality with <code>install.packages('readxl')</code>. I’ve already installed it to this project so we will load it using:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">require</span>(readxl)</a></code></pre></div>
+<pre><code>## Loading required package: readxl</code></pre>
+<p>There is an example XLSX file in the “/Files/Data” folder which we can now read in using:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">example_xl &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">head</span>(example_xl)</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##    Col1 Col2   Col3 
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
+## 1     1 This   T    
+## 2     2 Is     F    
+## 3     3 Sheet  T    
+## 4     4 Number F    
+## 5     5 One    F</code></pre>
+<p>Notice with excel files, we need to specify the sheet number. This is because R has now way of specifying different sheets like Excel can. However, if you need more than one sheet in the same object, you could read every sheet into a list item as such:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">sheet_list &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(<span class="kw">excel_sheets</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>))) {</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">  sheet_list[[i]] &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>, <span class="dt">sheet =</span> i)</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw">head</span>(sheet_list)</a></code></pre></div>
+<pre><code>## [[1]]
+## # A tibble: 5 x 3
+##    Col1 Col2   Col3 
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
+## 1     1 This   T    
+## 2     2 Is     F    
+## 3     3 Sheet  T    
+## 4     4 Number F    
+## 5     5 One    F    
+## 
+## [[2]]
+## # A tibble: 5 x 3
+##    Col1 Col2   Col3 
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;
+## 1     1 This   T    
+## 2     2 Is     F    
+## 3     3 Sheet  T    
+## 4     4 Number F    
+## 5     5 Two    F</code></pre>
+</div>
+<div id="json" class="section level2">
+<h2>JSON</h2>
+<p>JSON data is determined to be a form of structured data but despite this, is often messy. Therefore, there is not one fool-proof way to read it in but <a href="https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html">this</a> page offers some insight to working with different forms of messy JSON data. In general, the <code>jsonlite</code> package is a good option for retreiving the information and storing it as an object but the cleaning and organizing for use in R might take more massaging.</p>
+</div>
+<div id="database" class="section level2">
+<h2>Database</h2>
+<p>The <a href="https://db.rstudio.com/rstudio/connections/">conections pane</a> offers a GUI option for connecting to a database but below you will find the programatic way to do so.</p>
+<p>The recommended package for this task can be installed using <code>install.packages('odbc')</code>. Again, this has already been installed so we will simply load it using:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">require</span>(odbc)</a></code></pre></div>
+<pre><code>## Loading required package: odbc</code></pre>
+<p>All code below is psuedo-code and will not actually run. This is because we are not connecting to a real database. However, if you are using most common Db management software, you should be able to replace the provided code with names and connection details appropriate for your system and be good to go!</p>
+<p>Creating a database connection is simple enough, just pass it the driver information, server name, database name, and whether or not it is a trusted connection:</p>
+<p><code>dbconnection &lt;- odbcDriverConnect('driver={SQL Server};server=mysqlhost;database=mydbname;trusted_connection=true')</code></p>
+<p>Then, you can query your database using the <code>sqlQuery()</code> function.</p>
+<p><code>results &lt;- sqlQuery(dbconnection, 'select * from schema.table where condition = 1'</code></p>
+<p>Once you are finished with your connection, you want to make sure to close it with <code>odbcClose(dbconnection)</code></p>
+<p>If, like some, you are more comfortable in tSQL than in R, you can actually <a href="https://www.datacamp.com/community/tutorials/execute-r-python-sql">run R code within your tSQL</a>! I won’t cover this here but it is an interesting option that some might find useful!</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

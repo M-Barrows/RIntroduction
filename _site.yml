@@ -31,6 +31,7 @@ navbar:
         - text: "Pluralsight"
           icon: "fa-external-link-alt"
           href: https://www.pluralsight.com/courses/r-programming-fundamentals
+
   right: 
     - icon: "fa-code"
       href: https://github.com/MBarrows20/RIntroduction
