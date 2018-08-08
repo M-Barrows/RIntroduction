@@ -3,10 +3,10 @@ Title: Home
 output: html_document
 ---
 
-# A Breif introduction to R
+## A Brief introduction to R
 
 
-So you're interested in R huh? Great! The documents in this repository will help you get started in data analytics using one of the most powerful open source tools for the job. Below is a suggested reading heirarchy but feel free to skip around as you see fit.  Many of these documents will either be refferenced or influenced by other sources around the internet. If this is the case, I will be sure to either link directly to the source or provide refferences where appropriate.
+So you're interested in R huh? Great! The documents in this repository will help you get started in data analytics using one of the most powerful open source tools for the job. Below is a suggested reading hierarchy but feel free to skip around as you see fit.  Many of these documents will either be referenced or influenced by other sources around the internet. If this is the case, I will be sure to either link directly to the source or provide references where appropriate.
 
 Before you get started, you will need to download [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/) for your operating system. The Windows 10 versions are [here](https://cran.mtu.edu/bin/windows/base/R-3.5.1-win.exe) and [here](https://download1.rstudio.org/RStudio-1.1.456.exe).
 

@@ -19,7 +19,7 @@ read.csv("./Files/Data/ExampleCSV.csv") #Local File
 head(read.csv("https://data.sfgov.org/api/views/qzz6-2jup/rows.csv")) #External File
 ```
 
-As you can see, I wrapped the second file in the `head()` function. This was just so that we only returned the first 6 rows instead of all 423 thousand rows. Instead of just displaying the results, you could instead save them to an R variable for use later. This is especially usefull when working with large datasets and also greatly reduces the number of times you need to type `read.csv`! 
+As you can see, I wrapped the second file in the `head()` function. This was just so that we only returned the first 6 rows instead of all 423 thousand rows. Instead of just displaying the results, you could instead save them to an R variable for use later. This is especially useful when working with large datasets and also greatly reduces the number of times you need to type `read.csv`! 
 
 ```{r}
 example_CSV <- read.csv("./Files/Data/ExampleCSV.csv")
@@ -59,11 +59,11 @@ head(sheet_list)
 
 ## JSON
 
-JSON data is determined to be a form of structured data but despite this, is often messy. Therefore, there is not one fool-proof way to read it in but [this](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html) page offers some insight to working with different forms of messy JSON data. In general, the `jsonlite` package is a good option for retreiving the information and storing it as an object but the cleaning and organizing for use in R might take more massaging.
+JSON data is determined to be a form of structured data but despite this, is often messy. Therefore, there is not one fool-proof way to read it in but [this](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html) page offers some insight to working with different forms of messy JSON data. In general, the `jsonlite` package is a good option for retrieving the information and storing it as an object but the cleaning and organizing for use in R might take more massaging.
 
 ## Database 
 
-The [conections pane](https://db.rstudio.com/rstudio/connections/) offers a GUI option for connecting to a database but below you will find the programatic way to do so.
+The [conections pane](https://db.rstudio.com/rstudio/connections/) offers a GUI option for connecting to a database but below you will find the programmatic way to do so.
 
 The recommended package for this task can be installed using `install.packages('odbc')`. Again, this has already been installed so we will simply load it using: 
 
@@ -71,7 +71,7 @@ The recommended package for this task can be installed using `install.packages('
 require(odbc)
 ```
 
-All code below is psuedo-code and will not actually run. This is because we are not connecting to a real database. However, if you are using most common Db management software, you should be able to replace the provided code with names and connection details appropriate for your system and be good to go! 
+All code below is pseudo-code and will not actually run. This is because we are not connecting to a real database. However, if you are using most common Db management software, you should be able to replace the provided code with names and connection details appropriate for your system and be good to go! 
 
 Creating a database connection is simple enough, just pass it the driver information, server name, database name, and whether or not it is a trusted connection: 
 

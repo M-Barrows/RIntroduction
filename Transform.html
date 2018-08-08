@@ -323,7 +323,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Transform and Visualize</h1>
-<h4 class="date"><em>Updated: 2018-08-07</em></h4>
+<h4 class="date"><em>Updated: 2018-08-08</em></h4>
 
 </div>
 
@@ -360,11 +360,11 @@ $(document).ready(function () {
 {"columns":[{"label":["Patron_Type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["active_month"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["checkouts_avg"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"ADULT","2":"April","3":"104"},{"1":"ADULT","2":"August","3":"94"},{"1":"ADULT","2":"December","3":"91"},{"1":"ADULT","2":"February","3":"94"},{"1":"ADULT","2":"January","3":"104"},{"1":"ADULT","2":"July","3":"358"},{"1":"ADULT","2":"June","3":"140"},{"1":"ADULT","2":"March","3":"97"},{"1":"ADULT","2":"May","3":"113"},{"1":"ADULT","2":"None","3":"0"},{"1":"ADULT","2":"November","3":"87"},{"1":"ADULT","2":"October","3":"90"},{"1":"ADULT","2":"September","3":"96"},{"1":"AT USER ADULT","2":"April","3":"122"},{"1":"AT USER ADULT","2":"August","3":"136"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>There are two things to notice with the above code. First is that we used the <code>%&gt;%</code> operator twice in a row to progressivly manipulate our data. The first time was to group our data by patron type <em>then</em> active month and the second was to take the result of the grouping and find the average number of checkouts for each group. The second thing to take note of was the use of two new functions: <code>group_by()</code> and <code>summarise()</code>.</p>
+<p>There are two things to notice with the above code. First is that we used the <code>%&gt;%</code> operator twice in a row to progressively manipulate our data. The first time was to group our data by patron type <em>then</em> active month and the second was to take the result of the grouping and find the average number of checkouts for each group. The second thing to take note of was the use of two new functions: <code>group_by()</code> and <code>summarise()</code>.</p>
 <p><strong>group_by():</strong></p>
 <p>unlike select() and summarise() the group_by function doesn’t actually change the structure of our data. Instead, it creates symbolic groups within our data over which we can perform summarizing functions (sum, mean, standard deviation).</p>
 <p><strong>summarise():</strong></p>
-<p>applies a function for all observations within each group. If no group is present, then the function is applied columnwise. In this particualr instance, we found the average average (<code>mean(.,na.rm=T)</code>) number of checkouts per patron type for each month of the year (<code>group_by(Patron_Type, active_month)</code>). We then rounded all numbers down to the nearest whole number with the <code>floor()</code> function.</p>
+<p>applies a function for all observations within each group. If no group is present, then the function is applied column-wise. In this particular instance, we found the average average (<code>mean(.,na.rm=T)</code>) number of checkouts per patron type for each month of the year (<code>group_by(Patron_Type, active_month)</code>). We then rounded all numbers down to the nearest whole number with the <code>floor()</code> function.</p>
 <p>If we wanted to pivot the data and have a column for each active month, we could do so using:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">head</span>(library <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">       </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span></a>
@@ -403,7 +403,7 @@ $(document).ready(function () {
 {"columns":[{"label":["Patron_Type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["Total"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"RETIRED STAFF","2":"7545"},{"1":"FRIENDS FOR LIFE","2":"5028"},{"1":"STAFF","2":"4228"},{"1":"BOOKS BY MAIL","2":"3098"},{"1":"SPECIAL","2":"2887"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>As demonstrated by the process above, using plyr and dplyr creates a natural, readible code chunk that performs powerful transformations. Let’s take a look at our last code chunk again, this time with comments outlining the purpose of each step:</p>
+<p>As demonstrated by the process above, using plyr and dplyr creates a natural, readable code chunk that performs powerful transformations. Let’s take a look at our last code chunk again, this time with comments outlining the purpose of each step:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">library <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Select the library dataset</span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filter for every month except those labled as &#39;None&#39;</span></a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">spread</span>(active_month,checkouts_avg, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Create new columns for every month containing the average checkouts as values</span></a>
@@ -414,7 +414,7 @@ $(document).ready(function () {
 <a class="sourceLine" id="cb10-8" data-line-number="8"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>,Total) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select the top 5 rows based on the total column</span></a>
 <a class="sourceLine" id="cb10-9" data-line-number="9"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Total)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># sort them from greatest to least Total value</span></a>
 <a class="sourceLine" id="cb10-10" data-line-number="10"><span class="st">  </span><span class="kw">select</span>(Patron_Type, Total) <span class="co"># display only the patron_type and total columns</span></a></code></pre></div>
-<p>You can see that the dplyr syntax is almost as easily readible (and shorter) than plain English. This is what makes it so powerful.</p>
+<p>You can see that the dplyr syntax is almost as easily readable (and shorter) than plain English. This is what makes it so powerful.</p>
 </div>
 
 <div class = "footer">

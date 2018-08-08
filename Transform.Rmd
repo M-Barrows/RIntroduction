@@ -36,7 +36,7 @@ head(library <- library %>%
   summarise(checkouts_avg = floor(mean(checkouts, na.rm = T))),15)
 ```
 
-There are two things to notice with the above code. First is that we used the `%>%` operator twice in a row to progressivly manipulate our data. The first time was to group our data by patron type *then* active month and the second was to take the result of the grouping and find the average number of checkouts for each group. The second thing to take note of was the use of two new functions: `group_by()` and `summarise()`. 
+There are two things to notice with the above code. First is that we used the `%>%` operator twice in a row to progressively manipulate our data. The first time was to group our data by patron type *then* active month and the second was to take the result of the grouping and find the average number of checkouts for each group. The second thing to take note of was the use of two new functions: `group_by()` and `summarise()`. 
 
 **group_by():**
 
@@ -44,7 +44,7 @@ unlike select() and summarise() the group_by function doesn't actually change th
 
 **summarise():**
 
-applies a function for all observations within each group. If no group is present, then the function is applied columnwise. In this particualr instance, we found the average average (`mean(.,na.rm=T)`) number of checkouts per patron type for each month of the year (`group_by(Patron_Type, active_month)`). We then rounded all numbers down to the nearest whole number with the `floor()` function. 
+applies a function for all observations within each group. If no group is present, then the function is applied column-wise. In this particular instance, we found the average average (`mean(.,na.rm=T)`) number of checkouts per patron type for each month of the year (`group_by(Patron_Type, active_month)`). We then rounded all numbers down to the nearest whole number with the `floor()` function. 
 
 If we wanted to pivot the data and have a column for each active month, we could do so using: 
 
@@ -81,7 +81,7 @@ library %>%
     select(Patron_Type, Total)
 ```
 
-As demonstrated by the process above, using plyr and dplyr creates a natural, readible code chunk that performs powerful transformations. Let's take a look at our last code chunk again, this time with comments outlining the purpose of each step: 
+As demonstrated by the process above, using plyr and dplyr creates a natural, readable code chunk that performs powerful transformations. Let's take a look at our last code chunk again, this time with comments outlining the purpose of each step: 
 
 ```{r, eval=FALSE}
 library %>% # Select the library dataset
@@ -96,4 +96,4 @@ library %>% # Select the library dataset
   select(Patron_Type, Total) # display only the patron_type and total columns
 ```
 
-You can see that the dplyr syntax is almost as easily readible (and shorter) than plain English. This is what makes it so powerful. 
+You can see that the dplyr syntax is almost as easily readable (and shorter) than plain English. This is what makes it so powerful. 

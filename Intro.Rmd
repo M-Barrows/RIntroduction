@@ -20,11 +20,11 @@ Not much more needs to be said here. *R* is full-featured, flexible, and most im
 
 #### Reproducibility
 
-Much like SSRS, creating documents in *R*, gives you the ability to serve up scripts, reports, and even web applications that are not only packed with statistical findings, but are also completely reproducible and dynamic. With *R*, you can work with flat files, data downloaded from the internet, or directly query databases. Regardless of your data sourcing method, creating programatic analyses in *R* allows your findings to change as your data source changes without the need for manual intervention. 
+Much like SSRS, creating documents in *R*, gives you the ability to serve up scripts, reports, and even web applications that are not only packed with statistical findings, but are also completely reproducible and dynamic. With *R*, you can work with flat files, data downloaded from the internet, or directly query databases. Regardless of your data sourcing method, creating programmatic analyses in *R* allows your findings to change as your data source changes without the need for manual intervention. 
 
 #### Flexibility
 
-Since *R* is open source, the list of available functions/packages is ever growing. Furthermore, since *R* is a programming language, you can write your own custom functions or alter existing functions to better suit your needs. Furthermore, the combination of *R* and RStudio allows you to create many different types of documents to present your findings in the most inuitive way. Some of the document types include:
+Since *R* is open source, the list of available functions/packages is ever growing. Furthermore, since *R* is a programming language, you can write your own custom functions or alter existing functions to better suit your needs. Furthermore, the combination of *R* and RStudio allows you to create many different types of documents to present your findings in the most intuitive way. Some of the document types include:
 
 * HTML
 * PDF
@@ -39,7 +39,7 @@ As *R* has been steadily growing in popularity, there are many large communities
 
 ### Other Options
 
-*R* is by no means the only options for programatic statistical modeling. Some of the other alternatives include:
+*R* is by no means the only options for programmatic statistical modeling. Some of the other alternatives include:
 
 * SAS / SPSS: These options are fairly old and usually come with a high cost to scale
 * Python: Leading competitor, Jack of all trades but not as strong in modeling
@@ -52,7 +52,7 @@ Before you start creating R files and saving (or dooming) the world with machine
 
 ### Projects
 
-There are several steps you can take in order to make your projects more reporducible and reliable. The first of which is using *Projects*. [Here](http://uc-r.github.io/r_projects) is a nice write-up of how to get started with Projects. The main idea behind Projects is that all related files are bundled together in an organized file structure, making it easier to work with and share with others. Additionally, you are able to open your work, including data, scripts, environment, and history, with one file (*.Rproj). In general, you should always start a new project with a new Rproj file (funny how that works out!).  
+There are several steps you can take in order to make your projects more reproducible and reliable. The first of which is using *Projects*. [Here](http://uc-r.github.io/r_projects) is a nice write-up of how to get started with Projects. The main idea behind Projects is that all related files are bundled together in an organized file structure, making it easier to work with and share with others. Additionally, you are able to open your work, including data, scripts, environment, and history, with one file (*.Rproj). In general, you should always start a new project with a new Rproj file (funny how that works out!).  
 
 ### Git
 
@@ -60,7 +60,7 @@ If you want to take your reproducibility one step further, you can host your pro
 
 If you are new to GitHub, I recommend [Git's documentation](https://try.github.io/), *The Coding Train*'s [youtube series](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV), or any number of other resources out there that will help you get started. It was confusing for me but practice makes perfect! 
 
-As far as setting up your R project in Github, there are a few things you will need to do first.
+As far as setting up your R project in GitHub, there are a few things you will need to do first.
 
 1. Create a version control account (usually [GitHub](https://github.com/) but there **are** other options)
 2. Create a repository
@@ -98,7 +98,7 @@ While you can output as HTML, Notebook, or Word out of the box, you will need to
 
 #### HTML
 
-This is a lightweight document that can be viewed either in RStudio or in a user's web browser. It is a representation of the rmd file with all markdown/html/css styling applied. Outputing an HTML file is possible out of the box with R and Rstudio and is a quick an easy way to share your work.
+This is a lightweight document that can be viewed either in RStudio or in a user's web browser. It is a representation of the rmd file with all markdown/html/css styling applied. Outputting an HTML file is possible out of the box with R and Rstudio and is a quick an easy way to share your work.
 
 
 #### Notebooks
@@ -124,11 +124,11 @@ As you can see (if you took the time to run it), the benefit of a shiny app is d
 
 ## Style Guide
 
-Even though many people argue that programming is a form of expression, you shouldn't get too creative with your code styling. Instead, it's often preferred to follow a style guide and keep your formatting consistent. This increases readibility by someone new to a file/project or even yourself when you return to a piece of code later on. Two recommended style guides are [Google's](https://google.github.io/styleguide/Rguide.xml) and [Hadley Wickham's (Chief Scientist at RStudio)](http://adv-r.had.co.nz/Style.html) R Style guides<sup>[2](http://uc-r.github.io/basics#style)</sup>. Some highlights of these guides with my own personal preferences are below.
+Even though many people argue that programming is a form of expression, you shouldn't get too creative with your code styling. Instead, it's often preferred to follow a style guide and keep your formatting consistent. This increases readability by someone new to a file/project or even yourself when you return to a piece of code later on. Two recommended style guides are [Google's](https://google.github.io/styleguide/Rguide.xml) and [Hadley Wickham's (Chief Scientist at RStudio)](http://adv-r.had.co.nz/Style.html) R Style guides<sup>[2](http://uc-r.github.io/basics#style)</sup>. Some highlights of these guides with my own personal preferences are below.
 
 **Naming**
 
-Naming variables is something that Google and Hadley completely dissagree on. My philosophy is pick one style and stick with it. In general, my preference is to use underscores and be short but descriptive.
+Naming variables is something that Google and Hadley completely disagree on. My philosophy is pick one style and stick with it. In general, my preference is to use underscores and be short but descriptive.
 
 * Good: `new_variable` or `new_variable_units`
 * OK: `newVariable` or `NewVariable`
@@ -155,7 +155,7 @@ While both of the above lines are fairly short and technically achieve the same 
 
 **Assignment**
 
-While many languages use `=` to assign new variables, and even though you still *can* do so in R, it's not recommended. Instead, the assignment opperator for variables in R is `<-` where the variable is on the left and the value is on the right. 
+While many languages use `=` to assign new variables, and even though you still *can* do so in R, it's not recommended. Instead, the assignment operator for variables in R is `<-` where the variable is on the left and the value is on the right. 
 
 * Good: `x <- 5`
 * Bad: `x = 5` or `x -> 5`
@@ -185,7 +185,7 @@ Notice that *R* is 1-indexed, not 0-indexed like many other languages (Python, C
 
 ### Matrix
 
-A two dimensional collection of data. All elements in a matrix ***Must*** be of a consistant type (i.e. all numeric or all character). Because matricies are two dimentional, they have two indicies that can be specified to recal a value. If we create a 3x3 matrix that looks like this: 
+A two dimensional collection of data. All elements in a matrix ***Must*** be of a consistent type (i.e. all numeric or all character). Because matrices are two dimensional, they have two indices that can be specified to recall a value. If we create a 3x3 matrix that looks like this: 
 
 |     | col 1 | col 2 | col 3 |
 |-----|-------|-------|-------|
@@ -202,7 +202,7 @@ matrixData[3,2]
 
 As you can see, the `[]` operator is used to subset a data object. In the case of a vector, we only require one number (corresponding to the index). However, in the case of a matrix, we require two numbers. The first number is the row number and the second number is the column number. 
 
-We can also subset matricies by name.
+We can also subset matrices by name.
 
 ```{r}
 colnames(matrixData) <- c("col 1", "col 2", "col 3")
@@ -260,7 +260,7 @@ l[[3]][1,4]
 
 ## Packages
 
-Packages in R add a lot of functionality on top of the base R functions for increased efficiency and flexiblity. They are installed with the `install.packages()` command and then must be loaded with the `library()` command. Some examples of common packages are: 
+Packages in R add a lot of functionality on top of the base R functions for increased efficiency and flexibility. They are installed with the `install.packages()` command and then must be loaded with the `library()` command. Some examples of common packages are: 
 
 * ggplot2
 * dplyr
@@ -278,4 +278,4 @@ The downside of packages is they are installed on the client side. This means th
 * Write a command to install packages only if they are not already installed (fairly good)
 * use [Packrat](https://rstudio.github.io/packrat/) to manage packages (Best option)
 
-Through the use of both R Projects and Packrat, you can greatly reduce the amount of work your end-user needs to do in order to reproduce the hard work you've done. The magic behind Packrat is that it installs all packages and relevent system information (R version, OS version, etc.) necessary to duplicate working conditions as closely as possible. While you can do so at anytime, it is highly recommended to use both Packrat and R Projectes before you start work as it reduces the chance of incompatibility or issues during the setup process.
+Through the use of both R Projects and Packrat, you can greatly reduce the amount of work your end-user needs to do in order to reproduce the hard work you've done. The magic behind Packrat is that it installs all packages and relevant system information (R version, OS version, etc.) necessary to duplicate working conditions as closely as possible. While you can do so at anytime, it is highly recommended to use both Packrat and R Projects before you start work as it reduces the chance of incompatibility or issues during the setup process.
