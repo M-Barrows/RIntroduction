@@ -279,3 +279,11 @@ The downside of packages is they are installed on the client side. This means th
 * use [Packrat](https://rstudio.github.io/packrat/) to manage packages (Best option)
 
 Through the use of both R Projects and Packrat, you can greatly reduce the amount of work your end-user needs to do in order to reproduce the hard work you've done. The magic behind Packrat is that it installs all packages and relevant system information (R version, OS version, etc.) necessary to duplicate working conditions as closely as possible. While you can do so at anytime, it is highly recommended to use both Packrat and R Projects before you start work as it reduces the chance of incompatibility or issues during the setup process.
+
+## Slide Deck
+
+For a slide deck of this content, click the image below: 
+
+<form method = "get" action = "./Files/Presentations/Intro.html">
+  <button type="submit">Download!</button>
+</form>

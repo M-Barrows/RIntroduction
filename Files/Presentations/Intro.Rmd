@@ -1,0 +1,212 @@
+---
+title: "Introduction"
+author: "Michael Barrows"
+date: "`r Sys.Date()`"
+output:
+  revealjs::revealjs_presentation:
+    theme: night
+    transition: none
+    self_contained: true
+    css: slides.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Adgenda 
+
+1. What is R
+2. Suggested Workflow
+3. Document Types
+4. Style Guide
+5. Packages
+
+
+# 1. What is R
+
+
+## Origin
+
+- Developed in 1995 at the University of Auckland, New Zealand
+- Derivative of the S language developed by Bell Laboratories (Formerly AT&T)
+
+## Free and Open Source
+
+- 100% free
+- Active development
+- Code transparency
+
+## Enhanced Reproducitility
+
+- Run reports the same way every time
+- Not just calculations but figures and documenation as well
+
+## Reporting Flexibility
+
+- HTML
+- PDF
+- Web Apps
+- Slideshows
+- Much more! 
+
+## Great support
+
+- Many online communities
+- Open source means quick, colaborative changes
+- Great primary and third-party documentation
+
+## Competitors
+
+![image](../Images/SoftwareComparison.png)
+
+## Recap
+
+- R developed in 1995
+- Free, Open Source, and Powerful
+- Enables incredible reproducibility and flexibility
+- Tremendous support in multiple places
+- Good, but not the only option
+
+# 2. Suggested Workflow
+
+
+## Projects
+
+<div class = "left">
+  ![image](../Images/projects_new.png)
+</div>
+
+<div class = "right">
+  - Self contained
+  - Portable
+  - Open with one file
+  - Start one with each new _**Project**_
+</div>
+
+## Packrat
+
+- Save your package library information 
+- Make sharing projects easier and more reliable
+- Like packages, do it from the get-go
+
+## Github
+<div class = "left">
+![image](../Images/ironcat.jpg)
+</div>
+<div class = "right">
+  - Yet another step towards reproducibility 
+  - When using Projects and Packrat this is the next logical step
+  - Options for public/private repositories
+  - Potential for Enterprise level integration
+</div>
+
+# 3. Document Types
+
+
+## Scripts 
+
+<div class ="left">
+```{r echo = TRUE}
+variable <- "Hello"
+pair <- "World!"
+paste(variable, pair, sep = " ")
+```
+</div>
+<div class = "right">
+  - .R file extension
+  - Simple top-to-bottom execution
+  - Can be ran in GUI or Console
+  - Usually for stats analysis and data manipulation
+</div>
+## RMarkdown
+
+```{r echo = FALSE, message=F, warning=F}
+library(dplyr)
+library(ggplot2)
+```
+<div class = "left">
+```{r echo =TRUE}
+mtcars %>% filter(mpg > 20) %>%
+  ggplot(.,aes(mpg,hp)) + geom_point()
+```
+</div>
+
+<div class = "right">
+  - .RMD file extension
+  - Add your code and results to a markdown document
+  - Can create many output file formats
+  - This presentation was written in an RMD file
+  - Mostly common markdown language
+</div>
+
+---
+
+Code for the previous slide: 
+
+```{r results=F, eval=F, message=F, warning=F, echo = T}
+## RMarkdown
+<div class = "left">
+``{r echo = FALSE, message=F, warning=F}
+
+mtcars %>% filter(mpg > 20) %>%
+  ggplot(.,aes(mpg,hp)) + geom_point()
+``
+</div>
+<div class = "right">
+  - .RMD file extension
+  - Add your code and results to a markdown document
+  - Can create many output file formats
+  - This presentation was written in an RMD file
+  - Mostly common markdown language
+</div>
+```
+
+---
+## Shiny Apps
+
+<div class = "left">
+  ![image](../Images/shiny_default.png)
+</div>
+
+<div class = "right">
+  
+  - Interactive and Reactive data manipulation
+  - Must be running on an R instance (client or server)
+  - Great for data exploration
+  
+</div>
+# 4. Style Guide
+
+
+## Naming
+
+## Spacing and Syntax
+
+## Assignment
+
+
+# 5. Packages
+
+
+## What are they? 
+
+## Popular packages
+
+- ggplot2 (plotting)
+- plotly (interactive plotting)
+- dplyr (Data Transformations)
+- readxl (.xlsx importing)
+- mass (various statistics functions/datasets)
+- car (**C**ompanion to **A**pplied **R**egression)
+
+## [Tidyverse](https://www.tidyverse.org/)
+
+<div class = "left">
+![image](tidyverse.png)
+</div>
+
+<div class = "right">
+- Test point 1
+- Test point 2
+</div>
