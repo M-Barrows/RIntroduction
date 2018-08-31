@@ -20,6 +20,8 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
@@ -53,6 +55,9 @@ h6 {
 }
 .table th:not([align]) {
   text-align: left;
+}
+#rmd-source-code {
+  display: none;
 }
 </style>
 
@@ -151,6 +156,14 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("index.rmd");
+});
+</script>
 
 
 
@@ -250,6 +263,13 @@ $(document).ready(function () {
 
 <div class="fluid-row" id="header">
 
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
 
 
 
@@ -264,6 +284,7 @@ $(document).ready(function () {
 <p>This is by no means an extensive course on R. Those have been done by many others more knowledgeable than I. You can find some of them in the Recommended Courses tab above. Instead, this will be a brief overview of what working within the R environment looks like and some of the perks that it offers. If at any point you have questions regarding this content feel free to reach out on <a href="https://www.linkedin.com/in/michaelabarrows">LinkedIn</a> or post a comment on the <a href="https://github.com/MBarrows20/RIntroduction">GitHub page</a> associated with this repository. You should also feel free to clone, download, or share this repository as it is open source.</p>
 </div>
 
+<div id="rmd-source-code">LS0tDQpUaXRsZTogSG9tZQ0Kb3V0cHV0OiBodG1sX2RvY3VtZW50DQotLS0NCg0KIyMgQSBCcmllZiBpbnRyb2R1Y3Rpb24gdG8gUg0KDQoNClNvIHlvdSdyZSBpbnRlcmVzdGVkIGluIFIgaHVoPyBHcmVhdCEgVGhlIGRvY3VtZW50cyBpbiB0aGlzIHJlcG9zaXRvcnkgd2lsbCBoZWxwIHlvdSBnZXQgc3RhcnRlZCBpbiBkYXRhIGFuYWx5dGljcyB1c2luZyBvbmUgb2YgdGhlIG1vc3QgcG93ZXJmdWwgb3BlbiBzb3VyY2UgdG9vbHMgZm9yIHRoZSBqb2IuIEJlbG93IGlzIGEgc3VnZ2VzdGVkIHJlYWRpbmcgaGllcmFyY2h5IGJ1dCBmZWVsIGZyZWUgdG8gc2tpcCBhcm91bmQgYXMgeW91IHNlZSBmaXQuICBNYW55IG9mIHRoZXNlIGRvY3VtZW50cyB3aWxsIGVpdGhlciBiZSByZWZlcmVuY2VkIG9yIGluZmx1ZW5jZWQgYnkgb3RoZXIgc291cmNlcyBhcm91bmQgdGhlIGludGVybmV0LiBJZiB0aGlzIGlzIHRoZSBjYXNlLCBJIHdpbGwgYmUgc3VyZSB0byBlaXRoZXIgbGluayBkaXJlY3RseSB0byB0aGUgc291cmNlIG9yIHByb3ZpZGUgcmVmZXJlbmNlcyB3aGVyZSBhcHByb3ByaWF0ZS4NCg0KQmVmb3JlIHlvdSBnZXQgc3RhcnRlZCwgeW91IHdpbGwgbmVlZCB0byBkb3dubG9hZCBbUl0oaHR0cHM6Ly93d3cuci1wcm9qZWN0Lm9yZy8pIGFuZCBbUlN0dWRpb10oaHR0cHM6Ly93d3cucnN0dWRpby5jb20vcHJvZHVjdHMvcnN0dWRpby9kb3dubG9hZC8pIGZvciB5b3VyIG9wZXJhdGluZyBzeXN0ZW0uIFRoZSBXaW5kb3dzIDEwIHZlcnNpb25zIGFyZSBbaGVyZV0oaHR0cHM6Ly9jcmFuLm10dS5lZHUvYmluL3dpbmRvd3MvYmFzZS9SLTMuNS4xLXdpbi5leGUpIGFuZCBbaGVyZV0oaHR0cHM6Ly9kb3dubG9hZDEucnN0dWRpby5vcmcvUlN0dWRpby0xLjEuNDU2LmV4ZSkuDQoNCkFmdGVyIHlvdSd2ZSBkb25lIHRoYXQsIHlvdSBtaWdodCBmaW5kIGl0IGhlbHBmdWwgdG8gcHJvZ3Jlc3MgdGhyb3VnaCBbdGhpcyBmcmVlIGxlc3Nvbl0oaHR0cHM6Ly93d3cuZGF0YWNhbXAuY29tL2NvdXJzZXMvd29ya2luZy13aXRoLXRoZS1yc3R1ZGlvLWlkZS1wYXJ0LTEvY2hhcHRlcnMvb3JpZW50YXRpb24vY29udGludWUpIG9uIGRhdGEgY2FtcCB0aGF0IHdpbGwgZ2V0IHlvdSBvcmllbnRlZCB3aXRoIHRoZSBSU3R1ZGlvIElERS4gV2hldGhlciBvciBub3QgeW91IHZpZXcgdGhlIGxlc3NvbiwgYWxsIGNvbnRlbnQgZm9yIHRoaXMgaW50cm9kdWN0aW9uIHRvIFIgaXMgbG9jYXRlZCB1bmRlciB0aGUgdG9waWNzIHRhYiBhYm92ZS4gWW91IGNhbiBjaG9vc2UgdG8gcmVhZCB0aHJvdWdoIHRoZSBpbmZvcm1hdGlvbiBpbiBvcmRlciBvciBza2lwIGFyb3VuZCBhcyB5b3Ugc2VlIGZpdC4gDQoNClRoaXMgaXMgYnkgbm8gbWVhbnMgYW4gZXh0ZW5zaXZlIGNvdXJzZSBvbiBSLiBUaG9zZSBoYXZlIGJlZW4gZG9uZSBieSBtYW55IG90aGVycyBtb3JlIGtub3dsZWRnZWFibGUgdGhhbiBJLiBZb3UgY2FuIGZpbmQgc29tZSBvZiB0aGVtIGluIHRoZSBSZWNvbW1lbmRlZCBDb3Vyc2VzIHRhYiBhYm92ZS4gSW5zdGVhZCwgdGhpcyB3aWxsIGJlIGEgYnJpZWYgb3ZlcnZpZXcgb2Ygd2hhdCB3b3JraW5nIHdpdGhpbiB0aGUgUiBlbnZpcm9ubWVudCBsb29rcyBsaWtlIGFuZCBzb21lIG9mIHRoZSBwZXJrcyB0aGF0IGl0IG9mZmVycy4gSWYgYXQgYW55IHBvaW50IHlvdSBoYXZlIHF1ZXN0aW9ucyByZWdhcmRpbmcgdGhpcyBjb250ZW50IGZlZWwgZnJlZSB0byByZWFjaCBvdXQgb24gW0xpbmtlZEluXShodHRwczovL3d3dy5saW5rZWRpbi5jb20vaW4vbWljaGFlbGFiYXJyb3dzKSBvciBwb3N0IGEgY29tbWVudCBvbiB0aGUgW0dpdEh1YiBwYWdlXShodHRwczovL2dpdGh1Yi5jb20vTUJhcnJvd3MyMC9SSW50cm9kdWN0aW9uKSBhc3NvY2lhdGVkIHdpdGggdGhpcyByZXBvc2l0b3J5LiBZb3Ugc2hvdWxkIGFsc28gZmVlbCBmcmVlIHRvIGNsb25lLCBkb3dubG9hZCwgb3Igc2hhcmUgdGhpcyByZXBvc2l0b3J5IGFzIGl0IGlzIG9wZW4gc291cmNlLg==</div>
 <div class = "footer">
   <p> Created by Michael Barrows </p>
 </div>

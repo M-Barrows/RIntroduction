@@ -282,8 +282,14 @@ Through the use of both R Projects and Packrat, you can greatly reduce the amoun
 
 ## Slide Deck
 
-For a slide deck of this content, click the image below: 
+For a slide decks for this content, click the images below: 
 
 <form method = "get" action = "./Files/Presentations/Intro.html">
-  <button type="submit">Download!</button>
+  <input type="image" src="./Files/Images/Introduction.PNG" alt = "Download"/>
+</form>
+
+</br>
+
+<form method = "get" action = "./Files/Presentations/FirstLinesofCode.html">
+  <input type="image" src="./Files/Images/FirstLinesofCode.PNG" alt = "Download"/>
 </form>

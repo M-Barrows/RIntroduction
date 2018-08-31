@@ -1,0 +1,296 @@
+---
+title: "First Lines of Code"
+author: "Michael Barrows"
+date: "`r Sys.Date()`"
+output:
+  revealjs::revealjs_presentation:
+    theme: night
+    transition: none
+    self_contained: true
+    css: slides.css
+---
+
+## Adgenda 
+
+1. Basic Calculations
+2. Assignment
+3. Subsetting
+4. Functions
+
+# 1. Basic Calculations
+
+## Just Like a Calculator
+
+```{r echo = T}
+1 + 1 # Basic Operations
+200 * 1 / (9 + 1)^2 - 1 # Order of Operations
+```
+
+- Works just like a calculator
+- Follows PEMDAS 
+- New line = New calculation
+
+## Your Turn
+
+- Find the product off 134 and 25
+- Find the sum of 43 and 27. Then divide it by 7 in one line
+- Find the square root of 60 (hint: sqrt(__))
+
+## Solutions: 
+```{r}
+134 * 25
+(43 + 27) / 7
+sqrt(60)
+```
+
+# 2. Assignment
+
+## Save values for later
+
+<div class = "left">
+```{r echo = T, eval = T}
+sqrt_2 <- sqrt(2)
+sqrt_2 * 5
+
+sqrt_2by5 <- sqrt_2 * 5
+sqrt_2by5 + 1
+
+sqrt_2 <- sqrt(3)
+```
+
+</div>
+
+<div class = "right">
+  - use the left arrow 
+  - variable on left, value on right
+  - reuse values without recalculating
+  - use variables to create new variable
+      * must be declared before they can be used
+  - values stored in MEMORY
+  - can be overwritten
+</div>
+
+## Your Turn
+
+- assign 6 to "x"
+- assign x + 5 to "y"
+- rewrite x to be 10
+- assign y + x to "z"
+
+## Solutions
+```{r}
+x <- 6
+y <- x + 5
+x <- 10
+z <- y + x
+```
+
+
+# 3. Subsetting
+
+## Array
+
+<div class = "left">
+```{r echo = T, eval = F}
+new_array <- c(1,2,3,4) #Create
+new_array[1] #First Element
+new_array[1:3] #Elements 1-3
+new_array[-2] #Not Element 2
+```
+
+</div>
+
+<div class = "right">
+  - Create with "c()"
+  - Subset with "\[\]"
+  - 1 indexed
+  - use "-" as *not* operator
+</div>
+
+## Your Turn
+
+- Create an array with numbers 11-20
+- Select the value "13"
+- Select the 5th element
+- [Challenge] Select all but the 8th and 10th element
+
+## Solutions
+```{r eval = F}
+test_array <- c(11:20)
+test_array[3]
+# OR
+test_array[test_array == 13]
+test_array[5]
+test_array[-c(8,10)]
+```
+
+
+## Matrix
+
+- Two dimensional array
+- All entries are the same data type
+- Subset with "matrix[row,column]"
+
+##
+<div class = "left">
+```{r echo = T}
+new_matrix <- matrix(1:9,3,3)
+new_matrix
+new_matrix[1,2]
+new_matrix[1] 
+```
+
+</div>
+
+<div class = "right">
+```{r}
+new_matrix[1:3] 
+new_matrix[1:2,3] 
+new_matrix[,1:2]
+```
+
+</div>
+
+
+## Your Turn
+
+```{r eval = T, echo=F}
+matrix(1:9,3,3)
+```
+
+Use the same matrix as above to:
+
+- find the value in the 2nd row, 3rd column
+- find the values in the 3rd column
+- find the 5th value 
+
+## Data Frame
+
+<div class = "left">
+```{r echo = T, eval = F}
+head(mtcars, 6)
+mtcars[1] #not first value
+mtcars[2,4]
+mtcars[2,]
+mtcars["cyl"]
+```
+
+</div>
+
+<div class = "right">
+  - Similar to matrix 
+  - Can call columns by name
+  - Single value in brackets is now columns
+  - Can mix data types
+</div>
+
+## Your Turn
+
+Use the mtcars database to: 
+
+- Find subset the 6th column
+- find the 5th value in the 2nd row.
+
+## List
+
+<div class = "left">
+```{r echo = T, eval = F}
+list1 <- list(mtcars, 1:20, 
+              letters[1:13])
+str(list1)
+list1[1]
+list1[[1]][1,2]
+
+results <- lm(mpg~wt, data=mtcars)
+str(results)
+```
+
+</div>
+
+<div class = "right">
+
+- Groups of objects
+- All above data types can be placed in a list
+- Think XML or JSON data
+- subsetting syntax: "name[[outer]][inner]"
+- Alternatively: "name$outer[inner]"
+- **Many** statistical results are in lists
+</div>
+
+## Your Turn
+
+Run this command: 
+
+```{r}
+example_list <- lm(mpg~wt, data = mtcars)
+```
+
+Now, find: 
+
+- The structure of the list
+- The element named 'coefficients'
+- The fourth child element in the fifth parent element ('fitted.values')
+
+## Which() Function
+
+- Usefull when subsetting
+- Returns the index of any matching item
+
+```{r}
+which(letters[1:20] > "c")
+```
+
+
+## Your Turn
+
+Using the mtcars data and the which function, 
+find index of cars that have an MPG value greater than 25
+
+Extra: What are the names of these cars? 
+
+## Solution
+
+```{r}
+which(mtcars$mpg > 25)
+
+rownames(mtcars[mtcars$mpg > 25,])
+```
+
+
+# 4. Functions
+
+##
+
+```{r echo = T, eval = F}
+newFunctionName <- function(manArg,optArg=1){
+  if(optArg > 1) {
+    optArg * 20
+  } else { manArg * optArg  }
+}
+# Tests
+newFunctionName(10) # = 10
+newFunctionName(10,-1)# = -10
+newFunctionName(10,3)# = 60
+newFunctionName() # ERROR
+```
+
+
+## Your Turn
+
+- Create a new function that: 
+  * Takes 2 optional arguments (x=1,y=2)
+  * adds the squar roots of the two arguments together
+  
+## Solution
+
+```{r eval = F, echo= T}
+newFunctionName <- function(x=1,y=2){
+  sqrt(x)+sqrt(y)
+}
+#Tests
+newFunctionName()
+newFunctionName(3)
+newFunctionName(5,6)
+```
+
+  

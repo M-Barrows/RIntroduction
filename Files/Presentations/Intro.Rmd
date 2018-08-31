@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Introduction to R"
 author: "Michael Barrows"
 date: "`r Sys.Date()`"
 output:
@@ -88,7 +88,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - Save your package library information 
 - Make sharing projects easier and more reliable
-- Like packages, do it from the get-go
+- Like projects, do it from the get-go
 
 ## Github
 <div class = "left">
@@ -100,6 +100,12 @@ knitr::opts_chunk$set(echo = FALSE)
   - Options for public/private repositories
   - Potential for Enterprise level integration
 </div>
+
+## Recap
+
+1. Project
+2. Packrat
+3. SourceControl
 
 # 3. Document Types
 
@@ -119,6 +125,7 @@ paste(variable, pair, sep = " ")
   - Can be ran in GUI or Console
   - Usually for stats analysis and data manipulation
 </div>
+
 ## RMarkdown
 
 ```{r echo = FALSE, message=F, warning=F}
@@ -176,20 +183,93 @@ mtcars %>% filter(mpg > 20) %>%
   - Great for data exploration
   
 </div>
+
+## Recap
+
+- Scripts = simple and repeatable 
+- RMarkdown = Code + Documentation
+- Shiny = Interactive
+
 # 4. Style Guide
-
-
-## Naming
-
-## Spacing and Syntax
 
 ## Assignment
 
+<div class = "left">
+```{r echo = T, eval = F}
+value -> 25 #WRONG
+
+value = 25 #Generally bad
+
+value <- 25 #Correct
+```
+</div>
+
+<div class = "right">
+  - use the left arrow (<-) operator
+  - equal sign is used in comarrisons
+  - variable on the left value on the right
+</div>
+
+## Naming
+
+<div class = "left">
+```{r echo = T, eval = F}
+1stValue <- "Not Allowed"
+
+val2 <- 1 + 2 # BAD
+
+firstValue <- 1 + 2 # Better
+
+Total_Time_ms <- 1 + 2 # Best
+```
+
+</div>
+
+<div class = "right">
+  - Underscores
+  - Descriptive
+  - Include Units
+  - Unique
+  - Can't start with a number
+</div>
+
+## Spacing and Syntax
+
+
+```{r echo = T, eval = F}
+Total_Time_ms_bad<-(5*3)+1-4 # BAD
+
+Total_Time_ms_good <- (5*3) + 1 - 4 # Good
+
+Comparisson_Bad <- TRUE>1|TRUE==FALSE # BAD
+
+Comparisson_good <- TRUE > 1 | TRUE == FALSE #GOOD
+```
+
+  - spaces between arithmatic operators
+  - spaces between comparisson operators
+  - Use R Studio's built-in syntax checker
+
+## Recap
+
+- Assign to the left
+- Spaces Everywhere
+- Descriptive Names with Underscores
 
 # 5. Packages
 
 
 ## What are they? 
+
+- Small Addons that increase functionality
+- Usually targeted at one general purpose (cleaning, stats method, etc.)
+- Must be installed AND loaded before use
+
+```{r echo = T, eval = F}
+install.packages('ggplot2')
+library(ggplot2)
+```
+
 
 ## Popular packages
 
@@ -207,6 +287,17 @@ mtcars %>% filter(mpg > 20) %>%
 </div>
 
 <div class = "right">
-- Test point 1
-- Test point 2
+- Package of packages
+- Everything you need to get started with data cleaning
+- Be careful, large and takes a while to install
+- Unified syntax and strong compatibility
 </div>
+
+# 6. Summary
+
+##
+- R is Free, Open source, and enables reproducibility
+- Projects -> Packrat -> Source Control
+- Scrips, RMarkdown, Shiny
+- Spacing, Description, left-assignment
+- Packages add functionality
