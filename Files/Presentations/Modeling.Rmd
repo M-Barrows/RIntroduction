@@ -1,0 +1,25 @@
+---
+title: "Modeling"
+author: "Michael Barrows"
+date: "`r Sys.Date()`"
+output:
+  revealjs::revealjs_presentation:
+    theme: night
+    transition: none
+    self_contained: true
+    css: slides.css
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Adgenda 
+
+1. Linear Regression
+2. Anova
+3. Clustering
+
+
+# 1. Linear Regression

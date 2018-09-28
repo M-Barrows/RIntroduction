@@ -97,3 +97,13 @@ library %>% # Select the library dataset
 ```
 
 You can see that the dplyr syntax is almost as easily readable (and shorter) than plain English. This is what makes it so powerful. 
+
+## Visualize
+
+## Slide Deck
+
+Access the slide deck for this content by clicking the image below: 
+
+<form method = "get" action = "./Files/Presentations/Import_Transform_Visualize.html">
+  <input type="image" src="./Files/Images/ImportTransformVisualize.PNG" alt = "Download"/>
+</form>
