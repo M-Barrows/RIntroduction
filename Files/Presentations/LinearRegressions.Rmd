@@ -1,0 +1,74 @@
+---
+title: "Linear Regressions"
+author: "Michael Barrows"
+date: "`r Sys.Date()`"
+output:
+  revealjs::revealjs_presentation:
+    theme: night
+    transition: none
+    self_contained: true
+    css: slides.css
+---
+
+## Agenda
+- Terminology
+- Model Building Process
+- Simple Linear Regression
+- Multiple Regression 
+
+![image](ModelProcess.png)
+
+# 1. Terminology 
+
+## Residuals
+
+![image](Residuals.png)
+
+## Standard Error
+
+![image](SE.jpg)
+
+## R^2 and Adj. R^2
+
+![image](RSqr.PNG)
+
+
+## p-value
+
+## Confidence Interval
+
+## Transformation
+
+## Multicollinearity
+
+# 2. Modeling Process
+
+## Building
+
+## Residual Analysis
+
+## Transformation
+
+## Model Trimming
+
+## Validation
+
+## Model Recommendation
+
+# 3. Simple Linear Regression
+
+## Data
+
+## Starting Model
+
+## Residual Analysis
+
+## Transformation 
+
+## Model Trimming
+
+## Validation
+
+## Model Recommendation
+
+# 4. Multiple Regression
