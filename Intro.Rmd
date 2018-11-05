@@ -165,14 +165,14 @@ While many languages use `=` to assign new variables, and even though you still 
 
 ### Vector
 
-This is a simple one dimensional data structure used for storing *ordered* collections of items of the same data type. For instance, we can store the numbers 10 through 20 and then call the first item in that collection (10) by doing the following: 
+This is a simple one-dimensional data structure used for storing *ordered* collections of items of the same data type. For instance, we can store the numbers 10 through 20 and then call the first item in that collection (10) by doing the following: 
 
 ```{r}
 x <- 10:20
 x[1]
 ```
 
-We can also store the letters A through J and retrieve either the fourth item *or* the letter D.
+We can also store the letters A through J and retrieve either the fourth item or the index of the letter D.
 
 ```{r}
 y <- letters[1:10]
@@ -181,11 +181,11 @@ which(y == "d")
 ```
 
 
-Notice that *R* is 1-indexed, not 0-indexed like many other languages (Python, C#, etc.)
+Notice that the *R* language is 1-indexed, not 0-indexed like many other languages (Python, C#, JSON etc.)
 
 ### Matrix
 
-A two dimensional collection of data. All elements in a matrix ***Must*** be of a consistent type (i.e. all numeric or all character). Because matrices are two dimensional, they have two indices that can be specified to recall a value. If we create a 3x3 matrix that looks like this: 
+A two dimensional collection of data. All elements in a matrix ***must*** be of a consistent type (i.e. all numeric or all character). Because matrices are two dimensional, they have two indices that can be specified to recall a value. If we create a 3x3 matrix that looks like this: 
 
 |     | col 1 | col 2 | col 3 |
 |-----|-------|-------|-------|
@@ -218,7 +218,7 @@ A data frame is a very popular data structure since it is like a matrix but can 
 head(iris,10)
 ```
 
-Notice that this dataset not only includes numerical variables but also a character (specifically factor) variable. This flexibility is what makes data frames popular. 
+Notice that this dataset not only includes numerical variables but also a character (specifically, a factor) variable. This flexibility is what makes data frames popular. 
 
 ### List
 
@@ -258,6 +258,10 @@ l[[3]][1,4]
 ```
 
 
+### Summary
+
+You will use all four types of data structures frequently within R. Knowing the ideal situation for each structure is very helpful in creating a fast and efficient process. 
+
 ## Packages
 
 Packages in R add a lot of functionality on top of the base R functions for increased efficiency and flexibility. They are installed with the `install.packages()` command and then must be loaded with the `library()` command. Some examples of common packages are: 
@@ -269,14 +273,15 @@ Packages in R add a lot of functionality on top of the base R functions for incr
 * readxl
 * car
 
-Additionally, there is a package called [tidyverse](https://www.tidyverse.org/) that is actually a package of packages. Once installed, `tidyverse` will install a list of very useful packages that share the common theme and syntax. The goal of these packages is to create tidy data sets that are easy to work with.  
+Additionally, there is a package called [tidyverse](https://www.tidyverse.org/) that is actually a [package of packages](https://www.youtube.com/watch?v=XVSRm80WzZk). Once installed, `tidyverse` will install a list of very useful packages that share the common theme and syntax. The goal of these packages is to create tidy data sets that are easy to work with.  
 
-The downside of packages is they are installed on the client side. This means that you need to do one of several things to ensure reproducibility of your work: 
+Per-machine installation is probably the largest downside of packages. This means that you need to do one of several things to ensure reproducibility of your work: 
 
 * Write an install command in your script that runs every time (very bad idea)
 * Instruct the user to install the packages themselves (better but not fool-proof)
 * Write a command to install packages only if they are not already installed (fairly good)
 * use [Packrat](https://rstudio.github.io/packrat/) to manage packages (Best option)
+* Run scripts on a server with all necessary packages already installed (Great if you have this option)
 
 Through the use of both R Projects and Packrat, you can greatly reduce the amount of work your end-user needs to do in order to reproduce the hard work you've done. The magic behind Packrat is that it installs all packages and relevant system information (R version, OS version, etc.) necessary to duplicate working conditions as closely as possible. While you can do so at anytime, it is highly recommended to use both Packrat and R Projects before you start work as it reduces the chance of incompatibility or issues during the setup process.
 

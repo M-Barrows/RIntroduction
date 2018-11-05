@@ -32,11 +32,11 @@ output:
 
 ## Your Turn
 
-- Find the product off 134 and 25
+- Find the product of 134 and 25
 - Find the sum of 43 and 27. Then divide it by 7 in one line
 - Find the square root of 60 (hint: sqrt(__))
 
-## Solutions: 
+## Solutions 
 ```{r}
 134 * 25
 (43 + 27) / 7
@@ -164,6 +164,17 @@ Use the same matrix as above to:
 - find the values in the 3rd column
 - find the 5th value 
 
+## Solutions
+
+```{r}
+mat <- matrix(1:9,3,3)
+mat[2,3]
+
+mat[,3]
+
+mat[5]
+```
+
 ## Data Frame
 
 <div class = "left">
@@ -188,8 +199,18 @@ mtcars["cyl"]
 
 Use the mtcars database to: 
 
-- Find subset the 6th column
+- Subset the 6th column
 - find the 5th value in the 2nd row.
+
+## Solutions
+
+```{r}
+mtcars[6]
+# OR
+mtcars[,6]
+
+mtcars[2,5]
+```
 
 ## List
 
@@ -231,6 +252,16 @@ Now, find:
 - The element named 'coefficients'
 - The fourth child element in the fifth parent element ('fitted.values')
 
+## Solutions
+
+```{r}
+example_list <- lm(mpg~wt, data = mtcars)
+str(example_list)
+example_list$coefficients
+example_list[[5]][4]
+```
+
+
 ## Which() Function
 
 - Usefull when subsetting
@@ -258,6 +289,13 @@ rownames(mtcars[mtcars$mpg > 25,])
 
 
 # 4. Functions
+
+##
+
+* Anytime you copy and paste more than twice, write a function
+* Functions can take named and unnamed arguments
+* Must be defined before called
+* General structure outlined on next slide
 
 ##
 

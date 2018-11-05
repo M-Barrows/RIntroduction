@@ -72,7 +72,7 @@ fread("file.csv",skip = 10
 <div class = "right">
 - read Excel sheets
 - Specify sheet and range
-- Only read one sheet at a time
+- Only read one sheet at a time by default
 - Can read each sheet into a list
 </div>
 
@@ -158,12 +158,12 @@ data %>%
 ## Base R
 
 - Great for publications
-- Low processing requirement
+- Low-ish processing requirement
 - No package necessary
 - Syntax is more verbose/challenging
 - "Boring" initially
 - No themes available
-- Not as dynamic
+- dynamic but in a very different way
 
 ##
 
@@ -293,3 +293,13 @@ plot_ly(mtcars, x = ~wt,
          paper_bgcolor = 'transparent')
   
 ```
+
+# 4. Summary
+
+## 
+
+* Choose the appropriate import function for your dataset
+* It is possible to query Databases directly
+* Cleaning is important and Dplyr/tidyr can help
+* PIPES EVERYWHERE!
+* GGplot and Plotly make graphing F.U.N. 

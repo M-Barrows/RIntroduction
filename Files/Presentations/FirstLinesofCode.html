@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Michael Barrows" />
-  <meta name="dcterms.date" content="2018-09-07" />
+  <meta name="dcterms.date" content="2018-11-05" />
   <title>First Lines of Code</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -1835,7 +1835,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section>
     <h1 class="title">First Lines of Code</h1>
     <h2 class="author">Michael Barrows</h2>
-    <h3 class="date">2018-09-07</h3>
+    <h3 class="date">2018-11-05</h3>
 </section>
 
 <section id="adgenda" class="slide level2">
@@ -1861,12 +1861,12 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section><section id="your-turn" class="slide level2">
 <h2>Your Turn</h2>
 <ul>
-<li>Find the product off 134 and 25</li>
+<li>Find the product of 134 and 25</li>
 <li>Find the sum of 43 and 27. Then divide it by 7 in one line</li>
 <li>Find the square root of 60 (hint: sqrt(__))</li>
 </ul>
 </section><section id="solutions" class="slide level2">
-<h2>Solutions:</h2>
+<h2>Solutions</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dv">134</span> <span class="op">*</span><span class="st"> </span><span class="dv">25</span></a></code></pre></div>
 <pre><code>## [1] 3350</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">(<span class="dv">43</span> <span class="op">+</span><span class="st"> </span><span class="dv">27</span>) <span class="op">/</span><span class="st"> </span><span class="dv">7</span></a></code></pre></div>
@@ -1989,14 +1989,23 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>find the values in the 3rd column</li>
 <li>find the 5th value</li>
 </ul>
+</section><section id="solutions-3" class="slide level2">
+<h2>Solutions</h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">mat[<span class="dv">2</span>,<span class="dv">3</span>]</a></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">mat[,<span class="dv">3</span>]</a></code></pre></div>
+<pre><code>## [1] 7 8 9</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">mat[<span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## [1] 5</code></pre>
 </section><section id="data-frame" class="slide level2">
 <h2>Data Frame</h2>
 <div class="left">
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">head</span>(mtcars, <span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2">mtcars[<span class="dv">1</span>] <span class="co">#not first value</span></a>
-<a class="sourceLine" id="cb32-3" data-line-number="3">mtcars[<span class="dv">2</span>,<span class="dv">4</span>]</a>
-<a class="sourceLine" id="cb32-4" data-line-number="4">mtcars[<span class="dv">2</span>,]</a>
-<a class="sourceLine" id="cb32-5" data-line-number="5">mtcars[<span class="st">&quot;cyl&quot;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">head</span>(mtcars, <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2">mtcars[<span class="dv">1</span>] <span class="co">#not first value</span></a>
+<a class="sourceLine" id="cb38-3" data-line-number="3">mtcars[<span class="dv">2</span>,<span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb38-4" data-line-number="4">mtcars[<span class="dv">2</span>,]</a>
+<a class="sourceLine" id="cb38-5" data-line-number="5">mtcars[<span class="st">&quot;cyl&quot;</span>]</a></code></pre></div>
 </div>
 <div class="right">
 <ul>
@@ -2010,20 +2019,63 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <h2>Your Turn</h2>
 <p>Use the mtcars database to:</p>
 <ul>
-<li>Find subset the 6th column</li>
+<li>Subset the 6th column</li>
 <li>find the 5th value in the 2nd row.</li>
 </ul>
+</section><section id="solutions-4" class="slide level2">
+<h2>Solutions</h2>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">mtcars[<span class="dv">6</span>]</a></code></pre></div>
+<pre><code>##                        wt
+## Mazda RX4           2.620
+## Mazda RX4 Wag       2.875
+## Datsun 710          2.320
+## Hornet 4 Drive      3.215
+## Hornet Sportabout   3.440
+## Valiant             3.460
+## Duster 360          3.570
+## Merc 240D           3.190
+## Merc 230            3.150
+## Merc 280            3.440
+## Merc 280C           3.440
+## Merc 450SE          4.070
+## Merc 450SL          3.730
+## Merc 450SLC         3.780
+## Cadillac Fleetwood  5.250
+## Lincoln Continental 5.424
+## Chrysler Imperial   5.345
+## Fiat 128            2.200
+## Honda Civic         1.615
+## Toyota Corolla      1.835
+## Toyota Corona       2.465
+## Dodge Challenger    3.520
+## AMC Javelin         3.435
+## Camaro Z28          3.840
+## Pontiac Firebird    3.845
+## Fiat X1-9           1.935
+## Porsche 914-2       2.140
+## Lotus Europa        1.513
+## Ford Pantera L      3.170
+## Ferrari Dino        2.770
+## Maserati Bora       3.570
+## Volvo 142E          2.780</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co"># OR</span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">mtcars[,<span class="dv">6</span>]</a></code></pre></div>
+<pre><code>##  [1] 2.620 2.875 2.320 3.215 3.440 3.460 3.570 3.190 3.150 3.440 3.440
+## [12] 4.070 3.730 3.780 5.250 5.424 5.345 2.200 1.615 1.835 2.465 3.520
+## [23] 3.435 3.840 3.845 1.935 2.140 1.513 3.170 2.770 3.570 2.780</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">mtcars[<span class="dv">2</span>,<span class="dv">5</span>]</a></code></pre></div>
+<pre><code>## [1] 3.9</code></pre>
 </section><section id="list" class="slide level2">
 <h2>List</h2>
 <div class="left">
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">list1 &lt;-<span class="st"> </span><span class="kw">list</span>(mtcars, <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, </a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">              letters[<span class="dv">1</span><span class="op">:</span><span class="dv">13</span>])</a>
-<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="kw">str</span>(list1)</a>
-<a class="sourceLine" id="cb33-4" data-line-number="4">list1[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb33-5" data-line-number="5">list1[[<span class="dv">1</span>]][<span class="dv">1</span>,<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb33-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb33-7" data-line-number="7">results &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg<span class="op">~</span>wt, <span class="dt">data=</span>mtcars)</a>
-<a class="sourceLine" id="cb33-8" data-line-number="8"><span class="kw">str</span>(results)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">list1 &lt;-<span class="st"> </span><span class="kw">list</span>(mtcars, <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, </a>
+<a class="sourceLine" id="cb45-2" data-line-number="2">              letters[<span class="dv">1</span><span class="op">:</span><span class="dv">13</span>])</a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="kw">str</span>(list1)</a>
+<a class="sourceLine" id="cb45-4" data-line-number="4">list1[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb45-5" data-line-number="5">list1[[<span class="dv">1</span>]][<span class="dv">1</span>,<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb45-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb45-7" data-line-number="7">results &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg<span class="op">~</span>wt, <span class="dt">data=</span>mtcars)</a>
+<a class="sourceLine" id="cb45-8" data-line-number="8"><span class="kw">str</span>(results)</a></code></pre></div>
 </div>
 <div class="right">
 <ul>
@@ -2038,20 +2090,87 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section><section id="your-turn-5" class="slide level2">
 <h2>Your Turn</h2>
 <p>Run this command:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">example_list &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg<span class="op">~</span>wt, <span class="dt">data =</span> mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">example_list &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg<span class="op">~</span>wt, <span class="dt">data =</span> mtcars)</a></code></pre></div>
 <p>Now, find:</p>
 <ul>
 <li>The structure of the list</li>
 <li>The element named ‘coefficients’</li>
 <li>The fourth child element in the fifth parent element (‘fitted.values’)</li>
 </ul>
+</section><section id="solutions-5" class="slide level2">
+<h2>Solutions</h2>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">example_list &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg<span class="op">~</span>wt, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="kw">str</span>(example_list)</a></code></pre></div>
+<pre><code>## List of 12
+##  $ coefficients : Named num [1:2] 37.29 -5.34
+##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;(Intercept)&quot; &quot;wt&quot;
+##  $ residuals    : Named num [1:32] -2.28 -0.92 -2.09 1.3 -0.2 ...
+##   ..- attr(*, &quot;names&quot;)= chr [1:32] &quot;Mazda RX4&quot; &quot;Mazda RX4 Wag&quot; &quot;Datsun 710&quot; &quot;Hornet 4 Drive&quot; ...
+##  $ effects      : Named num [1:32] -113.65 -29.116 -1.661 1.631 0.111 ...
+##   ..- attr(*, &quot;names&quot;)= chr [1:32] &quot;(Intercept)&quot; &quot;wt&quot; &quot;&quot; &quot;&quot; ...
+##  $ rank         : int 2
+##  $ fitted.values: Named num [1:32] 23.3 21.9 24.9 20.1 18.9 ...
+##   ..- attr(*, &quot;names&quot;)= chr [1:32] &quot;Mazda RX4&quot; &quot;Mazda RX4 Wag&quot; &quot;Datsun 710&quot; &quot;Hornet 4 Drive&quot; ...
+##  $ assign       : int [1:2] 0 1
+##  $ qr           :List of 5
+##   ..$ qr   : num [1:32, 1:2] -5.657 0.177 0.177 0.177 0.177 ...
+##   .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. .. ..$ : chr [1:32] &quot;Mazda RX4&quot; &quot;Mazda RX4 Wag&quot; &quot;Datsun 710&quot; &quot;Hornet 4 Drive&quot; ...
+##   .. .. ..$ : chr [1:2] &quot;(Intercept)&quot; &quot;wt&quot;
+##   .. ..- attr(*, &quot;assign&quot;)= int [1:2] 0 1
+##   ..$ qraux: num [1:2] 1.18 1.05
+##   ..$ pivot: int [1:2] 1 2
+##   ..$ tol  : num 1e-07
+##   ..$ rank : int 2
+##   ..- attr(*, &quot;class&quot;)= chr &quot;qr&quot;
+##  $ df.residual  : int 30
+##  $ xlevels      : Named list()
+##  $ call         : language lm(formula = mpg ~ wt, data = mtcars)
+##  $ terms        :Classes 'terms', 'formula'  language mpg ~ wt
+##   .. ..- attr(*, &quot;variables&quot;)= language list(mpg, wt)
+##   .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1
+##   .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. .. .. ..$ : chr [1:2] &quot;mpg&quot; &quot;wt&quot;
+##   .. .. .. ..$ : chr &quot;wt&quot;
+##   .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;wt&quot;
+##   .. ..- attr(*, &quot;order&quot;)= int 1
+##   .. ..- attr(*, &quot;intercept&quot;)= int 1
+##   .. ..- attr(*, &quot;response&quot;)= int 1
+##   .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; 
+##   .. ..- attr(*, &quot;predvars&quot;)= language list(mpg, wt)
+##   .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;
+##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mpg&quot; &quot;wt&quot;
+##  $ model        :'data.frame':   32 obs. of  2 variables:
+##   ..$ mpg: num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+##   ..$ wt : num [1:32] 2.62 2.88 2.32 3.21 3.44 ...
+##   ..- attr(*, &quot;terms&quot;)=Classes 'terms', 'formula'  language mpg ~ wt
+##   .. .. ..- attr(*, &quot;variables&quot;)= language list(mpg, wt)
+##   .. .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1
+##   .. .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. .. .. .. ..$ : chr [1:2] &quot;mpg&quot; &quot;wt&quot;
+##   .. .. .. .. ..$ : chr &quot;wt&quot;
+##   .. .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;wt&quot;
+##   .. .. ..- attr(*, &quot;order&quot;)= int 1
+##   .. .. ..- attr(*, &quot;intercept&quot;)= int 1
+##   .. .. ..- attr(*, &quot;response&quot;)= int 1
+##   .. .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; 
+##   .. .. ..- attr(*, &quot;predvars&quot;)= language list(mpg, wt)
+##   .. .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;
+##   .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mpg&quot; &quot;wt&quot;
+##  - attr(*, &quot;class&quot;)= chr &quot;lm&quot;</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">example_list<span class="op">$</span>coefficients</a></code></pre></div>
+<pre><code>## (Intercept)          wt 
+##   37.285126   -5.344472</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">example_list[[<span class="dv">5</span>]][<span class="dv">4</span>]</a></code></pre></div>
+<pre><code>## Hornet 4 Drive 
+##       20.10265</code></pre>
 </section><section id="which-function" class="slide level2">
 <h2>Which() Function</h2>
 <ul>
 <li>Usefull when subsetting</li>
 <li>Returns the index of any matching item</li>
 </ul>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">which</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>] <span class="op">&gt;</span><span class="st"> &quot;c&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">which</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>] <span class="op">&gt;</span><span class="st"> &quot;c&quot;</span>)</a></code></pre></div>
 <pre><code>##  [1]  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
 </section><section id="your-turn-6" class="slide level2">
 <h2>Your Turn</h2>
@@ -2059,24 +2178,32 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <p>Extra: What are the names of these cars?</p>
 </section><section id="solution" class="slide level2">
 <h2>Solution</h2>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">which</span>(mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">which</span>(mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>)</a></code></pre></div>
 <pre><code>## [1] 18 19 20 26 27 28</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">rownames</span>(mtcars[mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>,])</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">rownames</span>(mtcars[mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">25</span>,])</a></code></pre></div>
 <pre><code>## [1] &quot;Fiat 128&quot;       &quot;Honda Civic&quot;    &quot;Toyota Corolla&quot; &quot;Fiat X1-9&quot;     
 ## [5] &quot;Porsche 914-2&quot;  &quot;Lotus Europa&quot;</code></pre>
 </section></section>
 <section><section id="functions" class="title-slide slide level1"><h1>4. Functions</h1></section><section id="section-1" class="slide level2">
 <h2></h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">newFunctionName &lt;-<span class="st"> </span><span class="cf">function</span>(manArg,<span class="dt">optArg=</span><span class="dv">1</span>){</a>
-<a class="sourceLine" id="cb41-2" data-line-number="2">  <span class="cf">if</span>(optArg <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) {</a>
-<a class="sourceLine" id="cb41-3" data-line-number="3">    optArg <span class="op">*</span><span class="st"> </span><span class="dv">20</span></a>
-<a class="sourceLine" id="cb41-4" data-line-number="4">  } <span class="cf">else</span> { manArg <span class="op">*</span><span class="st"> </span>optArg  }</a>
-<a class="sourceLine" id="cb41-5" data-line-number="5">}</a>
-<a class="sourceLine" id="cb41-6" data-line-number="6"><span class="co"># Tests</span></a>
-<a class="sourceLine" id="cb41-7" data-line-number="7"><span class="kw">newFunctionName</span>(<span class="dv">10</span>) <span class="co"># = 10</span></a>
-<a class="sourceLine" id="cb41-8" data-line-number="8"><span class="kw">newFunctionName</span>(<span class="dv">10</span>,<span class="op">-</span><span class="dv">1</span>)<span class="co"># = -10</span></a>
-<a class="sourceLine" id="cb41-9" data-line-number="9"><span class="kw">newFunctionName</span>(<span class="dv">10</span>,<span class="dv">3</span>)<span class="co"># = 60</span></a>
-<a class="sourceLine" id="cb41-10" data-line-number="10"><span class="kw">newFunctionName</span>() <span class="co"># ERROR</span></a></code></pre></div>
+<ul>
+<li>Anytime you copy and paste more than twice, write a function</li>
+<li>Functions can take named and unnamed arguments</li>
+<li>Must be defined before called</li>
+<li>General structure outlined on next slide</li>
+</ul>
+</section><section id="section-2" class="slide level2">
+<h2></h2>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">newFunctionName &lt;-<span class="st"> </span><span class="cf">function</span>(manArg,<span class="dt">optArg=</span><span class="dv">1</span>){</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2">  <span class="cf">if</span>(optArg <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) {</a>
+<a class="sourceLine" id="cb59-3" data-line-number="3">    optArg <span class="op">*</span><span class="st"> </span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb59-4" data-line-number="4">  } <span class="cf">else</span> { manArg <span class="op">*</span><span class="st"> </span>optArg  }</a>
+<a class="sourceLine" id="cb59-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb59-6" data-line-number="6"><span class="co"># Tests</span></a>
+<a class="sourceLine" id="cb59-7" data-line-number="7"><span class="kw">newFunctionName</span>(<span class="dv">10</span>) <span class="co"># = 10</span></a>
+<a class="sourceLine" id="cb59-8" data-line-number="8"><span class="kw">newFunctionName</span>(<span class="dv">10</span>,<span class="op">-</span><span class="dv">1</span>)<span class="co"># = -10</span></a>
+<a class="sourceLine" id="cb59-9" data-line-number="9"><span class="kw">newFunctionName</span>(<span class="dv">10</span>,<span class="dv">3</span>)<span class="co"># = 60</span></a>
+<a class="sourceLine" id="cb59-10" data-line-number="10"><span class="kw">newFunctionName</span>() <span class="co"># ERROR</span></a></code></pre></div>
 </section><section id="your-turn-7" class="slide level2">
 <h2>Your Turn</h2>
 <ul>
@@ -2088,13 +2215,13 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul>
 </section><section id="solution-1" class="slide level2">
 <h2>Solution</h2>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">newFunctionName &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">x=</span><span class="dv">1</span>,<span class="dt">y=</span><span class="dv">2</span>){</a>
-<a class="sourceLine" id="cb42-2" data-line-number="2">  <span class="kw">sqrt</span>(x)<span class="op">+</span><span class="kw">sqrt</span>(y)</a>
-<a class="sourceLine" id="cb42-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="co">#Tests</span></a>
-<a class="sourceLine" id="cb42-5" data-line-number="5"><span class="kw">newFunctionName</span>()</a>
-<a class="sourceLine" id="cb42-6" data-line-number="6"><span class="kw">newFunctionName</span>(<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb42-7" data-line-number="7"><span class="kw">newFunctionName</span>(<span class="dv">5</span>,<span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">newFunctionName &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">x=</span><span class="dv">1</span>,<span class="dt">y=</span><span class="dv">2</span>){</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">  <span class="kw">sqrt</span>(x)<span class="op">+</span><span class="kw">sqrt</span>(y)</a>
+<a class="sourceLine" id="cb60-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb60-4" data-line-number="4"><span class="co">#Tests</span></a>
+<a class="sourceLine" id="cb60-5" data-line-number="5"><span class="kw">newFunctionName</span>()</a>
+<a class="sourceLine" id="cb60-6" data-line-number="6"><span class="kw">newFunctionName</span>(<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb60-7" data-line-number="7"><span class="kw">newFunctionName</span>(<span class="dv">5</span>,<span class="dv">6</span>)</a></code></pre></div>
 </section></section>
     </div>
   </div>

@@ -78,7 +78,7 @@ knitr::opts_chunk$set(echo = FALSE)
 </div>
 
 <div class = "right">
-  - Self contained
+  - Self-contained
   - Portable
   - Open with one file
   - Start one with each new _**Project**_
@@ -144,7 +144,7 @@ mtcars %>% filter(mpg > 20) %>%
   - Add your code and results to a markdown document
   - Can create many output file formats
   - This presentation was written in an RMD file
-  - Mostly common markdown language
+  - Mostly standard markdown language
 </div>
 
 ---
@@ -206,7 +206,7 @@ value <- 25 #Correct
 
 <div class = "right">
   - use the left arrow (<-) operator
-  - equal sign is used in comarrisons
+  - equal sign is used in comparrisons
   - variable on the left value on the right
 </div>
 
@@ -229,7 +229,6 @@ Total_Time_ms <- 1 + 2 # Best
   - Underscores
   - Descriptive
   - Include Units
-  - Unique
   - Can't start with a number
 </div>
 

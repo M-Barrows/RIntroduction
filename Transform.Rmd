@@ -11,15 +11,15 @@ knitr::opts_chunk$set()
 
 Welcome to the transformation step. This is where 90% of your time will likely be spent in R (and data science as a whole). Before you begin this step in any project, it is highly recommended to install necessary packages from `tidyverse`. While installing all of tidyverse is an option, it often takes a lot of time and space so it may not always be the *best* option. For now, we decided to be lazy and install the entire thing with `install.packages('tidyverse')` and load it with 
 
-```{r}
+```{r message=FALSE}
 library(tidyverse)
 ```
 
-For beginner users, the main package within tidyverse is dplyr. An overview of dplyr can be found below:
+For beginner users, the main packages within tidyverse are dplyr and tidyr. An overview of each can be found below:
 
 ## dplyr / tidyr
 
-`dplyr` and `tidyr` are two very powerful tools for data transformation as they use easy to write (and read) syntax and do a lot of behind-the-scenes work to make your job easier. For instance, say we have the large library dataset from the [import](Import.html) page. We can import it with the same `read.csv()` function but then select only the columns we are interested in and rename them with the `select()` function. Additionally, instead of nesting functions inside one another, we can use the pipe (`%>%`) operator to accomplish the same thing. The way the pipe operator works is by passing the object on the left into the first argument of the object on the right. This means that the first argument of the object on the right MUST take a data object. Otherwise, in most other cases you can specify `data = .`. Let's look at this example below: 
+`dplyr` and `tidyr` are two very powerful tools for data transformation as they use easy-to-write (and read) syntax and do a lot of behind-the-scenes work to make your job easier. For instance, say we have the large library dataset from the [import](Import.html) page. We can import it with the same `read.csv()` function but then select only the columns we are interested in and rename them with the `select()` function. Additionally, instead of nesting functions inside one another, we can use the pipe (`%>%`) operator to accomplish the same thing. The way the pipe operator works is by passing the object on the left into the first argument of the object on the right. This means that the first argument of the object on the right MUST take a data object. Otherwise, in most other cases you can specify `data = .`. Let's look at this example below: 
 
 ```{r}
 library <- read.csv("https://data.sfgov.org/api/views/qzz6-2jup/rows.csv") %>%
@@ -44,7 +44,7 @@ unlike select() and summarise() the group_by function doesn't actually change th
 
 **summarise():**
 
-applies a function for all observations within each group. If no group is present, then the function is applied column-wise. In this particular instance, we found the average average (`mean(.,na.rm=T)`) number of checkouts per patron type for each month of the year (`group_by(Patron_Type, active_month)`). We then rounded all numbers down to the nearest whole number with the `floor()` function. 
+applies a function for all observations within each group. If no group is present, then the function is applied column-wise. In this particular instance, we found the average (`mean(.,na.rm=T)`) number of checkouts per patron type for each month of the year (`group_by(Patron_Type, active_month)`). We then rounded all numbers down to the nearest whole number with the `floor()` function. 
 
 If we wanted to pivot the data and have a column for each active month, we could do so using: 
 
@@ -99,6 +99,81 @@ library %>% # Select the library dataset
 You can see that the dplyr syntax is almost as easily readable (and shorter) than plain English. This is what makes it so powerful. 
 
 ## Visualize
+
+### Base R
+
+The default plotting functions available in R are very powerful and are *usually* the choice of academic researchers as they are clear and to-the-point. However, the syntax for constructing figures in this framework is a bit cumbersome and the behavior of these figures can often be confusing.
+
+Below is a (fairly) simple scatter plot without much styling. 
+
+```{r}
+plot(mpg~hp,data = mtcars,
+     pch = 16, cex = 0.5,
+     xlab = 'Horsepower',
+     ylab = 'Miles/Gallon',
+     xlim = c(0,350),
+     ylim = c(0,35))
+abline(lm(mpg~hp,data = mtcars),
+       col = 'Red')
+text(x = 250, y = 30,
+     'Efficiency vs. Power')
+text(mtcars$hp, mtcars$mpg, 
+     row.names(mtcars), 
+     cex = 0.6, pos = 2, 
+     col = 'blue')
+```
+
+As you can see, all of the necessary pieces are included but the sytax is a bit confusing and it looks a little boring. We can compare this implementation to the one in the next section which uses the `ggplot2` package.
+
+### ggplot2
+
+The `ggplot2` packages greatly streamlines the plotting process. It uses pipes (just like dplyr) to add various pieces to your figure. If we were to recreate the plot above in the ggplot syntax, it would like like so: 
+
+```{r message=FALSE}
+require(ggplot2) 
+require(dplyr)
+mtcars %>%
+  ggplot(aes(hp, mpg)) +
+  geom_point() +
+  geom_text(aes(label = rownames(mtcars)),
+    hjust = 0,
+    vjust = -0.5,
+    color = "blue") +
+  geom_text(
+    x = 250, y = 30,
+    aes(label = "Efficiency vs. Power")) +
+  geom_smooth(
+    method = "lm", 
+    color = "red",
+    se = F) +
+  xlab("Horsepower") +
+  ylab("Miles/Gallon") +
+  theme_classic()
+```
+
+While there is no **correct** way to plot in R, individuals are often drawn to one method over the other. The benefit of using ggplot is that you can pipe your data into the figure directly after altering it with dplyr commands. This is done with the pipe operator like we executed above (`mtcars %>% ggplot(aes(hp,mpg)) + geom_point()`)
+
+You can read more about ggplot [here](https://ggplot2.tidyverse.org/index.html) or brows their documentation [here](https://ggplot2.tidyverse.org/reference/)
+
+### plotly
+
+Plotly takes all of the benefits and syntax of ggplot and adds interactive functionality! This is great for a customer facing figure or one that is used for data discovery. However, take note that plotly figures are MUCH larger and take longer to render than base-r and ggplot figures. This is especially evident with large datasets. Additionally, an instance of R needs to be running in order to leverage a plotly figure. 
+
+```{r warning=FALSE, message=FALSE}
+require(plotly)
+a <- list(  gridcolor = toRGB("white"), linecolor = toRGB("white"),
+            backgroundcolor = toRGB("black"), color = toRGB('black'),
+            showbackground = TRUE)
+plot_ly(mtcars, x = ~wt, y = ~hp, z = ~mpg, text = rownames(mtcars),
+        marker = list(color = toRGB('green'),
+                      line = list(color = toRGB('white')),
+                      sizeref = 0.15, sizemode = "area")) %>%
+  add_markers(size = ~cyl) %>%
+  layout(scene = list(xaxis = a, yaxis = a, zaxis = a,
+                      bgcolor = 'transparent'),
+         paper_bgcolor = 'transparent')
+```
+
 
 ## Slide Deck
 

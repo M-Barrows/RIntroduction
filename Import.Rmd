@@ -35,7 +35,7 @@ example_TSV <- read.csv("./Files/Data/ExampleTSV.txt", sep = "\t")
 
 Unfortunately, R does not have a built-in function to read in Excel files. However, we can download a package that will provide us this functionality with `install.packages('readxl')`. I've already installed it to this project so we will load it using: 
 
-```{r}
+```{r message=FALSE}
 require(readxl)
 ```
 
@@ -46,7 +46,7 @@ example_xl <- read_excel("./Files/Data/ExampleXLSX.xlsx", sheet = 1)
 head(example_xl)
 ```
 
-Notice with excel files, we need to specify the sheet number. This is because R has now way of specifying different sheets like Excel can. However, if you need more than one sheet in the same object, you could read every sheet into a list item as such: 
+Notice, with excel files we need to specify the sheet number. This is because R has no way of simultaneously reading multiple sheets like Excel can. However, if you need more than one sheet in the same file, you could read every sheet into a list item as such: 
 
 ```{r}
 sheet_list <- list()
@@ -59,7 +59,7 @@ head(sheet_list)
 
 ## JSON
 
-JSON data is determined to be a form of structured data but despite this, is often messy. Therefore, there is not one fool-proof way to read it in but [this](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html) page offers some insight to working with different forms of messy JSON data. In general, the `jsonlite` package is a good option for retrieving the information and storing it as an object but the cleaning and organizing for use in R might take more massaging.
+JSON data is determined to be a form of structured data but despite this, is often messy to work with. Therefore, there is not one fool-proof way to load it into R but [this](https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html) page offers some insight to working with different forms of messy JSON data. In general, the `jsonlite` package is a good option for retrieving the information and storing it as an object but the cleaning and organizing for use in R might take more massaging.
 
 ## Database 
 
@@ -67,13 +67,13 @@ The [conections pane](https://db.rstudio.com/rstudio/connections/) offers a GUI 
 
 The recommended package for this task can be installed using `install.packages('odbc')`. Again, this has already been installed so we will simply load it using: 
 
-```{r}
+```{r message=FALSE}
 require(odbc)
 ```
 
 All code below is pseudo-code and will not actually run. This is because we are not connecting to a real database. However, if you are using most common Db management software, you should be able to replace the provided code with names and connection details appropriate for your system and be good to go! 
 
-Creating a database connection is simple enough, just pass it the driver information, server name, database name, and whether or not it is a trusted connection: 
+Creating a database connection is simple enough, just pass it the driver information, server name, database name, and whether or not it is a trusted connection (should it use your windows logon): 
 
 ``` dbconnection <- odbcDriverConnect('driver={SQL Server};server=mysqlhost;database=mydbname;trusted_connection=true') ```
 
