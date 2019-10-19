@@ -87,3 +87,7 @@ Once you are finished with your connection, you want to make sure to close it wi
 If, like some, you are more comfortable in tSQL than in R, you can actually [run R code within your tSQL](https://www.datacamp.com/community/tutorials/execute-r-python-sql)! I won't cover this here but it is an interesting option that some might find useful! 
 
 
+<div class = "row">
+<a href = "./Import.html"><button class="btn btn-primary">Back</button></a>
+<a href = "./Transform.html"><button class="btn btn-Default">Continue</button></a>
+</div>

@@ -298,3 +298,10 @@ Access the slide decks for this content by clicking the images below:
 <form method = "get" action = "./Files/Presentations/FirstLinesofCode.html">
   <input type="image" src="./Files/Images/FirstLinesofCode.PNG" alt = "Download"/>
 </form>
+
+#
+
+<div class = "row">
+<a href = "./Index.html"><button class="btn btn-primary">Back</button></a>
+<a href = "./Import.html"><button class="btn btn-default">Continue</button></a>
+</div>

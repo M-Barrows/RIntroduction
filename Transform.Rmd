@@ -182,3 +182,12 @@ Access the slide deck for this content by clicking the image below:
 <form method = "get" action = "./Files/Presentations/Import_Transform_Visualize.html">
   <input type="image" src="./Files/Images/ImportTransformVisualize.PNG" alt = "Download"/>
 </form>
+
+
+#
+
+
+<div class = "row">
+<a href = "./Import.html"><button class="btn btn-primary">Back</button></a>
+<a href = "./Model.html"><button class="btn btn-Default">Continue</button></a>
+</div>

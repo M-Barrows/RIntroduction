@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -24,9 +25,8 @@
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 
@@ -63,9 +63,7 @@ h6 {
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -79,7 +77,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -89,6 +86,9 @@ img {
 }
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -104,7 +104,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -124,6 +123,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -145,27 +181,76 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 <style type="text/css">
 .code-folding-btn { margin-bottom: 4px; }
 </style>
-<script>
-$(document).ready(function () {
-  window.initializeSourceEmbed("index.rmd");
-});
-</script>
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -282,9 +367,10 @@ $(document).ready(function () {
 <p>Before you get started, you will need to download <a href="https://www.r-project.org/">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a> for your operating system. The Windows 10 versions are <a href="https://cran.mtu.edu/bin/windows/base/R-3.5.1-win.exe">here</a> and <a href="https://download1.rstudio.org/RStudio-1.1.456.exe">here</a>.</p>
 <p>After you’ve done that, you might find it helpful to progress through <a href="https://www.datacamp.com/courses/working-with-the-rstudio-ide-part-1/chapters/orientation/continue">this free lesson</a> on data camp that will get you oriented with the RStudio IDE. Whether or not you view the lesson, all content for this introduction to R is located under the topics tab above. You can choose to read through the information in order or skip around as you see fit.</p>
 <p>This is by no means an extensive course on R. Those have been done by many others more knowledgeable than I. You can find some of them in the Recommended Courses tab above. Instead, this will be a brief overview of what working within the R environment looks like and some of the perks that it offers. If at any point you have questions regarding this content feel free to reach out on <a href="https://www.linkedin.com/in/michaelabarrows">LinkedIn</a> or post a comment on the <a href="https://github.com/MBarrows20/RIntroduction">GitHub page</a> associated with this repository. You should also feel free to clone, download, or share this repository as it is open source.</p>
+<p><a href = "./Intro.html"><button class="btn btn-default">Continue</button></a></p>
 </div>
 
-<div id="rmd-source-code">LS0tDQpUaXRsZTogSG9tZQ0Kb3V0cHV0OiBodG1sX2RvY3VtZW50DQotLS0NCg0KIyMgQSBCcmllZiBpbnRyb2R1Y3Rpb24gdG8gUg0KDQoNClNvIHlvdSdyZSBpbnRlcmVzdGVkIGluIFIgaHVoPyBHcmVhdCEgVGhlIGRvY3VtZW50cyBpbiB0aGlzIHJlcG9zaXRvcnkgd2lsbCBoZWxwIHlvdSBnZXQgc3RhcnRlZCBpbiBkYXRhIGFuYWx5dGljcyB1c2luZyBvbmUgb2YgdGhlIG1vc3QgcG93ZXJmdWwgb3BlbiBzb3VyY2UgdG9vbHMgZm9yIHRoZSBqb2IuIEJlbG93IGlzIGEgc3VnZ2VzdGVkIHJlYWRpbmcgaGllcmFyY2h5IGJ1dCBmZWVsIGZyZWUgdG8gc2tpcCBhcm91bmQgYXMgeW91IHNlZSBmaXQuICBNYW55IG9mIHRoZXNlIGRvY3VtZW50cyB3aWxsIGVpdGhlciBiZSByZWZlcmVuY2VkIG9yIGluZmx1ZW5jZWQgYnkgb3RoZXIgc291cmNlcyBhcm91bmQgdGhlIGludGVybmV0LiBJZiB0aGlzIGlzIHRoZSBjYXNlLCBJIHdpbGwgYmUgc3VyZSB0byBlaXRoZXIgbGluayBkaXJlY3RseSB0byB0aGUgc291cmNlIG9yIHByb3ZpZGUgcmVmZXJlbmNlcyB3aGVyZSBhcHByb3ByaWF0ZS4NCg0KQmVmb3JlIHlvdSBnZXQgc3RhcnRlZCwgeW91IHdpbGwgbmVlZCB0byBkb3dubG9hZCBbUl0oaHR0cHM6Ly93d3cuci1wcm9qZWN0Lm9yZy8pIGFuZCBbUlN0dWRpb10oaHR0cHM6Ly93d3cucnN0dWRpby5jb20vcHJvZHVjdHMvcnN0dWRpby9kb3dubG9hZC8pIGZvciB5b3VyIG9wZXJhdGluZyBzeXN0ZW0uIFRoZSBXaW5kb3dzIDEwIHZlcnNpb25zIGFyZSBbaGVyZV0oaHR0cHM6Ly9jcmFuLm10dS5lZHUvYmluL3dpbmRvd3MvYmFzZS9SLTMuNS4xLXdpbi5leGUpIGFuZCBbaGVyZV0oaHR0cHM6Ly9kb3dubG9hZDEucnN0dWRpby5vcmcvUlN0dWRpby0xLjEuNDU2LmV4ZSkuDQoNCkFmdGVyIHlvdSd2ZSBkb25lIHRoYXQsIHlvdSBtaWdodCBmaW5kIGl0IGhlbHBmdWwgdG8gcHJvZ3Jlc3MgdGhyb3VnaCBbdGhpcyBmcmVlIGxlc3Nvbl0oaHR0cHM6Ly93d3cuZGF0YWNhbXAuY29tL2NvdXJzZXMvd29ya2luZy13aXRoLXRoZS1yc3R1ZGlvLWlkZS1wYXJ0LTEvY2hhcHRlcnMvb3JpZW50YXRpb24vY29udGludWUpIG9uIGRhdGEgY2FtcCB0aGF0IHdpbGwgZ2V0IHlvdSBvcmllbnRlZCB3aXRoIHRoZSBSU3R1ZGlvIElERS4gV2hldGhlciBvciBub3QgeW91IHZpZXcgdGhlIGxlc3NvbiwgYWxsIGNvbnRlbnQgZm9yIHRoaXMgaW50cm9kdWN0aW9uIHRvIFIgaXMgbG9jYXRlZCB1bmRlciB0aGUgdG9waWNzIHRhYiBhYm92ZS4gWW91IGNhbiBjaG9vc2UgdG8gcmVhZCB0aHJvdWdoIHRoZSBpbmZvcm1hdGlvbiBpbiBvcmRlciBvciBza2lwIGFyb3VuZCBhcyB5b3Ugc2VlIGZpdC4gDQoNClRoaXMgaXMgYnkgbm8gbWVhbnMgYW4gZXh0ZW5zaXZlIGNvdXJzZSBvbiBSLiBUaG9zZSBoYXZlIGJlZW4gZG9uZSBieSBtYW55IG90aGVycyBtb3JlIGtub3dsZWRnZWFibGUgdGhhbiBJLiBZb3UgY2FuIGZpbmQgc29tZSBvZiB0aGVtIGluIHRoZSBSZWNvbW1lbmRlZCBDb3Vyc2VzIHRhYiBhYm92ZS4gSW5zdGVhZCwgdGhpcyB3aWxsIGJlIGEgYnJpZWYgb3ZlcnZpZXcgb2Ygd2hhdCB3b3JraW5nIHdpdGhpbiB0aGUgUiBlbnZpcm9ubWVudCBsb29rcyBsaWtlIGFuZCBzb21lIG9mIHRoZSBwZXJrcyB0aGF0IGl0IG9mZmVycy4gSWYgYXQgYW55IHBvaW50IHlvdSBoYXZlIHF1ZXN0aW9ucyByZWdhcmRpbmcgdGhpcyBjb250ZW50IGZlZWwgZnJlZSB0byByZWFjaCBvdXQgb24gW0xpbmtlZEluXShodHRwczovL3d3dy5saW5rZWRpbi5jb20vaW4vbWljaGFlbGFiYXJyb3dzKSBvciBwb3N0IGEgY29tbWVudCBvbiB0aGUgW0dpdEh1YiBwYWdlXShodHRwczovL2dpdGh1Yi5jb20vTUJhcnJvd3MyMC9SSW50cm9kdWN0aW9uKSBhc3NvY2lhdGVkIHdpdGggdGhpcyByZXBvc2l0b3J5LiBZb3Ugc2hvdWxkIGFsc28gZmVlbCBmcmVlIHRvIGNsb25lLCBkb3dubG9hZCwgb3Igc2hhcmUgdGhpcyByZXBvc2l0b3J5IGFzIGl0IGlzIG9wZW4gc291cmNlLg==</div>
+<div id="rmd-source-code">LS0tDQpUaXRsZTogSG9tZQ0Kb3V0cHV0OiBodG1sX2RvY3VtZW50DQotLS0NCg0KIyMgQSBCcmllZiBpbnRyb2R1Y3Rpb24gdG8gUg0KDQoNClNvIHlvdSdyZSBpbnRlcmVzdGVkIGluIFIgaHVoPyBHcmVhdCEgVGhlIGRvY3VtZW50cyBpbiB0aGlzIHJlcG9zaXRvcnkgd2lsbCBoZWxwIHlvdSBnZXQgc3RhcnRlZCBpbiBkYXRhIGFuYWx5dGljcyB1c2luZyBvbmUgb2YgdGhlIG1vc3QgcG93ZXJmdWwgb3BlbiBzb3VyY2UgdG9vbHMgZm9yIHRoZSBqb2IuIEJlbG93IGlzIGEgc3VnZ2VzdGVkIHJlYWRpbmcgaGllcmFyY2h5IGJ1dCBmZWVsIGZyZWUgdG8gc2tpcCBhcm91bmQgYXMgeW91IHNlZSBmaXQuICBNYW55IG9mIHRoZXNlIGRvY3VtZW50cyB3aWxsIGVpdGhlciBiZSByZWZlcmVuY2VkIG9yIGluZmx1ZW5jZWQgYnkgb3RoZXIgc291cmNlcyBhcm91bmQgdGhlIGludGVybmV0LiBJZiB0aGlzIGlzIHRoZSBjYXNlLCBJIHdpbGwgYmUgc3VyZSB0byBlaXRoZXIgbGluayBkaXJlY3RseSB0byB0aGUgc291cmNlIG9yIHByb3ZpZGUgcmVmZXJlbmNlcyB3aGVyZSBhcHByb3ByaWF0ZS4NCg0KQmVmb3JlIHlvdSBnZXQgc3RhcnRlZCwgeW91IHdpbGwgbmVlZCB0byBkb3dubG9hZCBbUl0oaHR0cHM6Ly93d3cuci1wcm9qZWN0Lm9yZy8pIGFuZCBbUlN0dWRpb10oaHR0cHM6Ly93d3cucnN0dWRpby5jb20vcHJvZHVjdHMvcnN0dWRpby9kb3dubG9hZC8pIGZvciB5b3VyIG9wZXJhdGluZyBzeXN0ZW0uIFRoZSBXaW5kb3dzIDEwIHZlcnNpb25zIGFyZSBbaGVyZV0oaHR0cHM6Ly9jcmFuLm10dS5lZHUvYmluL3dpbmRvd3MvYmFzZS9SLTMuNS4xLXdpbi5leGUpIGFuZCBbaGVyZV0oaHR0cHM6Ly9kb3dubG9hZDEucnN0dWRpby5vcmcvUlN0dWRpby0xLjEuNDU2LmV4ZSkuDQoNCkFmdGVyIHlvdSd2ZSBkb25lIHRoYXQsIHlvdSBtaWdodCBmaW5kIGl0IGhlbHBmdWwgdG8gcHJvZ3Jlc3MgdGhyb3VnaCBbdGhpcyBmcmVlIGxlc3Nvbl0oaHR0cHM6Ly93d3cuZGF0YWNhbXAuY29tL2NvdXJzZXMvd29ya2luZy13aXRoLXRoZS1yc3R1ZGlvLWlkZS1wYXJ0LTEvY2hhcHRlcnMvb3JpZW50YXRpb24vY29udGludWUpIG9uIGRhdGEgY2FtcCB0aGF0IHdpbGwgZ2V0IHlvdSBvcmllbnRlZCB3aXRoIHRoZSBSU3R1ZGlvIElERS4gV2hldGhlciBvciBub3QgeW91IHZpZXcgdGhlIGxlc3NvbiwgYWxsIGNvbnRlbnQgZm9yIHRoaXMgaW50cm9kdWN0aW9uIHRvIFIgaXMgbG9jYXRlZCB1bmRlciB0aGUgdG9waWNzIHRhYiBhYm92ZS4gWW91IGNhbiBjaG9vc2UgdG8gcmVhZCB0aHJvdWdoIHRoZSBpbmZvcm1hdGlvbiBpbiBvcmRlciBvciBza2lwIGFyb3VuZCBhcyB5b3Ugc2VlIGZpdC4gDQoNClRoaXMgaXMgYnkgbm8gbWVhbnMgYW4gZXh0ZW5zaXZlIGNvdXJzZSBvbiBSLiBUaG9zZSBoYXZlIGJlZW4gZG9uZSBieSBtYW55IG90aGVycyBtb3JlIGtub3dsZWRnZWFibGUgdGhhbiBJLiBZb3UgY2FuIGZpbmQgc29tZSBvZiB0aGVtIGluIHRoZSBSZWNvbW1lbmRlZCBDb3Vyc2VzIHRhYiBhYm92ZS4gSW5zdGVhZCwgdGhpcyB3aWxsIGJlIGEgYnJpZWYgb3ZlcnZpZXcgb2Ygd2hhdCB3b3JraW5nIHdpdGhpbiB0aGUgUiBlbnZpcm9ubWVudCBsb29rcyBsaWtlIGFuZCBzb21lIG9mIHRoZSBwZXJrcyB0aGF0IGl0IG9mZmVycy4gSWYgYXQgYW55IHBvaW50IHlvdSBoYXZlIHF1ZXN0aW9ucyByZWdhcmRpbmcgdGhpcyBjb250ZW50IGZlZWwgZnJlZSB0byByZWFjaCBvdXQgb24gW0xpbmtlZEluXShodHRwczovL3d3dy5saW5rZWRpbi5jb20vaW4vbWljaGFlbGFiYXJyb3dzKSBvciBwb3N0IGEgY29tbWVudCBvbiB0aGUgW0dpdEh1YiBwYWdlXShodHRwczovL2dpdGh1Yi5jb20vTUJhcnJvd3MyMC9SSW50cm9kdWN0aW9uKSBhc3NvY2lhdGVkIHdpdGggdGhpcyByZXBvc2l0b3J5LiBZb3Ugc2hvdWxkIGFsc28gZmVlbCBmcmVlIHRvIGNsb25lLCBkb3dubG9hZCwgb3Igc2hhcmUgdGhpcyByZXBvc2l0b3J5IGFzIGl0IGlzIG9wZW4gc291cmNlLg0KDQo8YSBocmVmID0gIi4vSW50cm8uaHRtbCI+PGJ1dHRvbiBjbGFzcz0iYnRuIGJ0bi1kZWZhdWx0Ij5Db250aW51ZTwvYnV0dG9uPjwvYT4=</div>
 <div class = "footer">
   <p> Created by Michael Barrows </p>
 </div>
@@ -305,6 +391,28 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("index.rmd");
+});
+</script>
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

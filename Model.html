@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -25,22 +26,21 @@
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <script src="site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="site_libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="site_libs/plotly-binding-4.9.0/plotly.js"></script>
 <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="site_libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="site_libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -53,13 +53,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -100,7 +98,29 @@ code span.st { color: #049b0a; } /* String */
 code span.va { } /* Variable */
 code span.vs { color: #049b0a; } /* VerbatimString */
 code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -140,9 +160,7 @@ h6 {
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -156,7 +174,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -166,6 +183,9 @@ img {
 }
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -181,7 +201,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -201,6 +220,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -222,27 +278,76 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 <style type="text/css">
 .code-folding-btn { margin-bottom: 4px; }
 </style>
-<script>
-$(document).ready(function () {
-  window.initializeSourceEmbed("Model.Rmd");
-});
-</script>
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -350,7 +455,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Model</h1>
-<h4 class="date"><em>Updated: 2018-11-05</em></h4>
+<h4 class="date">Updated: 2019-10-19</h4>
 
 </div>
 
@@ -364,11 +469,11 @@ $(document).ready(function () {
 <div id="basic-regression" class="section level3">
 <h3>Basic Regression</h3>
 <p>For our examples, we will be using the <code>mtcars</code> dataset which is built into R. This dataset is very common and has several numeric variables about vehicles. They are:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">names</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">names</span>(mtcars)</a></code></pre></div>
 <pre><code>##  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;
 ## [11] &quot;carb&quot;</code></pre>
 <p>if we preview the first 10 rows of data, we can get a better sense for what we are dealing with.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">head</span>(mtcars,<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">head</span>(mtcars,<span class="dv">10</span>)</a></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160.0","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108.0","4":"93","5":"3.85","6":"2.320","7":"18.61","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258.0","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360.0","4":"175","5":"3.15","6":"3.440","7":"17.02","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225.0","4":"105","5":"2.76","6":"3.460","7":"20.22","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"},{"1":"14.3","2":"8","3":"360.0","4":"245","5":"3.21","6":"3.570","7":"15.84","8":"0","9":"0","10":"3","11":"4","_rn_":"Duster 360"},{"1":"24.4","2":"4","3":"146.7","4":"62","5":"3.69","6":"3.190","7":"20.00","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 240D"},{"1":"22.8","2":"4","3":"140.8","4":"95","5":"3.92","6":"3.150","7":"22.90","8":"1","9":"0","10":"4","11":"2","_rn_":"Merc 230"},{"1":"19.2","2":"6","3":"167.6","4":"123","5":"3.92","6":"3.440","7":"18.30","8":"1","9":"0","10":"4","11":"4","_rn_":"Merc 280"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -376,8 +481,8 @@ $(document).ready(function () {
 </div>
 <p>you can also learn more about this dataset by typing <code>help(mtcars)</code> into the console.</p>
 <p>Now, after receiving this information, our first hypothesis might be that an increase in engine displacement (<code>disp</code>) would tend to indicate a decrease in fuel efficiency (<code>mpg</code>). To determine whether or not this hypothesis holds significant statistical value, we can perform a linear regression. We do this with the following command:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">lmcars &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">lm</span>(mpg<span class="op">~</span>disp, <span class="dt">data =</span> mtcars))</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">lmcars</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">lmcars &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">lm</span>(mpg<span class="op">~</span>disp, <span class="dt">data =</span> mtcars))</a>
+<a class="sourceLine" id="cb4-2" title="2">lmcars</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ disp, data = mtcars)
@@ -423,8 +528,8 @@ $(document).ready(function () {
 <p>If we return to our <code>mtcars</code> dataset, we can use this strategy to determine a better model for estimating <code>mpg</code>.</p>
 <p>As a reminder, our dataset contains several numeric variables: mpg, cyl, disp, hp, drat, wt, qsec, gear, carb and two indicator variables: vs, am. Within the numeric values, <code>cyl</code>, <code>gear</code>, and <code>carb</code> are discrete variables and will be ignored. For now, we will just try to use the continuous numeric values to predict <code>mpg</code> for ease of interpretation. Additionally, since <code>qsec</code> is not really a characteristic of the car but rather a performance metric, we will leave it out of our analysis as well.</p>
 <p>Our first attempt will be to fit the model in a backwards fashion. This will generally maintain a maximum accuracy at the cost of increased complexity. As you can see below, the step function evaluates a model object (<code>model1</code>). It tests the full model first and then removes variables that don’t significantly explain a change in <code>mpg</code> until it ends up at the “best” model.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg<span class="op">~</span>disp<span class="op">+</span>hp<span class="op">+</span>drat<span class="op">+</span>wt, <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">step</span>(model1, <span class="dt">direction =</span> <span class="st">&#39;backward&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">model1 &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg<span class="op">~</span>disp<span class="op">+</span>hp<span class="op">+</span>drat<span class="op">+</span>wt, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">step</span>(model1, <span class="dt">direction =</span> <span class="st">&#39;backward&#39;</span>)</a></code></pre></div>
 <pre><code>## Start:  AIC=65.77
 ## mpg ~ disp + hp + drat + wt
 ## 
@@ -460,10 +565,10 @@ $(document).ready(function () {
 ##    37.22727     -0.03177     -3.87783</code></pre>
 <p>In this case, the best model is determined to be <code>mpg ~ hp + wt</code> this means that even though we found <code>disp</code> to be a significant predictor of <code>mpg</code> in our simple regression equation, the combination of <code>hp</code> and <code>wt</code> actually offers “better” predictive power.</p>
 <p>In order to run the model <em>foreward</em> we need to do a few extra steps. The first is to reduce the dataset to only the 5 variables we will need. The next step is to build a null model (model with no predictor variables) and a full model (the starting model of our previous method). These are what define the scope of our forward step-wise regression.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">mtcarsSlim &lt;-<span class="st"> </span>mtcars[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>)]</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">model2_null &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg<span class="op">~</span><span class="dv">1</span>,<span class="dt">data =</span> mtcarsSlim)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">model2_full &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg<span class="op">~</span>., <span class="dt">data =</span> mtcarsSlim)</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw">step</span>(model2_null, <span class="dt">scope =</span> <span class="kw">list</span>(<span class="dt">lower =</span> model2_null,<span class="dt">upper =</span> model2_full), <span class="dt">direction =</span> <span class="st">&#39;forward&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">mtcarsSlim &lt;-<span class="st"> </span>mtcars[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>)]</a>
+<a class="sourceLine" id="cb9-2" title="2">model2_null &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg<span class="op">~</span><span class="dv">1</span>,<span class="dt">data =</span> mtcarsSlim)</a>
+<a class="sourceLine" id="cb9-3" title="3">model2_full &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg<span class="op">~</span>., <span class="dt">data =</span> mtcarsSlim)</a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="kw">step</span>(model2_null, <span class="dt">scope =</span> <span class="kw">list</span>(<span class="dt">lower =</span> model2_null,<span class="dt">upper =</span> model2_full), <span class="dt">direction =</span> <span class="st">&#39;forward&#39;</span>)</a></code></pre></div>
 <pre><code>## Start:  AIC=115.94
 ## mpg ~ 1
 ## 
@@ -499,7 +604,7 @@ $(document).ready(function () {
 ##    37.22727     -3.87783     -0.03177</code></pre>
 <p>From the output above you notice that the model starts with just the intercept. Then, it adds <code>wt</code>, then <code>hp</code> to arrive at the final model which happens to be the same as our first method. While the results are not <em>always</em> the same, it is common.</p>
 <p>Finally, we will run the step-wise linear regression from both ends for good measure. This will essentially run both of these previous tests simultaneously and return the “best” model. Since both forward and backward selection returned the same model, we can expect this final method to be the same.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">step</span>(model1, <span class="dt">direction =</span> <span class="st">&#39;both&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">step</span>(model1, <span class="dt">direction =</span> <span class="st">&#39;both&#39;</span>)</a></code></pre></div>
 <pre><code>## Start:  AIC=65.77
 ## mpg ~ disp + hp + drat + wt
 ## 
@@ -537,7 +642,7 @@ $(document).ready(function () {
 ## (Intercept)           hp           wt  
 ##    37.22727     -0.03177     -3.87783</code></pre>
 <p>As we predicted, the final model <em><strong>is</strong></em> the same as before. Knowing this, we can run a simple linear regression again to compare our values from earlier:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">(lm1 &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">lm</span>(mpg<span class="op">~</span>disp, <span class="dt">data =</span> mtcars)))</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">(lm1 &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">lm</span>(mpg<span class="op">~</span>disp, <span class="dt">data =</span> mtcars)))</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ disp, data = mtcars)
@@ -556,7 +661,7 @@ $(document).ready(function () {
 ## Residual standard error: 3.251 on 30 degrees of freedom
 ## Multiple R-squared:  0.7183, Adjusted R-squared:  0.709 
 ## F-statistic: 76.51 on 1 and 30 DF,  p-value: 9.38e-10</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">(lm2 &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">lm</span>(mpg<span class="op">~</span>hp<span class="op">+</span>wt, <span class="dt">data=</span>mtcars)))</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">(lm2 &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">lm</span>(mpg<span class="op">~</span>hp<span class="op">+</span>wt, <span class="dt">data=</span>mtcars)))</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ hp + wt, data = mtcars)
@@ -578,25 +683,25 @@ $(document).ready(function () {
 ## F-statistic: 69.21 on 2 and 29 DF,  p-value: 9.109e-12</code></pre>
 <p>You can see that while all variables in each of our models are significant (p-value &lt; 0.05) and the overall models are significant (p-value &lt;0.05), the second model actually explains about 10% more variation in <code>mpg</code>. We can tell this because the Adjusted R-squared values are 0.718 and 0.827 for the first and second model respectively.</p>
 <p>With a good understanding of our models from a numeric standpoint, let’s review a few key figures. First, lets take a look at the first model with the regression equation plotted. We can do this with plotting functions built into R as such:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">plot</span>(mpg<span class="op">~</span>disp, <span class="dt">data =</span> mtcars)</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw">abline</span>(lm1)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">plot</span>(mpg<span class="op">~</span>disp, <span class="dt">data =</span> mtcars)</a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="kw">abline</span>(lm1)</a></code></pre></div>
 <pre><code>## Warning in abline(lm1): only using the first two of 8 regression
 ## coefficients</code></pre>
 <p><img src="Model_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>However, many users of R agree that the <code>ggplot2</code> package offers many desirable plotting functions and therefore is used quite frequently. if we want to build the same figure in <code>ggplot2</code> syntax, we do the following:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,mpg)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> F)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(disp,mpg)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-4" title="4"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> F)</a></code></pre></div>
 <p><img src="Model_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>You will notice that using <code>ggplot2</code> prevents you from having to build a linear model first. Instead, you can just use the geom_smooth() option. <code>ggplot2</code> can be confusing at first but there are several good resources out there, including <a href="https://ggplot2.tidyverse.org/reference/">their own documentation</a>.</p>
 <p>The fundamental difference between the built-in plotting functions and <code>ggplot2</code> is that the base R function builds layered images and ggplot2 builds one cohesive image file. This makes the base functions arguably more flexible because each layer doesn’t care about what’s in the other layers. However, it also means that there is potential for unintentional plotting of incorrect information. I encourage you to try both and experience where each method excels.</p>
 <p>Now, since the second model uses two explanatory variables, we have some options for how we want to display the information. The first option is to plot the first variable (hp) as normal and then code the second variable (wt) as something else (i.e. color, size, shape, etc). To demonstrate, let’s code it as color where darker colors indicate a heavier car.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(hp,mpg, <span class="dt">color =</span> wt)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(hp,mpg, <span class="dt">color =</span> wt)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb22-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="Model_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>The next option is to plot the values in three dimensional space. For this we will need another package called <code>plotly</code></p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">require</span>(plotly)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">require</span>(plotly)</a></code></pre></div>
 <pre><code>## Loading required package: plotly</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;plotly&#39;</code></pre>
@@ -609,21 +714,18 @@ $(document).ready(function () {
 <pre><code>## The following object is masked from &#39;package:graphics&#39;:
 ## 
 ##     layout</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">plot_ly</span>(mtcars, <span class="dt">x=</span> <span class="op">~</span>wt, <span class="dt">y =</span> <span class="op">~</span>hp, <span class="dt">z =</span> <span class="op">~</span>mpg) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="st">  </span><span class="kw">add_markers</span>()</a></code></pre></div>
-<div id="htmlwidget-1141c28342fbc4765bec" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1141c28342fbc4765bec">{"x":{"visdat":{"7050581175b6":["function () ","plotlyVisDat"]},"cur_data":"7050581175b6","attrs":{"7050581175b6":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"wt"},"yaxis":{"title":"hp"},"zaxis":{"title":"mpg"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"data":[{"x":[2.62,2.875,2.32,3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.2,1.615,1.835,2.465,3.52,3.435,3.84,3.845,1.935,2.14,1.513,3.17,2.77,3.57,2.78],"y":[110,110,93,110,175,105,245,62,95,123,123,180,180,180,205,215,230,66,52,65,97,150,150,245,175,66,91,113,264,175,335,109],"z":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">plot_ly</span>(mtcars, <span class="dt">x=</span> <span class="op">~</span>wt, <span class="dt">y =</span> <span class="op">~</span>hp, <span class="dt">z =</span> <span class="op">~</span>mpg) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="st">  </span><span class="kw">add_markers</span>()</a></code></pre></div>
+<div id="htmlwidget-c2356f4475f75fe68487" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c2356f4475f75fe68487">{"x":{"visdat":{"3aa473a7964":["function () ","plotlyVisDat"]},"cur_data":"3aa473a7964","attrs":{"3aa473a7964":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"wt"},"yaxis":{"title":"hp"},"zaxis":{"title":"mpg"}},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2.62,2.875,2.32,3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.2,1.615,1.835,2.465,3.52,3.435,3.84,3.845,1.935,2.14,1.513,3.17,2.77,3.57,2.78],"y":[110,110,93,110,175,105,245,62,95,123,123,180,180,180,205,215,230,66,52,65,97,150,150,245,175,66,91,113,264,175,335,109],"z":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="row">
+<p><a href = "./Transform.html"><button class="btn btn-primary">Back</button></a></p>
 </div>
 </div>
-<div id="anova" class="section level2">
-<h2>ANOVA</h2>
-</div>
-<div id="clustering" class="section level2">
-<h2>Clustering</h2>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIk1vZGVsIg0KZGF0ZTogIlVwZGF0ZWQ6IGByIFN5cy5EYXRlKClgIg0Kb3V0cHV0OiBodG1sX2RvY3VtZW50DQotLS0NCiMgey50YWJzZXQgLnRhYnNldC1mYWRlfQ0KDQpUaGlzIERvY3VtZW50IHdpbGwgcHJvdmlkZSBhbiBvdmVydmlldyBmb3IgbWFueSBkaWZmZXJlbnQgc3RhdGlzdGljYWwgYW5hbHlzZXMgdGhhdCBjYW4gYmUgZG9uZSBpbiBSLiBUaGUgaW50cmljYWNpZXMgb2YgZWFjaCBvZiB0aGVzZSBtZXRob2RzIHdpbGwgbmVlZCB0byBiZSBmdXJ0aGVyIGV4cGxvcmVkIGJ1dCB0aGlzIHdpbGwgcHJvdmlkZSB5b3Ugd2l0aCBhIHN0YXJ0aW5nIHBvaW50LiANCg0KIyMgTGluZWFyIFJlZ3Jlc3Npb24NCg0KTGluZWFyIFJlZ3Jlc3Npb24gaXMgYSBtb2RlbCBmaXR0aW5nIG1ldGhvZCB3aGljaCBhdHRlbXB0cyB0byBwcmVkaWN0IGFuIHZhbHVlLCB1c3VhbGx5IG51bWVyaWMgKGkuZS4gYnJva2VyYWdlKSB1c2luZyBvbmUgb3IgbW9yZSBleHBsYW5hdG9yeSB2YXJpYWJsZXMgKGkuZS4gZGF5IG9mIHdlZWssIGRpc3RhbmNlLCB0cnVjayBiaWxsKS4NCg0KIyMjIEJhc2ljIFJlZ3Jlc3Npb24NCg0KRm9yIG91ciBleGFtcGxlcywgd2Ugd2lsbCBiZSB1c2luZyB0aGUgYG10Y2Fyc2AgZGF0YXNldCB3aGljaCBpcyBidWlsdCBpbnRvIFIuIFRoaXMgZGF0YXNldCBpcyB2ZXJ5IGNvbW1vbiBhbmQgaGFzIHNldmVyYWwgbnVtZXJpYyB2YXJpYWJsZXMgYWJvdXQgdmVoaWNsZXMuIFRoZXkgYXJlOiANCg0KYGBge3J9DQpuYW1lcyhtdGNhcnMpDQpgYGANCg0KaWYgd2UgcHJldmlldyB0aGUgZmlyc3QgMTAgcm93cyBvZiBkYXRhLCB3ZSBjYW4gZ2V0IGEgYmV0dGVyIHNlbnNlIGZvciB3aGF0IHdlIGFyZSBkZWFsaW5nIHdpdGguIA0KDQpgYGB7ciwgZWNobz1UfQ0KaGVhZChtdGNhcnMsMTApDQpgYGANCg0KeW91IGNhbiBhbHNvIGxlYXJuIG1vcmUgYWJvdXQgdGhpcyBkYXRhc2V0IGJ5IHR5cGluZyBgaGVscChtdGNhcnMpYCBpbnRvIHRoZSBjb25zb2xlLg0KDQpOb3csIGFmdGVyIHJlY2VpdmluZyB0aGlzIGluZm9ybWF0aW9uLCBvdXIgZmlyc3QgaHlwb3RoZXNpcyBtaWdodCBiZSB0aGF0IGFuIGluY3JlYXNlIGluIGVuZ2luZSBkaXNwbGFjZW1lbnQgKGBkaXNwYCkgd291bGQgdGVuZCB0byBpbmRpY2F0ZSBhIGRlY3JlYXNlIGluIGZ1ZWwgZWZmaWNpZW5jeSAoYG1wZ2ApLiBUbyBkZXRlcm1pbmUgd2hldGhlciBvciBub3QgdGhpcyBoeXBvdGhlc2lzIGhvbGRzIHNpZ25pZmljYW50IHN0YXRpc3RpY2FsIHZhbHVlLCB3ZSBjYW4gcGVyZm9ybSBhIGxpbmVhciByZWdyZXNzaW9uLiBXZSBkbyB0aGlzIHdpdGggdGhlIGZvbGxvd2luZyBjb21tYW5kOiANCg0KYGBge3J9DQpsbWNhcnMgPC0gc3VtbWFyeShsbShtcGd+ZGlzcCwgZGF0YSA9IG10Y2FycykpDQpsbWNhcnMNCmBgYA0KDQpUaGUgcmVzdWx0cyBhYm92ZSB0ZWxsIHVzIHNldmVyYWwgdGhpbmdzLiBGaXJzdCwgdGhlIGZvcm11bGEgb2YgdGhlIGxpbmVhciByZWdyZXNzaW9uIGlzIHByaW50ZWQgYWdhaW4uIFRoZW4sIHdlIHJlY2VpdmUgYmFzaWMgc3RhdGlzdGljcyBhYm91dCBvdXIgcmVzaWR1YWxzLiBSZXNpZHVhbHMgYXJlIGJhc2ljYWxseSB0aGUgdmFyaWFuY2UgYmV0d2VlbiB5b3VyIGFjdHVhbCBkYXRhIGFuZCB5b3VyIHByZWRpY3RlZCBkYXRhLiBUaGUgc21hbGxlciB5b3VyIHZhcmlhbmNlLCB0aGUgYmV0dGVyIHlvdXIgbW9kZWwuIEFmdGVyIHRoZSByZXNpZHVhbCBzdGF0aXN0aWNzLCB3ZSByZWNlaXZlIGluZm9ybWF0aW9uIGFib3V0IHRoZSBjb2VmZmljaWVudHMuIEhlcmUgd2UgYXJlIGludGVyZXN0ZWQgaW4gc2V2ZXJhbCB0aGluZ3MuIA0KDQoxLiBJcyBgZGlzcGAgYSBzaWduaWZpY2FudCBwcmVkaWN0b3Igb2YgYG1wZ2A/IA0KMi4gV2hhdCBjaGFuZ2UgaW4gYG1wZ2AgaXMgZWZmZWN0ZWQgYnkgYSAxLXVuaXQgY2hhbmdlIGluIGBkaXNwYCAoaS5lLiBzbG9wZSBvZiBvdXIgcmVncmVzc2lvbiBsaW5lKT8NCjMuIFdoYXQgaXMgdGhlIHktaW50ZXJjZXB0IG9mIG91ciByZWdyZXNzaW9uIGxpbmU/IA0KDQpUaGUgYW5zd2VycyB0byB0aGVzZSBxdWVzdGlvbnMgYXJlIGFzIGZvbGxvd3M6IA0KDQoxLiBXZSBjYW4gZGV0ZXJtaW5lIGRpc3BsYWNlbWVudCB0byBiZSBhIHNpZ25pZmljYW50IHByZWRpY3RvciBvZiBgbXBnYCBiZWNhdXNlIGl0cyBwLXZhbHVlIGlzIGxlc3MgdGhhbiAwLjA1LiBJbiBmYWN0LCBpdCBpcyBgciBsbWNhcnMkY29lZmZpY2llbnRzWzIsNF1gLiBXZSBjb3VsZCBhbHNvIHRlbGwgdGhpcyBieSB0aGUgdGhyZWUgYXN0ZXJpc2tzIHRvIHRoZSByaWdodCBvZiB0aGUgcC12YWx1ZS4gMSsgYXN0ZXJpc2tzIG1lYW5zIHRoYXQgdGhlIHAtdmFsdWUgaXMgYXQgbGVhc3Qgc21hbGxlciB0aGFuIDAuMDUuIA0KDQoyLiBUaGUgc2xvcGUgb2Ygb3VyIHJlZ3Jlc3Npb24gbGluZSBpcyB0aGUgJ0VzdGltYXRlJyB2YWx1ZSBmb3IgYGRpc3BgLiBJbiB0aGlzIGNhc2UsIGl0IGlzIGByIGxtY2FycyRjb2VmZmljaWVudHNbMiwxXWAuIE5vdGljZSwgdGhhdCBhIG5lZ2F0aXZlIG51bWJlciBoZXJlIGluZGljYXRlcyB0aGF0IGFzIGBkaXNwYCBpbmNyZWFzZXMsIGBtcGdgIHdpbGwgZGVjcmVhc2UuDQoNCjMuIEZpbmFsbHksIHRoZSB5LWludGVyY2VwdCBpcyB0aGUgJ0VzdGltYXRlJyB2YWx1ZSBmb3IgdGhlICcoaW50ZXJjZXB0KScgdmFsdWUuIEluIHRoaXMgY2FzZSBpdCBpcyBgciBsbWNhcnMkY29lZmZpY2llbnRzWzEuMV1gLiANCg0KTm93IHRoYXQgd2UgaGF2ZSBhbnN3ZXJlZCBhbGwgdGhyZWUgb2Ygb3VyIHF1ZXN0aW9ucy4gV2UgY2FuIHNheSB3aXRoIHN0YXRpc3RpY2FsIGNvbmZpZGVuY2UgdGhhdCAqKnllcyoqLCBhbiBpbmNyZWFzZSBpbiBgZGlzcGAgd2lsbCB0ZW5kIHRvIGluZGljYXRlIGEgZGVjcmVhc2UgaW4gYG1wZ2AuIFRoZSBlcXVhdGlvbiBmb3IgdGhpcyByZWdyZXNzaW9uIHJlbGF0aW9uc2hpcCBpcyAkJCBtcGcgPSAtMC4wNDEyKGRpc3ApICsgMjkuNjAgJCQNCg0KDQojIyMgTW9kZWwgVmFyaWFibGUgU2VsZWN0aW9uDQoNCldoaWxlIHRoaXMgYW5hbHlzaXMgbWlnaHQgYmUgc3VmZmljaWVudCBmb3IgcXVpY2sgZXN0aW1hdGlvbiBvZiBgbXBnYCwgd2UgaGF2ZSBzZXZlcmFsIG1vcmUgdmFyaWFibGVzIGF2YWlsYWJsZSB0byB1cyB0aGF0IGNvdWxkIHBvdGVudGlhbGx5IHByb3ZpZGUgYSBtb3JlIGFjY3VyYXRlIGVzdGltYXRpb24uIFdoaWxlIHdlIGNvdWxkIGFkZCBhbGwgb2YgdGhlIHZhcmlhYmxlcyBpbnRvIHRoZSBlcXVhdGlvbiBhbmQgZ2FpbiBhIHZlcnkgYWNjdXJhdGUgZXF1YXRpb24sIHRoaXMgbWV0aG9kIGlzIG5vdCB2ZXJ5IGZsZXhpYmxlIG9yIHByYWN0aWNhbCBhdCBzY2FsZS4gVGhlcmVmb3JlLCB3ZSBuZWVkIHRvIHNlbGVjdCB3aGljaCB2YXJpYWJsZXMgYXJlIGltcG9ydGFudCBlbm91Z2ggdG8ga2VlcC4gVGhpcyBpcyB0aGUgcHJvY2VzcyBvZiB2YXJpYWJsZSBzZWxlY3Rpb24uDQoNCkEgY29tbW9uIG1ldGhvZCBmb3IgdmFyaWFibGUgc2VsZWN0aW9uIGlzIHN0ZXAtd2lzZSBzZWxlY3Rpb24uIEluIHRoaXMgbWV0aG9kIHlvdSBjYW4gdGFrZSBzZXZlcmFsIHBhdGhzOiANCg0KMS4gW1NpbXBsZSBNb2RlbF0gU3RhcnQgd2l0aCBvbmUgZXhwbGFuYXRvcnkgdmFyaWFibGUgYW5kIGFkZCBvbiBvbmUgYXQgYSB0aW1lIHVudGlsIGl0IG5vIGxvbmdlciBleHBsYWlucyBhIHNpZ25pZmljYW50IGFtb3VudCBvZiB2YXJpYXRpb24NCjIuIFtDb21wbGV4IE1vZGVsXSBTdGFydCB3aXRoIGFsbCBvZiB0aGUgZXhwbGFuYXRvcnkgdmFyaWFibGVzIGFuZCByZW1vdmUgb25lIGF0IGEgdGltZSB1bnRpbCBhbGwgdmFyaWFibGVzIGV4cGxhaW4gYSBzaWduaWZpY2FudCBhbW91bnQgb2YgdmFyaWF0aW9uDQozLiBEbyBib3RoIGF0IHRoZSBzYW1lIHRpbWUgYW5kIGNvbXBhcmUgdGhlIHJlc3VsdHMNCg0KVGhlIGtleSB2YWx1ZXMgd2hlbiBkb2luZyBzdGVwLXdpc2UgbW9kZWwgc2VsZWN0aW9uIGFyZSB0aGUgQUlDL0JJQyB2YWx1ZXMgYXMgd2VsbCBhcyB0aGUgYWRqdXN0ZWQgci1zcXVhcmUgdmFsdWUgb2YgdGhlIG1vZGVsIGFzIGEgd2hvbGUuIFRoZSBnb2FsIGluIGZpbmRpbmcgYSBnb29kIG1vZGVsIGlzIHRvIG1pbmltaXplIHRoZSBBSUMvQklDIHZhbHVlIGFuZCB0byBtYXhpbWl6ZSB0aGUgci1zcXVhcmUgdmFsdWUuDQoNCklmIHdlIHJldHVybiB0byBvdXIgYG10Y2Fyc2AgZGF0YXNldCwgd2UgY2FuIHVzZSB0aGlzIHN0cmF0ZWd5IHRvIGRldGVybWluZSBhIGJldHRlciBtb2RlbCBmb3IgZXN0aW1hdGluZyBgbXBnYC4gDQoNCkFzIGEgcmVtaW5kZXIsIG91ciBkYXRhc2V0IGNvbnRhaW5zIHNldmVyYWwgbnVtZXJpYyB2YXJpYWJsZXM6IGByIG5hbWVzKG10Y2Fyc1ssYygxOjcsIDEwLCAxMSldKWAgYW5kIHR3byBpbmRpY2F0b3IgdmFyaWFibGVzOiBgciBuYW1lcyhtdGNhcnNbLDg6OV0pYC4gV2l0aGluIHRoZSBudW1lcmljIHZhbHVlcywgYGN5bGAsIGBnZWFyYCwgYW5kIGBjYXJiYCBhcmUgZGlzY3JldGUgdmFyaWFibGVzIGFuZCB3aWxsIGJlIGlnbm9yZWQuIEZvciBub3csIHdlIHdpbGwganVzdCB0cnkgdG8gdXNlIHRoZSBjb250aW51b3VzIG51bWVyaWMgdmFsdWVzIHRvIHByZWRpY3QgYG1wZ2AgZm9yIGVhc2Ugb2YgaW50ZXJwcmV0YXRpb24uIEFkZGl0aW9uYWxseSwgc2luY2UgYHFzZWNgIGlzIG5vdCByZWFsbHkgYSBjaGFyYWN0ZXJpc3RpYyBvZiB0aGUgY2FyIGJ1dCByYXRoZXIgYSBwZXJmb3JtYW5jZSBtZXRyaWMsIHdlIHdpbGwgbGVhdmUgaXQgb3V0IG9mIG91ciBhbmFseXNpcyBhcyB3ZWxsLg0KDQpPdXIgZmlyc3QgYXR0ZW1wdCB3aWxsIGJlIHRvIGZpdCB0aGUgbW9kZWwgaW4gYSBiYWNrd2FyZHMgZmFzaGlvbi4gVGhpcyB3aWxsIGdlbmVyYWxseSBtYWludGFpbiBhIG1heGltdW0gYWNjdXJhY3kgYXQgdGhlIGNvc3Qgb2YgaW5jcmVhc2VkIGNvbXBsZXhpdHkuIEFzIHlvdSBjYW4gc2VlIGJlbG93LCB0aGUgc3RlcCBmdW5jdGlvbiBldmFsdWF0ZXMgYSBtb2RlbCBvYmplY3QgKGBtb2RlbDFgKS4gSXQgdGVzdHMgdGhlIGZ1bGwgbW9kZWwgZmlyc3QgYW5kIHRoZW4gcmVtb3ZlcyB2YXJpYWJsZXMgdGhhdCBkb24ndCBzaWduaWZpY2FudGx5IGV4cGxhaW4gYSBjaGFuZ2UgaW4gYG1wZ2AgdW50aWwgaXQgZW5kcyB1cCBhdCB0aGUgImJlc3QiIG1vZGVsLiANCg0KYGBge3J9DQptb2RlbDEgPC0gbG0obXBnfmRpc3AraHArZHJhdCt3dCwgZGF0YSA9IG10Y2FycykNCnN0ZXAobW9kZWwxLCBkaXJlY3Rpb24gPSAnYmFja3dhcmQnKQ0KYGBgDQoNCkluIHRoaXMgY2FzZSwgdGhlIGJlc3QgbW9kZWwgaXMgZGV0ZXJtaW5lZCB0byBiZSBgbXBnIH4gaHAgKyB3dGAgdGhpcyBtZWFucyB0aGF0IGV2ZW4gdGhvdWdoIHdlIGZvdW5kIGBkaXNwYCB0byBiZSBhIHNpZ25pZmljYW50IHByZWRpY3RvciBvZiBgbXBnYCBpbiBvdXIgc2ltcGxlIHJlZ3Jlc3Npb24gZXF1YXRpb24sIHRoZSBjb21iaW5hdGlvbiBvZiBgaHBgIGFuZCBgd3RgIGFjdHVhbGx5IG9mZmVycyAiYmV0dGVyIiBwcmVkaWN0aXZlIHBvd2VyLg0KDQpJbiBvcmRlciB0byBydW4gdGhlIG1vZGVsICpmb3Jld2FyZCogd2UgbmVlZCB0byBkbyBhIGZldyBleHRyYSBzdGVwcy4gVGhlIGZpcnN0IGlzIHRvIHJlZHVjZSB0aGUgZGF0YXNldCB0byBvbmx5IHRoZSA1IHZhcmlhYmxlcyB3ZSB3aWxsIG5lZWQuIFRoZSBuZXh0IHN0ZXAgaXMgdG8gYnVpbGQgYSBudWxsIG1vZGVsIChtb2RlbCB3aXRoIG5vIHByZWRpY3RvciB2YXJpYWJsZXMpIGFuZCBhIGZ1bGwgbW9kZWwgKHRoZSBzdGFydGluZyBtb2RlbCBvZiBvdXIgcHJldmlvdXMgbWV0aG9kKS4gVGhlc2UgYXJlIHdoYXQgZGVmaW5lIHRoZSBzY29wZSBvZiBvdXIgZm9yd2FyZCBzdGVwLXdpc2UgcmVncmVzc2lvbi4gDQoNCmBgYHtyfQ0KbXRjYXJzU2xpbSA8LSBtdGNhcnNbLGMoMSwzOjYpXQ0KbW9kZWwyX251bGwgPC0gbG0obXBnfjEsZGF0YSA9IG10Y2Fyc1NsaW0pDQptb2RlbDJfZnVsbCA8LSBsbShtcGd+LiwgZGF0YSA9IG10Y2Fyc1NsaW0pDQpzdGVwKG1vZGVsMl9udWxsLCBzY29wZSA9IGxpc3QobG93ZXIgPSBtb2RlbDJfbnVsbCx1cHBlciA9IG1vZGVsMl9mdWxsKSwgZGlyZWN0aW9uID0gJ2ZvcndhcmQnKQ0KYGBgDQoNCkZyb20gdGhlIG91dHB1dCBhYm92ZSB5b3Ugbm90aWNlIHRoYXQgdGhlIG1vZGVsIHN0YXJ0cyB3aXRoIGp1c3QgdGhlIGludGVyY2VwdC4gVGhlbiwgaXQgYWRkcyBgd3RgLCB0aGVuIGBocGAgdG8gYXJyaXZlIGF0IHRoZSBmaW5hbCBtb2RlbCB3aGljaCBoYXBwZW5zIHRvIGJlIHRoZSBzYW1lIGFzIG91ciBmaXJzdCBtZXRob2QuIFdoaWxlIHRoZSByZXN1bHRzIGFyZSBub3QgKmFsd2F5cyogdGhlIHNhbWUsIGl0IGlzIGNvbW1vbi4gDQoNCkZpbmFsbHksIHdlIHdpbGwgcnVuIHRoZSBzdGVwLXdpc2UgbGluZWFyIHJlZ3Jlc3Npb24gZnJvbSBib3RoIGVuZHMgZm9yIGdvb2QgbWVhc3VyZS4gVGhpcyB3aWxsIGVzc2VudGlhbGx5IHJ1biBib3RoIG9mIHRoZXNlIHByZXZpb3VzIHRlc3RzIHNpbXVsdGFuZW91c2x5IGFuZCByZXR1cm4gdGhlICJiZXN0IiBtb2RlbC4gU2luY2UgYm90aCBmb3J3YXJkIGFuZCBiYWNrd2FyZCBzZWxlY3Rpb24gcmV0dXJuZWQgdGhlIHNhbWUgbW9kZWwsIHdlIGNhbiBleHBlY3QgdGhpcyBmaW5hbCBtZXRob2QgdG8gYmUgdGhlIHNhbWUuIA0KYGBge3J9DQpzdGVwKG1vZGVsMSwgZGlyZWN0aW9uID0gJ2JvdGgnKQ0KYGBgDQoNCkFzIHdlIHByZWRpY3RlZCwgdGhlIGZpbmFsIG1vZGVsIF8qKmlzKipfIHRoZSBzYW1lIGFzIGJlZm9yZS4gS25vd2luZyB0aGlzLCB3ZSBjYW4gcnVuIGEgc2ltcGxlIGxpbmVhciByZWdyZXNzaW9uIGFnYWluIHRvIGNvbXBhcmUgb3VyIHZhbHVlcyBmcm9tIGVhcmxpZXI6IA0KDQpgYGB7cn0NCihsbTEgPC0gc3VtbWFyeShsbShtcGd+ZGlzcCwgZGF0YSA9IG10Y2FycykpKQ0KKGxtMiA8LSBzdW1tYXJ5KGxtKG1wZ35ocCt3dCwgZGF0YT1tdGNhcnMpKSkNCmBgYA0KDQpZb3UgY2FuIHNlZSB0aGF0IHdoaWxlIGFsbCB2YXJpYWJsZXMgaW4gZWFjaCBvZiBvdXIgbW9kZWxzIGFyZSBzaWduaWZpY2FudCAocC12YWx1ZSA8IDAuMDUpIGFuZCB0aGUgb3ZlcmFsbCBtb2RlbHMgYXJlIHNpZ25pZmljYW50IChwLXZhbHVlIDwwLjA1KSwgdGhlIHNlY29uZCBtb2RlbCBhY3R1YWxseSBleHBsYWlucyBhYm91dCAxMCUgbW9yZSB2YXJpYXRpb24gaW4gYG1wZ2AuIFdlIGNhbiB0ZWxsIHRoaXMgYmVjYXVzZSB0aGUgQWRqdXN0ZWQgUi1zcXVhcmVkIHZhbHVlcyBhcmUgYHIgcm91bmQobG0xJHIuc3F1YXJlZCwzKWAgYW5kIGByIHJvdW5kKGxtMiRyLnNxdWFyZWQsMylgIGZvciB0aGUgZmlyc3QgYW5kIHNlY29uZCBtb2RlbCByZXNwZWN0aXZlbHkuIA0KDQpXaXRoIGEgZ29vZCB1bmRlcnN0YW5kaW5nIG9mIG91ciBtb2RlbHMgZnJvbSBhIG51bWVyaWMgc3RhbmRwb2ludCwgbGV0J3MgcmV2aWV3IGEgZmV3IGtleSBmaWd1cmVzLiBGaXJzdCwgbGV0cyB0YWtlIGEgbG9vayBhdCB0aGUgZmlyc3QgbW9kZWwgd2l0aCB0aGUgcmVncmVzc2lvbiBlcXVhdGlvbiBwbG90dGVkLiBXZSBjYW4gZG8gdGhpcyB3aXRoIHBsb3R0aW5nIGZ1bmN0aW9ucyBidWlsdCBpbnRvIFIgYXMgc3VjaDogDQoNCmBgYHtyfQ0KcGxvdChtcGd+ZGlzcCwgZGF0YSA9IG10Y2FycykNCmFibGluZShsbTEpDQpgYGANCg0KSG93ZXZlciwgbWFueSB1c2VycyBvZiBSIGFncmVlIHRoYXQgdGhlIGBnZ3Bsb3QyYCBwYWNrYWdlIG9mZmVycyBtYW55IGRlc2lyYWJsZSBwbG90dGluZyBmdW5jdGlvbnMgYW5kIHRoZXJlZm9yZSBpcyB1c2VkIHF1aXRlIGZyZXF1ZW50bHkuIGlmIHdlIHdhbnQgdG8gYnVpbGQgdGhlIHNhbWUgZmlndXJlIGluIGBnZ3Bsb3QyYCBzeW50YXgsIHdlIGRvIHRoZSBmb2xsb3dpbmc6IA0KDQpgYGB7cn0NCmxpYnJhcnkoZ2dwbG90MikNCmdncGxvdChtdGNhcnMsIGFlcyhkaXNwLG1wZykpICsgDQogIGdlb21fcG9pbnQoKSArDQogIGdlb21fc21vb3RoKG1ldGhvZCA9ICdsbScsIHNlID0gRikNCmBgYA0KDQpZb3Ugd2lsbCBub3RpY2UgdGhhdCB1c2luZyBgZ2dwbG90MmAgcHJldmVudHMgeW91IGZyb20gaGF2aW5nIHRvIGJ1aWxkIGEgbGluZWFyIG1vZGVsIGZpcnN0LiBJbnN0ZWFkLCB5b3UgY2FuIGp1c3QgdXNlIHRoZSBnZW9tX3Ntb290aCgpIG9wdGlvbi4gYGdncGxvdDJgIGNhbiBiZSBjb25mdXNpbmcgYXQgZmlyc3QgYnV0IHRoZXJlIGFyZSBzZXZlcmFsIGdvb2QgcmVzb3VyY2VzIG91dCB0aGVyZSwgaW5jbHVkaW5nIFt0aGVpciBvd24gZG9jdW1lbnRhdGlvbl0oaHR0cHM6Ly9nZ3Bsb3QyLnRpZHl2ZXJzZS5vcmcvcmVmZXJlbmNlLykuIA0KDQpUaGUgZnVuZGFtZW50YWwgZGlmZmVyZW5jZSBiZXR3ZWVuIHRoZSBidWlsdC1pbiBwbG90dGluZyBmdW5jdGlvbnMgYW5kIGBnZ3Bsb3QyYCBpcyB0aGF0IHRoZSBiYXNlIFIgZnVuY3Rpb24gYnVpbGRzIGxheWVyZWQgaW1hZ2VzIGFuZCBnZ3Bsb3QyIGJ1aWxkcyBvbmUgY29oZXNpdmUgaW1hZ2UgZmlsZS4gVGhpcyBtYWtlcyB0aGUgYmFzZSBmdW5jdGlvbnMgYXJndWFibHkgbW9yZSBmbGV4aWJsZSBiZWNhdXNlIGVhY2ggbGF5ZXIgZG9lc24ndCBjYXJlIGFib3V0IHdoYXQncyBpbiB0aGUgb3RoZXIgbGF5ZXJzLiBIb3dldmVyLCBpdCBhbHNvIG1lYW5zIHRoYXQgdGhlcmUgaXMgcG90ZW50aWFsIGZvciB1bmludGVudGlvbmFsIHBsb3R0aW5nIG9mIGluY29ycmVjdCBpbmZvcm1hdGlvbi4gSSBlbmNvdXJhZ2UgeW91IHRvIHRyeSBib3RoIGFuZCBleHBlcmllbmNlIHdoZXJlIGVhY2ggbWV0aG9kIGV4Y2Vscy4gDQoNCk5vdywgc2luY2UgdGhlIHNlY29uZCBtb2RlbCB1c2VzIHR3byBleHBsYW5hdG9yeSB2YXJpYWJsZXMsIHdlIGhhdmUgc29tZSBvcHRpb25zIGZvciBob3cgd2Ugd2FudCB0byBkaXNwbGF5IHRoZSBpbmZvcm1hdGlvbi4gVGhlIGZpcnN0IG9wdGlvbiBpcyB0byBwbG90IHRoZSBmaXJzdCB2YXJpYWJsZSAoaHApIGFzIG5vcm1hbCBhbmQgdGhlbiBjb2RlIHRoZSBzZWNvbmQgdmFyaWFibGUgKHd0KSBhcyBzb21ldGhpbmcgZWxzZSAoaS5lLiBjb2xvciwgc2l6ZSwgc2hhcGUsIGV0YykuIFRvIGRlbW9uc3RyYXRlLCBsZXQncyBjb2RlIGl0IGFzIGNvbG9yIHdoZXJlIGRhcmtlciBjb2xvcnMgaW5kaWNhdGUgYSBoZWF2aWVyIGNhci4NCg0KYGBge3J9DQpnZ3Bsb3QobXRjYXJzLCBhZXMoaHAsbXBnLCBjb2xvciA9IHd0KSkgKw0KICBnZW9tX3BvaW50KCkNCmBgYA0KDQpUaGUgbmV4dCBvcHRpb24gaXMgdG8gcGxvdCB0aGUgdmFsdWVzIGluIHRocmVlIGRpbWVuc2lvbmFsIHNwYWNlLiBGb3IgdGhpcyB3ZSB3aWxsIG5lZWQgYW5vdGhlciBwYWNrYWdlIGNhbGxlZCBgcGxvdGx5YA0KDQpgYGB7cn0NCnJlcXVpcmUocGxvdGx5KQ0KcGxvdF9seShtdGNhcnMsIHg9IH53dCwgeSA9IH5ocCwgeiA9IH5tcGcpICU+JQ0KICBhZGRfbWFya2VycygpDQpgYGANCg0KDQojIyBBTk9WQQ0KDQoNCiMjIENsdXN0ZXJpbmcNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIk1vZGVsIg0KZGF0ZTogIlVwZGF0ZWQ6IGByIFN5cy5EYXRlKClgIg0Kb3V0cHV0OiBodG1sX2RvY3VtZW50DQotLS0NCiMgey50YWJzZXQgLnRhYnNldC1mYWRlfQ0KDQpUaGlzIERvY3VtZW50IHdpbGwgcHJvdmlkZSBhbiBvdmVydmlldyBmb3IgbWFueSBkaWZmZXJlbnQgc3RhdGlzdGljYWwgYW5hbHlzZXMgdGhhdCBjYW4gYmUgZG9uZSBpbiBSLiBUaGUgaW50cmljYWNpZXMgb2YgZWFjaCBvZiB0aGVzZSBtZXRob2RzIHdpbGwgbmVlZCB0byBiZSBmdXJ0aGVyIGV4cGxvcmVkIGJ1dCB0aGlzIHdpbGwgcHJvdmlkZSB5b3Ugd2l0aCBhIHN0YXJ0aW5nIHBvaW50LiANCg0KIyMgTGluZWFyIFJlZ3Jlc3Npb24NCg0KTGluZWFyIFJlZ3Jlc3Npb24gaXMgYSBtb2RlbCBmaXR0aW5nIG1ldGhvZCB3aGljaCBhdHRlbXB0cyB0byBwcmVkaWN0IGFuIHZhbHVlLCB1c3VhbGx5IG51bWVyaWMgKGkuZS4gYnJva2VyYWdlKSB1c2luZyBvbmUgb3IgbW9yZSBleHBsYW5hdG9yeSB2YXJpYWJsZXMgKGkuZS4gZGF5IG9mIHdlZWssIGRpc3RhbmNlLCB0cnVjayBiaWxsKS4NCg0KIyMjIEJhc2ljIFJlZ3Jlc3Npb24NCg0KRm9yIG91ciBleGFtcGxlcywgd2Ugd2lsbCBiZSB1c2luZyB0aGUgYG10Y2Fyc2AgZGF0YXNldCB3aGljaCBpcyBidWlsdCBpbnRvIFIuIFRoaXMgZGF0YXNldCBpcyB2ZXJ5IGNvbW1vbiBhbmQgaGFzIHNldmVyYWwgbnVtZXJpYyB2YXJpYWJsZXMgYWJvdXQgdmVoaWNsZXMuIFRoZXkgYXJlOiANCg0KYGBge3J9DQpuYW1lcyhtdGNhcnMpDQpgYGANCg0KaWYgd2UgcHJldmlldyB0aGUgZmlyc3QgMTAgcm93cyBvZiBkYXRhLCB3ZSBjYW4gZ2V0IGEgYmV0dGVyIHNlbnNlIGZvciB3aGF0IHdlIGFyZSBkZWFsaW5nIHdpdGguIA0KDQpgYGB7ciwgZWNobz1UfQ0KaGVhZChtdGNhcnMsMTApDQpgYGANCg0KeW91IGNhbiBhbHNvIGxlYXJuIG1vcmUgYWJvdXQgdGhpcyBkYXRhc2V0IGJ5IHR5cGluZyBgaGVscChtdGNhcnMpYCBpbnRvIHRoZSBjb25zb2xlLg0KDQpOb3csIGFmdGVyIHJlY2VpdmluZyB0aGlzIGluZm9ybWF0aW9uLCBvdXIgZmlyc3QgaHlwb3RoZXNpcyBtaWdodCBiZSB0aGF0IGFuIGluY3JlYXNlIGluIGVuZ2luZSBkaXNwbGFjZW1lbnQgKGBkaXNwYCkgd291bGQgdGVuZCB0byBpbmRpY2F0ZSBhIGRlY3JlYXNlIGluIGZ1ZWwgZWZmaWNpZW5jeSAoYG1wZ2ApLiBUbyBkZXRlcm1pbmUgd2hldGhlciBvciBub3QgdGhpcyBoeXBvdGhlc2lzIGhvbGRzIHNpZ25pZmljYW50IHN0YXRpc3RpY2FsIHZhbHVlLCB3ZSBjYW4gcGVyZm9ybSBhIGxpbmVhciByZWdyZXNzaW9uLiBXZSBkbyB0aGlzIHdpdGggdGhlIGZvbGxvd2luZyBjb21tYW5kOiANCg0KYGBge3J9DQpsbWNhcnMgPC0gc3VtbWFyeShsbShtcGd+ZGlzcCwgZGF0YSA9IG10Y2FycykpDQpsbWNhcnMNCmBgYA0KDQpUaGUgcmVzdWx0cyBhYm92ZSB0ZWxsIHVzIHNldmVyYWwgdGhpbmdzLiBGaXJzdCwgdGhlIGZvcm11bGEgb2YgdGhlIGxpbmVhciByZWdyZXNzaW9uIGlzIHByaW50ZWQgYWdhaW4uIFRoZW4sIHdlIHJlY2VpdmUgYmFzaWMgc3RhdGlzdGljcyBhYm91dCBvdXIgcmVzaWR1YWxzLiBSZXNpZHVhbHMgYXJlIGJhc2ljYWxseSB0aGUgdmFyaWFuY2UgYmV0d2VlbiB5b3VyIGFjdHVhbCBkYXRhIGFuZCB5b3VyIHByZWRpY3RlZCBkYXRhLiBUaGUgc21hbGxlciB5b3VyIHZhcmlhbmNlLCB0aGUgYmV0dGVyIHlvdXIgbW9kZWwuIEFmdGVyIHRoZSByZXNpZHVhbCBzdGF0aXN0aWNzLCB3ZSByZWNlaXZlIGluZm9ybWF0aW9uIGFib3V0IHRoZSBjb2VmZmljaWVudHMuIEhlcmUgd2UgYXJlIGludGVyZXN0ZWQgaW4gc2V2ZXJhbCB0aGluZ3MuIA0KDQoxLiBJcyBgZGlzcGAgYSBzaWduaWZpY2FudCBwcmVkaWN0b3Igb2YgYG1wZ2A/IA0KMi4gV2hhdCBjaGFuZ2UgaW4gYG1wZ2AgaXMgZWZmZWN0ZWQgYnkgYSAxLXVuaXQgY2hhbmdlIGluIGBkaXNwYCAoaS5lLiBzbG9wZSBvZiBvdXIgcmVncmVzc2lvbiBsaW5lKT8NCjMuIFdoYXQgaXMgdGhlIHktaW50ZXJjZXB0IG9mIG91ciByZWdyZXNzaW9uIGxpbmU/IA0KDQpUaGUgYW5zd2VycyB0byB0aGVzZSBxdWVzdGlvbnMgYXJlIGFzIGZvbGxvd3M6IA0KDQoxLiBXZSBjYW4gZGV0ZXJtaW5lIGRpc3BsYWNlbWVudCB0byBiZSBhIHNpZ25pZmljYW50IHByZWRpY3RvciBvZiBgbXBnYCBiZWNhdXNlIGl0cyBwLXZhbHVlIGlzIGxlc3MgdGhhbiAwLjA1LiBJbiBmYWN0LCBpdCBpcyBgciBsbWNhcnMkY29lZmZpY2llbnRzWzIsNF1gLiBXZSBjb3VsZCBhbHNvIHRlbGwgdGhpcyBieSB0aGUgdGhyZWUgYXN0ZXJpc2tzIHRvIHRoZSByaWdodCBvZiB0aGUgcC12YWx1ZS4gMSsgYXN0ZXJpc2tzIG1lYW5zIHRoYXQgdGhlIHAtdmFsdWUgaXMgYXQgbGVhc3Qgc21hbGxlciB0aGFuIDAuMDUuIA0KDQoyLiBUaGUgc2xvcGUgb2Ygb3VyIHJlZ3Jlc3Npb24gbGluZSBpcyB0aGUgJ0VzdGltYXRlJyB2YWx1ZSBmb3IgYGRpc3BgLiBJbiB0aGlzIGNhc2UsIGl0IGlzIGByIGxtY2FycyRjb2VmZmljaWVudHNbMiwxXWAuIE5vdGljZSwgdGhhdCBhIG5lZ2F0aXZlIG51bWJlciBoZXJlIGluZGljYXRlcyB0aGF0IGFzIGBkaXNwYCBpbmNyZWFzZXMsIGBtcGdgIHdpbGwgZGVjcmVhc2UuDQoNCjMuIEZpbmFsbHksIHRoZSB5LWludGVyY2VwdCBpcyB0aGUgJ0VzdGltYXRlJyB2YWx1ZSBmb3IgdGhlICcoaW50ZXJjZXB0KScgdmFsdWUuIEluIHRoaXMgY2FzZSBpdCBpcyBgciBsbWNhcnMkY29lZmZpY2llbnRzWzEuMV1gLiANCg0KTm93IHRoYXQgd2UgaGF2ZSBhbnN3ZXJlZCBhbGwgdGhyZWUgb2Ygb3VyIHF1ZXN0aW9ucy4gV2UgY2FuIHNheSB3aXRoIHN0YXRpc3RpY2FsIGNvbmZpZGVuY2UgdGhhdCAqKnllcyoqLCBhbiBpbmNyZWFzZSBpbiBgZGlzcGAgd2lsbCB0ZW5kIHRvIGluZGljYXRlIGEgZGVjcmVhc2UgaW4gYG1wZ2AuIFRoZSBlcXVhdGlvbiBmb3IgdGhpcyByZWdyZXNzaW9uIHJlbGF0aW9uc2hpcCBpcyAkJCBtcGcgPSAtMC4wNDEyKGRpc3ApICsgMjkuNjAgJCQNCg0KDQojIyMgTW9kZWwgVmFyaWFibGUgU2VsZWN0aW9uDQoNCldoaWxlIHRoaXMgYW5hbHlzaXMgbWlnaHQgYmUgc3VmZmljaWVudCBmb3IgcXVpY2sgZXN0aW1hdGlvbiBvZiBgbXBnYCwgd2UgaGF2ZSBzZXZlcmFsIG1vcmUgdmFyaWFibGVzIGF2YWlsYWJsZSB0byB1cyB0aGF0IGNvdWxkIHBvdGVudGlhbGx5IHByb3ZpZGUgYSBtb3JlIGFjY3VyYXRlIGVzdGltYXRpb24uIFdoaWxlIHdlIGNvdWxkIGFkZCBhbGwgb2YgdGhlIHZhcmlhYmxlcyBpbnRvIHRoZSBlcXVhdGlvbiBhbmQgZ2FpbiBhIHZlcnkgYWNjdXJhdGUgZXF1YXRpb24sIHRoaXMgbWV0aG9kIGlzIG5vdCB2ZXJ5IGZsZXhpYmxlIG9yIHByYWN0aWNhbCBhdCBzY2FsZS4gVGhlcmVmb3JlLCB3ZSBuZWVkIHRvIHNlbGVjdCB3aGljaCB2YXJpYWJsZXMgYXJlIGltcG9ydGFudCBlbm91Z2ggdG8ga2VlcC4gVGhpcyBpcyB0aGUgcHJvY2VzcyBvZiB2YXJpYWJsZSBzZWxlY3Rpb24uDQoNCkEgY29tbW9uIG1ldGhvZCBmb3IgdmFyaWFibGUgc2VsZWN0aW9uIGlzIHN0ZXAtd2lzZSBzZWxlY3Rpb24uIEluIHRoaXMgbWV0aG9kIHlvdSBjYW4gdGFrZSBzZXZlcmFsIHBhdGhzOiANCg0KMS4gW1NpbXBsZSBNb2RlbF0gU3RhcnQgd2l0aCBvbmUgZXhwbGFuYXRvcnkgdmFyaWFibGUgYW5kIGFkZCBvbiBvbmUgYXQgYSB0aW1lIHVudGlsIGl0IG5vIGxvbmdlciBleHBsYWlucyBhIHNpZ25pZmljYW50IGFtb3VudCBvZiB2YXJpYXRpb24NCjIuIFtDb21wbGV4IE1vZGVsXSBTdGFydCB3aXRoIGFsbCBvZiB0aGUgZXhwbGFuYXRvcnkgdmFyaWFibGVzIGFuZCByZW1vdmUgb25lIGF0IGEgdGltZSB1bnRpbCBhbGwgdmFyaWFibGVzIGV4cGxhaW4gYSBzaWduaWZpY2FudCBhbW91bnQgb2YgdmFyaWF0aW9uDQozLiBEbyBib3RoIGF0IHRoZSBzYW1lIHRpbWUgYW5kIGNvbXBhcmUgdGhlIHJlc3VsdHMNCg0KVGhlIGtleSB2YWx1ZXMgd2hlbiBkb2luZyBzdGVwLXdpc2UgbW9kZWwgc2VsZWN0aW9uIGFyZSB0aGUgQUlDL0JJQyB2YWx1ZXMgYXMgd2VsbCBhcyB0aGUgYWRqdXN0ZWQgci1zcXVhcmUgdmFsdWUgb2YgdGhlIG1vZGVsIGFzIGEgd2hvbGUuIFRoZSBnb2FsIGluIGZpbmRpbmcgYSBnb29kIG1vZGVsIGlzIHRvIG1pbmltaXplIHRoZSBBSUMvQklDIHZhbHVlIGFuZCB0byBtYXhpbWl6ZSB0aGUgci1zcXVhcmUgdmFsdWUuDQoNCklmIHdlIHJldHVybiB0byBvdXIgYG10Y2Fyc2AgZGF0YXNldCwgd2UgY2FuIHVzZSB0aGlzIHN0cmF0ZWd5IHRvIGRldGVybWluZSBhIGJldHRlciBtb2RlbCBmb3IgZXN0aW1hdGluZyBgbXBnYC4gDQoNCkFzIGEgcmVtaW5kZXIsIG91ciBkYXRhc2V0IGNvbnRhaW5zIHNldmVyYWwgbnVtZXJpYyB2YXJpYWJsZXM6IGByIG5hbWVzKG10Y2Fyc1ssYygxOjcsIDEwLCAxMSldKWAgYW5kIHR3byBpbmRpY2F0b3IgdmFyaWFibGVzOiBgciBuYW1lcyhtdGNhcnNbLDg6OV0pYC4gV2l0aGluIHRoZSBudW1lcmljIHZhbHVlcywgYGN5bGAsIGBnZWFyYCwgYW5kIGBjYXJiYCBhcmUgZGlzY3JldGUgdmFyaWFibGVzIGFuZCB3aWxsIGJlIGlnbm9yZWQuIEZvciBub3csIHdlIHdpbGwganVzdCB0cnkgdG8gdXNlIHRoZSBjb250aW51b3VzIG51bWVyaWMgdmFsdWVzIHRvIHByZWRpY3QgYG1wZ2AgZm9yIGVhc2Ugb2YgaW50ZXJwcmV0YXRpb24uIEFkZGl0aW9uYWxseSwgc2luY2UgYHFzZWNgIGlzIG5vdCByZWFsbHkgYSBjaGFyYWN0ZXJpc3RpYyBvZiB0aGUgY2FyIGJ1dCByYXRoZXIgYSBwZXJmb3JtYW5jZSBtZXRyaWMsIHdlIHdpbGwgbGVhdmUgaXQgb3V0IG9mIG91ciBhbmFseXNpcyBhcyB3ZWxsLg0KDQpPdXIgZmlyc3QgYXR0ZW1wdCB3aWxsIGJlIHRvIGZpdCB0aGUgbW9kZWwgaW4gYSBiYWNrd2FyZHMgZmFzaGlvbi4gVGhpcyB3aWxsIGdlbmVyYWxseSBtYWludGFpbiBhIG1heGltdW0gYWNjdXJhY3kgYXQgdGhlIGNvc3Qgb2YgaW5jcmVhc2VkIGNvbXBsZXhpdHkuIEFzIHlvdSBjYW4gc2VlIGJlbG93LCB0aGUgc3RlcCBmdW5jdGlvbiBldmFsdWF0ZXMgYSBtb2RlbCBvYmplY3QgKGBtb2RlbDFgKS4gSXQgdGVzdHMgdGhlIGZ1bGwgbW9kZWwgZmlyc3QgYW5kIHRoZW4gcmVtb3ZlcyB2YXJpYWJsZXMgdGhhdCBkb24ndCBzaWduaWZpY2FudGx5IGV4cGxhaW4gYSBjaGFuZ2UgaW4gYG1wZ2AgdW50aWwgaXQgZW5kcyB1cCBhdCB0aGUgImJlc3QiIG1vZGVsLiANCg0KYGBge3J9DQptb2RlbDEgPC0gbG0obXBnfmRpc3AraHArZHJhdCt3dCwgZGF0YSA9IG10Y2FycykNCnN0ZXAobW9kZWwxLCBkaXJlY3Rpb24gPSAnYmFja3dhcmQnKQ0KYGBgDQoNCkluIHRoaXMgY2FzZSwgdGhlIGJlc3QgbW9kZWwgaXMgZGV0ZXJtaW5lZCB0byBiZSBgbXBnIH4gaHAgKyB3dGAgdGhpcyBtZWFucyB0aGF0IGV2ZW4gdGhvdWdoIHdlIGZvdW5kIGBkaXNwYCB0byBiZSBhIHNpZ25pZmljYW50IHByZWRpY3RvciBvZiBgbXBnYCBpbiBvdXIgc2ltcGxlIHJlZ3Jlc3Npb24gZXF1YXRpb24sIHRoZSBjb21iaW5hdGlvbiBvZiBgaHBgIGFuZCBgd3RgIGFjdHVhbGx5IG9mZmVycyAiYmV0dGVyIiBwcmVkaWN0aXZlIHBvd2VyLg0KDQpJbiBvcmRlciB0byBydW4gdGhlIG1vZGVsICpmb3Jld2FyZCogd2UgbmVlZCB0byBkbyBhIGZldyBleHRyYSBzdGVwcy4gVGhlIGZpcnN0IGlzIHRvIHJlZHVjZSB0aGUgZGF0YXNldCB0byBvbmx5IHRoZSA1IHZhcmlhYmxlcyB3ZSB3aWxsIG5lZWQuIFRoZSBuZXh0IHN0ZXAgaXMgdG8gYnVpbGQgYSBudWxsIG1vZGVsIChtb2RlbCB3aXRoIG5vIHByZWRpY3RvciB2YXJpYWJsZXMpIGFuZCBhIGZ1bGwgbW9kZWwgKHRoZSBzdGFydGluZyBtb2RlbCBvZiBvdXIgcHJldmlvdXMgbWV0aG9kKS4gVGhlc2UgYXJlIHdoYXQgZGVmaW5lIHRoZSBzY29wZSBvZiBvdXIgZm9yd2FyZCBzdGVwLXdpc2UgcmVncmVzc2lvbi4gDQoNCmBgYHtyfQ0KbXRjYXJzU2xpbSA8LSBtdGNhcnNbLGMoMSwzOjYpXQ0KbW9kZWwyX251bGwgPC0gbG0obXBnfjEsZGF0YSA9IG10Y2Fyc1NsaW0pDQptb2RlbDJfZnVsbCA8LSBsbShtcGd+LiwgZGF0YSA9IG10Y2Fyc1NsaW0pDQpzdGVwKG1vZGVsMl9udWxsLCBzY29wZSA9IGxpc3QobG93ZXIgPSBtb2RlbDJfbnVsbCx1cHBlciA9IG1vZGVsMl9mdWxsKSwgZGlyZWN0aW9uID0gJ2ZvcndhcmQnKQ0KYGBgDQoNCkZyb20gdGhlIG91dHB1dCBhYm92ZSB5b3Ugbm90aWNlIHRoYXQgdGhlIG1vZGVsIHN0YXJ0cyB3aXRoIGp1c3QgdGhlIGludGVyY2VwdC4gVGhlbiwgaXQgYWRkcyBgd3RgLCB0aGVuIGBocGAgdG8gYXJyaXZlIGF0IHRoZSBmaW5hbCBtb2RlbCB3aGljaCBoYXBwZW5zIHRvIGJlIHRoZSBzYW1lIGFzIG91ciBmaXJzdCBtZXRob2QuIFdoaWxlIHRoZSByZXN1bHRzIGFyZSBub3QgKmFsd2F5cyogdGhlIHNhbWUsIGl0IGlzIGNvbW1vbi4gDQoNCkZpbmFsbHksIHdlIHdpbGwgcnVuIHRoZSBzdGVwLXdpc2UgbGluZWFyIHJlZ3Jlc3Npb24gZnJvbSBib3RoIGVuZHMgZm9yIGdvb2QgbWVhc3VyZS4gVGhpcyB3aWxsIGVzc2VudGlhbGx5IHJ1biBib3RoIG9mIHRoZXNlIHByZXZpb3VzIHRlc3RzIHNpbXVsdGFuZW91c2x5IGFuZCByZXR1cm4gdGhlICJiZXN0IiBtb2RlbC4gU2luY2UgYm90aCBmb3J3YXJkIGFuZCBiYWNrd2FyZCBzZWxlY3Rpb24gcmV0dXJuZWQgdGhlIHNhbWUgbW9kZWwsIHdlIGNhbiBleHBlY3QgdGhpcyBmaW5hbCBtZXRob2QgdG8gYmUgdGhlIHNhbWUuIA0KYGBge3J9DQpzdGVwKG1vZGVsMSwgZGlyZWN0aW9uID0gJ2JvdGgnKQ0KYGBgDQoNCkFzIHdlIHByZWRpY3RlZCwgdGhlIGZpbmFsIG1vZGVsIF8qKmlzKipfIHRoZSBzYW1lIGFzIGJlZm9yZS4gS25vd2luZyB0aGlzLCB3ZSBjYW4gcnVuIGEgc2ltcGxlIGxpbmVhciByZWdyZXNzaW9uIGFnYWluIHRvIGNvbXBhcmUgb3VyIHZhbHVlcyBmcm9tIGVhcmxpZXI6IA0KDQpgYGB7cn0NCihsbTEgPC0gc3VtbWFyeShsbShtcGd+ZGlzcCwgZGF0YSA9IG10Y2FycykpKQ0KKGxtMiA8LSBzdW1tYXJ5KGxtKG1wZ35ocCt3dCwgZGF0YT1tdGNhcnMpKSkNCmBgYA0KDQpZb3UgY2FuIHNlZSB0aGF0IHdoaWxlIGFsbCB2YXJpYWJsZXMgaW4gZWFjaCBvZiBvdXIgbW9kZWxzIGFyZSBzaWduaWZpY2FudCAocC12YWx1ZSA8IDAuMDUpIGFuZCB0aGUgb3ZlcmFsbCBtb2RlbHMgYXJlIHNpZ25pZmljYW50IChwLXZhbHVlIDwwLjA1KSwgdGhlIHNlY29uZCBtb2RlbCBhY3R1YWxseSBleHBsYWlucyBhYm91dCAxMCUgbW9yZSB2YXJpYXRpb24gaW4gYG1wZ2AuIFdlIGNhbiB0ZWxsIHRoaXMgYmVjYXVzZSB0aGUgQWRqdXN0ZWQgUi1zcXVhcmVkIHZhbHVlcyBhcmUgYHIgcm91bmQobG0xJHIuc3F1YXJlZCwzKWAgYW5kIGByIHJvdW5kKGxtMiRyLnNxdWFyZWQsMylgIGZvciB0aGUgZmlyc3QgYW5kIHNlY29uZCBtb2RlbCByZXNwZWN0aXZlbHkuIA0KDQpXaXRoIGEgZ29vZCB1bmRlcnN0YW5kaW5nIG9mIG91ciBtb2RlbHMgZnJvbSBhIG51bWVyaWMgc3RhbmRwb2ludCwgbGV0J3MgcmV2aWV3IGEgZmV3IGtleSBmaWd1cmVzLiBGaXJzdCwgbGV0cyB0YWtlIGEgbG9vayBhdCB0aGUgZmlyc3QgbW9kZWwgd2l0aCB0aGUgcmVncmVzc2lvbiBlcXVhdGlvbiBwbG90dGVkLiBXZSBjYW4gZG8gdGhpcyB3aXRoIHBsb3R0aW5nIGZ1bmN0aW9ucyBidWlsdCBpbnRvIFIgYXMgc3VjaDogDQoNCmBgYHtyfQ0KcGxvdChtcGd+ZGlzcCwgZGF0YSA9IG10Y2FycykNCmFibGluZShsbTEpDQpgYGANCg0KSG93ZXZlciwgbWFueSB1c2VycyBvZiBSIGFncmVlIHRoYXQgdGhlIGBnZ3Bsb3QyYCBwYWNrYWdlIG9mZmVycyBtYW55IGRlc2lyYWJsZSBwbG90dGluZyBmdW5jdGlvbnMgYW5kIHRoZXJlZm9yZSBpcyB1c2VkIHF1aXRlIGZyZXF1ZW50bHkuIGlmIHdlIHdhbnQgdG8gYnVpbGQgdGhlIHNhbWUgZmlndXJlIGluIGBnZ3Bsb3QyYCBzeW50YXgsIHdlIGRvIHRoZSBmb2xsb3dpbmc6IA0KDQpgYGB7cn0NCmxpYnJhcnkoZ2dwbG90MikNCmdncGxvdChtdGNhcnMsIGFlcyhkaXNwLG1wZykpICsgDQogIGdlb21fcG9pbnQoKSArDQogIGdlb21fc21vb3RoKG1ldGhvZCA9ICdsbScsIHNlID0gRikNCmBgYA0KDQpZb3Ugd2lsbCBub3RpY2UgdGhhdCB1c2luZyBgZ2dwbG90MmAgcHJldmVudHMgeW91IGZyb20gaGF2aW5nIHRvIGJ1aWxkIGEgbGluZWFyIG1vZGVsIGZpcnN0LiBJbnN0ZWFkLCB5b3UgY2FuIGp1c3QgdXNlIHRoZSBnZW9tX3Ntb290aCgpIG9wdGlvbi4gYGdncGxvdDJgIGNhbiBiZSBjb25mdXNpbmcgYXQgZmlyc3QgYnV0IHRoZXJlIGFyZSBzZXZlcmFsIGdvb2QgcmVzb3VyY2VzIG91dCB0aGVyZSwgaW5jbHVkaW5nIFt0aGVpciBvd24gZG9jdW1lbnRhdGlvbl0oaHR0cHM6Ly9nZ3Bsb3QyLnRpZHl2ZXJzZS5vcmcvcmVmZXJlbmNlLykuIA0KDQpUaGUgZnVuZGFtZW50YWwgZGlmZmVyZW5jZSBiZXR3ZWVuIHRoZSBidWlsdC1pbiBwbG90dGluZyBmdW5jdGlvbnMgYW5kIGBnZ3Bsb3QyYCBpcyB0aGF0IHRoZSBiYXNlIFIgZnVuY3Rpb24gYnVpbGRzIGxheWVyZWQgaW1hZ2VzIGFuZCBnZ3Bsb3QyIGJ1aWxkcyBvbmUgY29oZXNpdmUgaW1hZ2UgZmlsZS4gVGhpcyBtYWtlcyB0aGUgYmFzZSBmdW5jdGlvbnMgYXJndWFibHkgbW9yZSBmbGV4aWJsZSBiZWNhdXNlIGVhY2ggbGF5ZXIgZG9lc24ndCBjYXJlIGFib3V0IHdoYXQncyBpbiB0aGUgb3RoZXIgbGF5ZXJzLiBIb3dldmVyLCBpdCBhbHNvIG1lYW5zIHRoYXQgdGhlcmUgaXMgcG90ZW50aWFsIGZvciB1bmludGVudGlvbmFsIHBsb3R0aW5nIG9mIGluY29ycmVjdCBpbmZvcm1hdGlvbi4gSSBlbmNvdXJhZ2UgeW91IHRvIHRyeSBib3RoIGFuZCBleHBlcmllbmNlIHdoZXJlIGVhY2ggbWV0aG9kIGV4Y2Vscy4gDQoNCk5vdywgc2luY2UgdGhlIHNlY29uZCBtb2RlbCB1c2VzIHR3byBleHBsYW5hdG9yeSB2YXJpYWJsZXMsIHdlIGhhdmUgc29tZSBvcHRpb25zIGZvciBob3cgd2Ugd2FudCB0byBkaXNwbGF5IHRoZSBpbmZvcm1hdGlvbi4gVGhlIGZpcnN0IG9wdGlvbiBpcyB0byBwbG90IHRoZSBmaXJzdCB2YXJpYWJsZSAoaHApIGFzIG5vcm1hbCBhbmQgdGhlbiBjb2RlIHRoZSBzZWNvbmQgdmFyaWFibGUgKHd0KSBhcyBzb21ldGhpbmcgZWxzZSAoaS5lLiBjb2xvciwgc2l6ZSwgc2hhcGUsIGV0YykuIFRvIGRlbW9uc3RyYXRlLCBsZXQncyBjb2RlIGl0IGFzIGNvbG9yIHdoZXJlIGRhcmtlciBjb2xvcnMgaW5kaWNhdGUgYSBoZWF2aWVyIGNhci4NCg0KYGBge3J9DQpnZ3Bsb3QobXRjYXJzLCBhZXMoaHAsbXBnLCBjb2xvciA9IHd0KSkgKw0KICBnZW9tX3BvaW50KCkNCmBgYA0KDQpUaGUgbmV4dCBvcHRpb24gaXMgdG8gcGxvdCB0aGUgdmFsdWVzIGluIHRocmVlIGRpbWVuc2lvbmFsIHNwYWNlLiBGb3IgdGhpcyB3ZSB3aWxsIG5lZWQgYW5vdGhlciBwYWNrYWdlIGNhbGxlZCBgcGxvdGx5YA0KDQpgYGB7cn0NCnJlcXVpcmUocGxvdGx5KQ0KcGxvdF9seShtdGNhcnMsIHg9IH53dCwgeSA9IH5ocCwgeiA9IH5tcGcpICU+JQ0KICBhZGRfbWFya2VycygpDQpgYGANCg0KDQo8ZGl2IGNsYXNzID0gInJvdyI+DQo8YSBocmVmID0gIi4vVHJhbnNmb3JtLmh0bWwiPjxidXR0b24gY2xhc3M9ImJ0biBidG4tcHJpbWFyeSI+QmFjazwvYnV0dG9uPjwvYT4NCjwvZGl2Pg0KDQo=</div>
 <div class = "footer">
   <p> Created by Michael Barrows </p>
 </div>
@@ -644,6 +746,28 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("Model.Rmd");
+});
+</script>
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

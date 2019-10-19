@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -24,16 +25,15 @@
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -46,13 +46,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -93,7 +91,29 @@ code span.st { color: #049b0a; } /* String */
 code span.va { } /* Variable */
 code span.vs { color: #049b0a; } /* VerbatimString */
 code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -133,9 +153,7 @@ h6 {
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -149,7 +167,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -159,6 +176,9 @@ img {
 }
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -174,7 +194,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -194,6 +213,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -215,27 +271,76 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 <style type="text/css">
 .code-folding-btn { margin-bottom: 4px; }
 </style>
-<script>
-$(document).ready(function () {
-  window.initializeSourceEmbed("Import.Rmd");
-});
-</script>
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -343,7 +448,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Import</h1>
-<h4 class="date"><em>Updated: 2018-11-05</em></h4>
+<h4 class="date">Updated: 2019-10-19</h4>
 
 </div>
 
@@ -352,41 +457,41 @@ $(document).ready(function () {
 <div id="csvtsv" class="section level2">
 <h2>CSV/TSV</h2>
 <p><strong>C</strong>omma <strong>S</strong>epparated <strong>V</strong>alues or <strong>T</strong>ab <strong>S</strong>epparated <strong>V</strong>alues are a common document type that organizes individual observations separated by (you guessed it) either commas or tab characters. R has a built-in function called <code>read.csv()</code> that can store information which as been saved as either a “.csv” or “.tsv” file in the R environment. This can be done with either locally saved files (i.e. C:/Users/UserName/Files/file.csv) or externally hosted files (i.e. <a href="http://example.com/data.csv" class="uri">http://example.com/data.csv</a>). Below you can see an example of both methods.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleCSV.csv&quot;</span>) <span class="co">#Local File</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleCSV.csv&quot;</span>) <span class="co">#Local File</span></a></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["Col1"],"name":[1],"type":["int"],"align":["right"]},{"label":["Col2"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["Col3"],"name":[3],"type":["lgl"],"align":["right"]}],"data":[{"1":"1","2":"This","3":"TRUE"},{"1":"2","2":"Is","3":"FALSE"},{"1":"3","2":"A","3":"TRUE"},{"1":"4","2":"Character","3":"FALSE"},{"1":"5","2":"Variable","3":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">head</span>(<span class="kw">read.csv</span>(<span class="st">&quot;https://data.sfgov.org/api/views/qzz6-2jup/rows.csv&quot;</span>)) <span class="co">#External File</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">head</span>(<span class="kw">read.csv</span>(<span class="st">&quot;https://data.sfgov.org/api/views/qzz6-2jup/rows.csv&quot;</span>)) <span class="co">#External File</span></a></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Patron.Type.Code"],"name":[1],"type":["int"],"align":["right"]},{"label":["Patron.Type.Definition"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["Total.Checkouts"],"name":[3],"type":["int"],"align":["right"]},{"label":["Total.Renewals"],"name":[4],"type":["int"],"align":["right"]},{"label":["Age.Range"],"name":[5],"type":["fctr"],"align":["left"]},{"label":["Home.Library.Code"],"name":[6],"type":["fctr"],"align":["left"]},{"label":["Home.Library.Definition"],"name":[7],"type":["fctr"],"align":["left"]},{"label":["Circulation.Active.Month"],"name":[8],"type":["fctr"],"align":["left"]},{"label":["Circulation.Active.Year"],"name":[9],"type":["fctr"],"align":["left"]},{"label":["Notice.Preference.Code"],"name":[10],"type":["fctr"],"align":["left"]},{"label":["Notice.Preference.Definition"],"name":[11],"type":["fctr"],"align":["left"]},{"label":["Provided.Email.Address"],"name":[12],"type":["fctr"],"align":["left"]},{"label":["Year.Patron.Registered"],"name":[13],"type":["int"],"align":["right"]},{"label":["Outside.of.County"],"name":[14],"type":["fctr"],"align":["left"]},{"label":["Supervisor.District"],"name":[15],"type":["int"],"align":["right"]}],"data":[{"1":"3","2":"SENIOR","3":"28","4":"13","5":"65 to 74 years","6":"X","7":"Main Library","8":"November","9":"2012","10":"z","11":"email","12":"true","13":"2003","14":"true","15":"NA","_rn_":"1"},{"1":"0","2":"ADULT","3":"21","4":"10","5":"55 to 59 years","6":"X","7":"Main Library","8":"October","9":"2015","10":"z","11":"email","12":"true","13":"2003","14":"false","15":"NA","_rn_":"2"},{"1":"0","2":"ADULT","3":"275","4":"559","5":"60 to 64 years","6":"X","7":"Main Library","8":"January","9":"2015","10":"z","11":"email","12":"true","13":"2003","14":"true","15":"NA","_rn_":"3"},{"1":"0","2":"ADULT","3":"73","4":"38","5":"45 to 54 years","6":"M8","7":"Mission Bay","8":"February","9":"2016","10":"z","11":"email","12":"true","13":"2003","14":"false","15":"NA","_rn_":"4"},{"1":"0","2":"ADULT","3":"182","4":"90","5":"45 to 54 years","6":"X","7":"Main Library","8":"July","9":"2016","10":"z","11":"email","12":"true","13":"2003","14":"false","15":"NA","_rn_":"5"},{"1":"3","2":"SENIOR","3":"1","4":"0","5":"65 to 74 years","6":"X","7":"Main Library","8":"July","9":"2004","10":"z","11":"email","12":"true","13":"2003","14":"true","15":"NA","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Patron.Type.Code"],"name":[1],"type":["int"],"align":["right"]},{"label":["Patron.Type.Definition"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["Total.Checkouts"],"name":[3],"type":["int"],"align":["right"]},{"label":["Total.Renewals"],"name":[4],"type":["int"],"align":["right"]},{"label":["Age.Range"],"name":[5],"type":["fctr"],"align":["left"]},{"label":["Home.Library.Code"],"name":[6],"type":["fctr"],"align":["left"]},{"label":["Home.Library.Definition"],"name":[7],"type":["fctr"],"align":["left"]},{"label":["Circulation.Active.Month"],"name":[8],"type":["fctr"],"align":["left"]},{"label":["Circulation.Active.Year"],"name":[9],"type":["fctr"],"align":["left"]},{"label":["Notice.Preference.Code"],"name":[10],"type":["fctr"],"align":["left"]},{"label":["Notice.Preference.Definition"],"name":[11],"type":["fctr"],"align":["left"]},{"label":["Provided.Email.Address"],"name":[12],"type":["fctr"],"align":["left"]},{"label":["Year.Patron.Registered"],"name":[13],"type":["int"],"align":["right"]},{"label":["Outside.of.County"],"name":[14],"type":["fctr"],"align":["left"]},{"label":["Supervisor.District"],"name":[15],"type":["int"],"align":["right"]}],"data":[{"1":"0","2":"ADULT","3":"1092","4":"761","5":"60 to 64 years","6":"M6","7":"Mission","8":"July","9":"2016","10":"p","11":"phone","12":"false","13":"2003","14":"false","15":"9","_rn_":"1"},{"1":"0","2":"ADULT","3":"0","4":"0","5":"20 to 24 years","6":"P1","7":"Park","8":"None","9":"None","10":"z","11":"email","12":"true","13":"2014","14":"false","15":"5","_rn_":"2"},{"1":"0","2":"ADULT","3":"31","4":"22","5":"25 to 34 years","6":"S7","7":"Sunset","8":"April","9":"2016","10":"z","11":"email","12":"true","13":"2010","14":"false","15":"4","_rn_":"3"},{"1":"0","2":"ADULT","3":"0","4":"0","5":"45 to 54 years","6":"P1","7":"Park","8":"None","9":"None","10":"a","11":"print","12":"false","13":"2016","14":"true","15":"NA","_rn_":"4"},{"1":"0","2":"ADULT","3":"0","4":"0","5":"25 to 34 years","6":"X","7":"Main Library","8":"None","9":"None","10":"z","11":"email","12":"true","13":"2015","14":"false","15":"3","_rn_":"5"},{"1":"0","2":"ADULT","3":"126","4":"11","5":"45 to 54 years","6":"M2","7":"Marina","8":"January","9":"2016","10":"z","11":"email","12":"true","13":"2003","14":"false","15":"2","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>As you can see, I wrapped the second file in the <code>head()</code> function. This was just so that we only returned the first 6 rows instead of all 423 thousand rows. Instead of just displaying the results, you could instead save them to an R variable for use later. This is especially useful when working with large datasets and also greatly reduces the number of times you need to type <code>read.csv</code>!</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">example_CSV &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleCSV.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">example_CSV &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleCSV.csv&quot;</span>)</a></code></pre></div>
 <p>If, instead of a CSV file, we have TSV file, we only need to change the <code>sep</code> argument (which defaults to “,”).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">example_TSV &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleTSV.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">example_TSV &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./Files/Data/ExampleTSV.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
 </div>
 <div id="excel" class="section level2">
 <h2>Excel</h2>
 <p>Unfortunately, R does not have a built-in function to read in Excel files. However, we can download a package that will provide us this functionality with <code>install.packages('readxl')</code>. I’ve already installed it to this project so we will load it using:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">require</span>(readxl)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">require</span>(readxl)</a></code></pre></div>
 <p>There is an example XLSX file in the “/Files/Data” folder which we can now read in using:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">example_xl &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">head</span>(example_xl)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">example_xl &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">head</span>(example_xl)</a></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["Col1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Col2"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Col3"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"This","3":"T"},{"1":"2","2":"Is","3":"F"},{"1":"3","2":"Sheet","3":"T"},{"1":"4","2":"Number","3":"F"},{"1":"5","2":"One","3":"F"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Notice, with excel files we need to specify the sheet number. This is because R has no way of simultaneously reading multiple sheets like Excel can. However, if you need more than one sheet in the same file, you could read every sheet into a list item as such:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">sheet_list &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(<span class="kw">excel_sheets</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>))) {</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">  sheet_list[[i]] &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>, <span class="dt">sheet =</span> i)</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">head</span>(sheet_list)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">sheet_list &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(<span class="kw">excel_sheets</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>))) {</a>
+<a class="sourceLine" id="cb7-3" title="3">  sheet_list[[i]] &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;./Files/Data/ExampleXLSX.xlsx&quot;</span>, <span class="dt">sheet =</span> i)</a>
+<a class="sourceLine" id="cb7-4" title="4">}</a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="kw">head</span>(sheet_list)</a></code></pre></div>
 <pre><code>## [[1]]
 ## # A tibble: 5 x 3
 ##    Col1 Col2   Col3 
@@ -415,7 +520,7 @@ $(document).ready(function () {
 <h2>Database</h2>
 <p>The <a href="https://db.rstudio.com/rstudio/connections/">conections pane</a> offers a GUI option for connecting to a database but below you will find the programmatic way to do so.</p>
 <p>The recommended package for this task can be installed using <code>install.packages('odbc')</code>. Again, this has already been installed so we will simply load it using:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">require</span>(odbc)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">require</span>(odbc)</a></code></pre></div>
 <p>All code below is pseudo-code and will not actually run. This is because we are not connecting to a real database. However, if you are using most common Db management software, you should be able to replace the provided code with names and connection details appropriate for your system and be good to go!</p>
 <p>Creating a database connection is simple enough, just pass it the driver information, server name, database name, and whether or not it is a trusted connection (should it use your windows logon):</p>
 <p><code>dbconnection &lt;- odbcDriverConnect('driver={SQL Server};server=mysqlhost;database=mydbname;trusted_connection=true')</code></p>
@@ -423,9 +528,12 @@ $(document).ready(function () {
 <p><code>results &lt;- sqlQuery(dbconnection, 'select * from schema.table where condition = 1'</code></p>
 <p>Once you are finished with your connection, you want to make sure to close it with <code>odbcClose(dbconnection)</code></p>
 <p>If, like some, you are more comfortable in tSQL than in R, you can actually <a href="https://www.datacamp.com/community/tutorials/execute-r-python-sql">run R code within your tSQL</a>! I won’t cover this here but it is an interesting option that some might find useful!</p>
+<div class="row">
+<p><a href = "./Import.html"><button class="btn btn-primary">Back</button></a> <a href = "./Transform.html"><button class="btn btn-Default">Continue</button></a></p>
+</div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkltcG9ydCINCmRhdGU6ICJVcGRhdGVkOiBgciBTeXMuRGF0ZSgpYCINCm91dHB1dDogaHRtbF9kb2N1bWVudA0KLS0tDQoNCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQ0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQ0KYGBgDQoNCk5vdyB0aGF0IHlvdSBhcmUgZmFtaWxpYXIgd2l0aCBSIGFuZCB0aGUgYmFzaWNzIG9mIHByb2plY3RzLCBwYWNrYWdlcywgZGF0YSBzdHJ1Y3R1cmVzLCBhbmQgZG9jdW1lbnQgdHlwZXMsIGxldCdzIHRhbGsgYWJvdXQgaW1wb3J0aW5nIGRhdGEhIA0KDQojIyBDU1YvVFNWDQoNCioqQyoqb21tYSAqKlMqKmVwcGFyYXRlZCAqKlYqKmFsdWVzIG9yICoqVCoqYWIgKipTKiplcHBhcmF0ZWQgKipWKiphbHVlcyBhcmUgYSBjb21tb24gZG9jdW1lbnQgdHlwZSB0aGF0IG9yZ2FuaXplcyBpbmRpdmlkdWFsIG9ic2VydmF0aW9ucyBzZXBhcmF0ZWQgYnkgKHlvdSBndWVzc2VkIGl0KSBlaXRoZXIgY29tbWFzIG9yIHRhYiBjaGFyYWN0ZXJzLiBSIGhhcyBhIGJ1aWx0LWluIGZ1bmN0aW9uIGNhbGxlZCBgcmVhZC5jc3YoKWAgdGhhdCBjYW4gc3RvcmUgaW5mb3JtYXRpb24gd2hpY2ggYXMgYmVlbiBzYXZlZCBhcyBlaXRoZXIgYSAiLmNzdiIgb3IgIi50c3YiIGZpbGUgaW4gdGhlIFIgZW52aXJvbm1lbnQuIFRoaXMgY2FuIGJlIGRvbmUgd2l0aCBlaXRoZXIgbG9jYWxseSBzYXZlZCBmaWxlcyAoaS5lLiBDOi9Vc2Vycy9Vc2VyTmFtZS9GaWxlcy9maWxlLmNzdikgb3IgZXh0ZXJuYWxseSBob3N0ZWQgZmlsZXMgKGkuZS4gaHR0cDovL2V4YW1wbGUuY29tL2RhdGEuY3N2KS4gQmVsb3cgeW91IGNhbiBzZWUgYW4gZXhhbXBsZSBvZiBib3RoIG1ldGhvZHMuIA0KDQpgYGB7cn0NCnJlYWQuY3N2KCIuL0ZpbGVzL0RhdGEvRXhhbXBsZUNTVi5jc3YiKSAjTG9jYWwgRmlsZQ0KaGVhZChyZWFkLmNzdigiaHR0cHM6Ly9kYXRhLnNmZ292Lm9yZy9hcGkvdmlld3MvcXp6Ni0yanVwL3Jvd3MuY3N2IikpICNFeHRlcm5hbCBGaWxlDQpgYGANCg0KQXMgeW91IGNhbiBzZWUsIEkgd3JhcHBlZCB0aGUgc2Vjb25kIGZpbGUgaW4gdGhlIGBoZWFkKClgIGZ1bmN0aW9uLiBUaGlzIHdhcyBqdXN0IHNvIHRoYXQgd2Ugb25seSByZXR1cm5lZCB0aGUgZmlyc3QgNiByb3dzIGluc3RlYWQgb2YgYWxsIDQyMyB0aG91c2FuZCByb3dzLiBJbnN0ZWFkIG9mIGp1c3QgZGlzcGxheWluZyB0aGUgcmVzdWx0cywgeW91IGNvdWxkIGluc3RlYWQgc2F2ZSB0aGVtIHRvIGFuIFIgdmFyaWFibGUgZm9yIHVzZSBsYXRlci4gVGhpcyBpcyBlc3BlY2lhbGx5IHVzZWZ1bCB3aGVuIHdvcmtpbmcgd2l0aCBsYXJnZSBkYXRhc2V0cyBhbmQgYWxzbyBncmVhdGx5IHJlZHVjZXMgdGhlIG51bWJlciBvZiB0aW1lcyB5b3UgbmVlZCB0byB0eXBlIGByZWFkLmNzdmAhIA0KDQpgYGB7cn0NCmV4YW1wbGVfQ1NWIDwtIHJlYWQuY3N2KCIuL0ZpbGVzL0RhdGEvRXhhbXBsZUNTVi5jc3YiKQ0KYGBgDQoNCklmLCBpbnN0ZWFkIG9mIGEgQ1NWIGZpbGUsIHdlIGhhdmUgVFNWIGZpbGUsIHdlIG9ubHkgbmVlZCB0byBjaGFuZ2UgdGhlIGBzZXBgIGFyZ3VtZW50ICh3aGljaCBkZWZhdWx0cyB0byAiLCIpLiANCg0KYGBge3J9DQpleGFtcGxlX1RTViA8LSByZWFkLmNzdigiLi9GaWxlcy9EYXRhL0V4YW1wbGVUU1YudHh0Iiwgc2VwID0gIlx0IikNCmBgYA0KDQojIyBFeGNlbA0KDQpVbmZvcnR1bmF0ZWx5LCBSIGRvZXMgbm90IGhhdmUgYSBidWlsdC1pbiBmdW5jdGlvbiB0byByZWFkIGluIEV4Y2VsIGZpbGVzLiBIb3dldmVyLCB3ZSBjYW4gZG93bmxvYWQgYSBwYWNrYWdlIHRoYXQgd2lsbCBwcm92aWRlIHVzIHRoaXMgZnVuY3Rpb25hbGl0eSB3aXRoIGBpbnN0YWxsLnBhY2thZ2VzKCdyZWFkeGwnKWAuIEkndmUgYWxyZWFkeSBpbnN0YWxsZWQgaXQgdG8gdGhpcyBwcm9qZWN0IHNvIHdlIHdpbGwgbG9hZCBpdCB1c2luZzogDQoNCmBgYHtyIG1lc3NhZ2U9RkFMU0V9DQpyZXF1aXJlKHJlYWR4bCkNCmBgYA0KDQpUaGVyZSBpcyBhbiBleGFtcGxlIFhMU1ggZmlsZSBpbiB0aGUgIi9GaWxlcy9EYXRhIiBmb2xkZXIgd2hpY2ggd2UgY2FuIG5vdyByZWFkIGluIHVzaW5nOiANCg0KYGBge3J9DQpleGFtcGxlX3hsIDwtIHJlYWRfZXhjZWwoIi4vRmlsZXMvRGF0YS9FeGFtcGxlWExTWC54bHN4Iiwgc2hlZXQgPSAxKQ0KaGVhZChleGFtcGxlX3hsKQ0KYGBgDQoNCk5vdGljZSwgd2l0aCBleGNlbCBmaWxlcyB3ZSBuZWVkIHRvIHNwZWNpZnkgdGhlIHNoZWV0IG51bWJlci4gVGhpcyBpcyBiZWNhdXNlIFIgaGFzIG5vIHdheSBvZiBzaW11bHRhbmVvdXNseSByZWFkaW5nIG11bHRpcGxlIHNoZWV0cyBsaWtlIEV4Y2VsIGNhbi4gSG93ZXZlciwgaWYgeW91IG5lZWQgbW9yZSB0aGFuIG9uZSBzaGVldCBpbiB0aGUgc2FtZSBmaWxlLCB5b3UgY291bGQgcmVhZCBldmVyeSBzaGVldCBpbnRvIGEgbGlzdCBpdGVtIGFzIHN1Y2g6IA0KDQpgYGB7cn0NCnNoZWV0X2xpc3QgPC0gbGlzdCgpDQpmb3IgKGkgaW4gMTpsZW5ndGgoZXhjZWxfc2hlZXRzKCIuL0ZpbGVzL0RhdGEvRXhhbXBsZVhMU1gueGxzeCIpKSkgew0KICBzaGVldF9saXN0W1tpXV0gPC0gcmVhZF9leGNlbCgiLi9GaWxlcy9EYXRhL0V4YW1wbGVYTFNYLnhsc3giLCBzaGVldCA9IGkpDQp9DQpoZWFkKHNoZWV0X2xpc3QpDQpgYGANCg0KDQojIyBKU09ODQoNCkpTT04gZGF0YSBpcyBkZXRlcm1pbmVkIHRvIGJlIGEgZm9ybSBvZiBzdHJ1Y3R1cmVkIGRhdGEgYnV0IGRlc3BpdGUgdGhpcywgaXMgb2Z0ZW4gbWVzc3kgdG8gd29yayB3aXRoLiBUaGVyZWZvcmUsIHRoZXJlIGlzIG5vdCBvbmUgZm9vbC1wcm9vZiB3YXkgdG8gbG9hZCBpdCBpbnRvIFIgYnV0IFt0aGlzXShodHRwczovL2NyYW4uci1wcm9qZWN0Lm9yZy93ZWIvcGFja2FnZXMvanNvbmxpdGUvdmlnbmV0dGVzL2pzb24tYXBpcy5odG1sKSBwYWdlIG9mZmVycyBzb21lIGluc2lnaHQgdG8gd29ya2luZyB3aXRoIGRpZmZlcmVudCBmb3JtcyBvZiBtZXNzeSBKU09OIGRhdGEuIEluIGdlbmVyYWwsIHRoZSBganNvbmxpdGVgIHBhY2thZ2UgaXMgYSBnb29kIG9wdGlvbiBmb3IgcmV0cmlldmluZyB0aGUgaW5mb3JtYXRpb24gYW5kIHN0b3JpbmcgaXQgYXMgYW4gb2JqZWN0IGJ1dCB0aGUgY2xlYW5pbmcgYW5kIG9yZ2FuaXppbmcgZm9yIHVzZSBpbiBSIG1pZ2h0IHRha2UgbW9yZSBtYXNzYWdpbmcuDQoNCiMjIERhdGFiYXNlIA0KDQpUaGUgW2NvbmVjdGlvbnMgcGFuZV0oaHR0cHM6Ly9kYi5yc3R1ZGlvLmNvbS9yc3R1ZGlvL2Nvbm5lY3Rpb25zLykgb2ZmZXJzIGEgR1VJIG9wdGlvbiBmb3IgY29ubmVjdGluZyB0byBhIGRhdGFiYXNlIGJ1dCBiZWxvdyB5b3Ugd2lsbCBmaW5kIHRoZSBwcm9ncmFtbWF0aWMgd2F5IHRvIGRvIHNvLg0KDQpUaGUgcmVjb21tZW5kZWQgcGFja2FnZSBmb3IgdGhpcyB0YXNrIGNhbiBiZSBpbnN0YWxsZWQgdXNpbmcgYGluc3RhbGwucGFja2FnZXMoJ29kYmMnKWAuIEFnYWluLCB0aGlzIGhhcyBhbHJlYWR5IGJlZW4gaW5zdGFsbGVkIHNvIHdlIHdpbGwgc2ltcGx5IGxvYWQgaXQgdXNpbmc6IA0KDQpgYGB7ciBtZXNzYWdlPUZBTFNFfQ0KcmVxdWlyZShvZGJjKQ0KYGBgDQoNCkFsbCBjb2RlIGJlbG93IGlzIHBzZXVkby1jb2RlIGFuZCB3aWxsIG5vdCBhY3R1YWxseSBydW4uIFRoaXMgaXMgYmVjYXVzZSB3ZSBhcmUgbm90IGNvbm5lY3RpbmcgdG8gYSByZWFsIGRhdGFiYXNlLiBIb3dldmVyLCBpZiB5b3UgYXJlIHVzaW5nIG1vc3QgY29tbW9uIERiIG1hbmFnZW1lbnQgc29mdHdhcmUsIHlvdSBzaG91bGQgYmUgYWJsZSB0byByZXBsYWNlIHRoZSBwcm92aWRlZCBjb2RlIHdpdGggbmFtZXMgYW5kIGNvbm5lY3Rpb24gZGV0YWlscyBhcHByb3ByaWF0ZSBmb3IgeW91ciBzeXN0ZW0gYW5kIGJlIGdvb2QgdG8gZ28hIA0KDQpDcmVhdGluZyBhIGRhdGFiYXNlIGNvbm5lY3Rpb24gaXMgc2ltcGxlIGVub3VnaCwganVzdCBwYXNzIGl0IHRoZSBkcml2ZXIgaW5mb3JtYXRpb24sIHNlcnZlciBuYW1lLCBkYXRhYmFzZSBuYW1lLCBhbmQgd2hldGhlciBvciBub3QgaXQgaXMgYSB0cnVzdGVkIGNvbm5lY3Rpb24gKHNob3VsZCBpdCB1c2UgeW91ciB3aW5kb3dzIGxvZ29uKTogDQoNCmBgYCBkYmNvbm5lY3Rpb24gPC0gb2RiY0RyaXZlckNvbm5lY3QoJ2RyaXZlcj17U1FMIFNlcnZlcn07c2VydmVyPW15c3FsaG9zdDtkYXRhYmFzZT1teWRibmFtZTt0cnVzdGVkX2Nvbm5lY3Rpb249dHJ1ZScpIGBgYA0KDQpUaGVuLCB5b3UgY2FuIHF1ZXJ5IHlvdXIgZGF0YWJhc2UgdXNpbmcgdGhlIGBzcWxRdWVyeSgpYCBmdW5jdGlvbi4NCg0KYGBgIHJlc3VsdHMgPC0gc3FsUXVlcnkoZGJjb25uZWN0aW9uLCAnc2VsZWN0ICogZnJvbSBzY2hlbWEudGFibGUgd2hlcmUgY29uZGl0aW9uID0gMScgYGBgDQoNCk9uY2UgeW91IGFyZSBmaW5pc2hlZCB3aXRoIHlvdXIgY29ubmVjdGlvbiwgeW91IHdhbnQgdG8gbWFrZSBzdXJlIHRvIGNsb3NlIGl0IHdpdGggYG9kYmNDbG9zZShkYmNvbm5lY3Rpb24pYA0KDQoNCklmLCBsaWtlIHNvbWUsIHlvdSBhcmUgbW9yZSBjb21mb3J0YWJsZSBpbiB0U1FMIHRoYW4gaW4gUiwgeW91IGNhbiBhY3R1YWxseSBbcnVuIFIgY29kZSB3aXRoaW4geW91ciB0U1FMXShodHRwczovL3d3dy5kYXRhY2FtcC5jb20vY29tbXVuaXR5L3R1dG9yaWFscy9leGVjdXRlLXItcHl0aG9uLXNxbCkhIEkgd29uJ3QgY292ZXIgdGhpcyBoZXJlIGJ1dCBpdCBpcyBhbiBpbnRlcmVzdGluZyBvcHRpb24gdGhhdCBzb21lIG1pZ2h0IGZpbmQgdXNlZnVsISANCg0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkltcG9ydCINCmRhdGU6ICJVcGRhdGVkOiBgciBTeXMuRGF0ZSgpYCINCm91dHB1dDogaHRtbF9kb2N1bWVudA0KLS0tDQoNCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQ0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQ0KYGBgDQoNCk5vdyB0aGF0IHlvdSBhcmUgZmFtaWxpYXIgd2l0aCBSIGFuZCB0aGUgYmFzaWNzIG9mIHByb2plY3RzLCBwYWNrYWdlcywgZGF0YSBzdHJ1Y3R1cmVzLCBhbmQgZG9jdW1lbnQgdHlwZXMsIGxldCdzIHRhbGsgYWJvdXQgaW1wb3J0aW5nIGRhdGEhIA0KDQojIyBDU1YvVFNWDQoNCioqQyoqb21tYSAqKlMqKmVwcGFyYXRlZCAqKlYqKmFsdWVzIG9yICoqVCoqYWIgKipTKiplcHBhcmF0ZWQgKipWKiphbHVlcyBhcmUgYSBjb21tb24gZG9jdW1lbnQgdHlwZSB0aGF0IG9yZ2FuaXplcyBpbmRpdmlkdWFsIG9ic2VydmF0aW9ucyBzZXBhcmF0ZWQgYnkgKHlvdSBndWVzc2VkIGl0KSBlaXRoZXIgY29tbWFzIG9yIHRhYiBjaGFyYWN0ZXJzLiBSIGhhcyBhIGJ1aWx0LWluIGZ1bmN0aW9uIGNhbGxlZCBgcmVhZC5jc3YoKWAgdGhhdCBjYW4gc3RvcmUgaW5mb3JtYXRpb24gd2hpY2ggYXMgYmVlbiBzYXZlZCBhcyBlaXRoZXIgYSAiLmNzdiIgb3IgIi50c3YiIGZpbGUgaW4gdGhlIFIgZW52aXJvbm1lbnQuIFRoaXMgY2FuIGJlIGRvbmUgd2l0aCBlaXRoZXIgbG9jYWxseSBzYXZlZCBmaWxlcyAoaS5lLiBDOi9Vc2Vycy9Vc2VyTmFtZS9GaWxlcy9maWxlLmNzdikgb3IgZXh0ZXJuYWxseSBob3N0ZWQgZmlsZXMgKGkuZS4gaHR0cDovL2V4YW1wbGUuY29tL2RhdGEuY3N2KS4gQmVsb3cgeW91IGNhbiBzZWUgYW4gZXhhbXBsZSBvZiBib3RoIG1ldGhvZHMuIA0KDQpgYGB7cn0NCnJlYWQuY3N2KCIuL0ZpbGVzL0RhdGEvRXhhbXBsZUNTVi5jc3YiKSAjTG9jYWwgRmlsZQ0KaGVhZChyZWFkLmNzdigiaHR0cHM6Ly9kYXRhLnNmZ292Lm9yZy9hcGkvdmlld3MvcXp6Ni0yanVwL3Jvd3MuY3N2IikpICNFeHRlcm5hbCBGaWxlDQpgYGANCg0KQXMgeW91IGNhbiBzZWUsIEkgd3JhcHBlZCB0aGUgc2Vjb25kIGZpbGUgaW4gdGhlIGBoZWFkKClgIGZ1bmN0aW9uLiBUaGlzIHdhcyBqdXN0IHNvIHRoYXQgd2Ugb25seSByZXR1cm5lZCB0aGUgZmlyc3QgNiByb3dzIGluc3RlYWQgb2YgYWxsIDQyMyB0aG91c2FuZCByb3dzLiBJbnN0ZWFkIG9mIGp1c3QgZGlzcGxheWluZyB0aGUgcmVzdWx0cywgeW91IGNvdWxkIGluc3RlYWQgc2F2ZSB0aGVtIHRvIGFuIFIgdmFyaWFibGUgZm9yIHVzZSBsYXRlci4gVGhpcyBpcyBlc3BlY2lhbGx5IHVzZWZ1bCB3aGVuIHdvcmtpbmcgd2l0aCBsYXJnZSBkYXRhc2V0cyBhbmQgYWxzbyBncmVhdGx5IHJlZHVjZXMgdGhlIG51bWJlciBvZiB0aW1lcyB5b3UgbmVlZCB0byB0eXBlIGByZWFkLmNzdmAhIA0KDQpgYGB7cn0NCmV4YW1wbGVfQ1NWIDwtIHJlYWQuY3N2KCIuL0ZpbGVzL0RhdGEvRXhhbXBsZUNTVi5jc3YiKQ0KYGBgDQoNCklmLCBpbnN0ZWFkIG9mIGEgQ1NWIGZpbGUsIHdlIGhhdmUgVFNWIGZpbGUsIHdlIG9ubHkgbmVlZCB0byBjaGFuZ2UgdGhlIGBzZXBgIGFyZ3VtZW50ICh3aGljaCBkZWZhdWx0cyB0byAiLCIpLiANCg0KYGBge3J9DQpleGFtcGxlX1RTViA8LSByZWFkLmNzdigiLi9GaWxlcy9EYXRhL0V4YW1wbGVUU1YudHh0Iiwgc2VwID0gIlx0IikNCmBgYA0KDQojIyBFeGNlbA0KDQpVbmZvcnR1bmF0ZWx5LCBSIGRvZXMgbm90IGhhdmUgYSBidWlsdC1pbiBmdW5jdGlvbiB0byByZWFkIGluIEV4Y2VsIGZpbGVzLiBIb3dldmVyLCB3ZSBjYW4gZG93bmxvYWQgYSBwYWNrYWdlIHRoYXQgd2lsbCBwcm92aWRlIHVzIHRoaXMgZnVuY3Rpb25hbGl0eSB3aXRoIGBpbnN0YWxsLnBhY2thZ2VzKCdyZWFkeGwnKWAuIEkndmUgYWxyZWFkeSBpbnN0YWxsZWQgaXQgdG8gdGhpcyBwcm9qZWN0IHNvIHdlIHdpbGwgbG9hZCBpdCB1c2luZzogDQoNCmBgYHtyIG1lc3NhZ2U9RkFMU0V9DQpyZXF1aXJlKHJlYWR4bCkNCmBgYA0KDQpUaGVyZSBpcyBhbiBleGFtcGxlIFhMU1ggZmlsZSBpbiB0aGUgIi9GaWxlcy9EYXRhIiBmb2xkZXIgd2hpY2ggd2UgY2FuIG5vdyByZWFkIGluIHVzaW5nOiANCg0KYGBge3J9DQpleGFtcGxlX3hsIDwtIHJlYWRfZXhjZWwoIi4vRmlsZXMvRGF0YS9FeGFtcGxlWExTWC54bHN4Iiwgc2hlZXQgPSAxKQ0KaGVhZChleGFtcGxlX3hsKQ0KYGBgDQoNCk5vdGljZSwgd2l0aCBleGNlbCBmaWxlcyB3ZSBuZWVkIHRvIHNwZWNpZnkgdGhlIHNoZWV0IG51bWJlci4gVGhpcyBpcyBiZWNhdXNlIFIgaGFzIG5vIHdheSBvZiBzaW11bHRhbmVvdXNseSByZWFkaW5nIG11bHRpcGxlIHNoZWV0cyBsaWtlIEV4Y2VsIGNhbi4gSG93ZXZlciwgaWYgeW91IG5lZWQgbW9yZSB0aGFuIG9uZSBzaGVldCBpbiB0aGUgc2FtZSBmaWxlLCB5b3UgY291bGQgcmVhZCBldmVyeSBzaGVldCBpbnRvIGEgbGlzdCBpdGVtIGFzIHN1Y2g6IA0KDQpgYGB7cn0NCnNoZWV0X2xpc3QgPC0gbGlzdCgpDQpmb3IgKGkgaW4gMTpsZW5ndGgoZXhjZWxfc2hlZXRzKCIuL0ZpbGVzL0RhdGEvRXhhbXBsZVhMU1gueGxzeCIpKSkgew0KICBzaGVldF9saXN0W1tpXV0gPC0gcmVhZF9leGNlbCgiLi9GaWxlcy9EYXRhL0V4YW1wbGVYTFNYLnhsc3giLCBzaGVldCA9IGkpDQp9DQpoZWFkKHNoZWV0X2xpc3QpDQpgYGANCg0KDQojIyBKU09ODQoNCkpTT04gZGF0YSBpcyBkZXRlcm1pbmVkIHRvIGJlIGEgZm9ybSBvZiBzdHJ1Y3R1cmVkIGRhdGEgYnV0IGRlc3BpdGUgdGhpcywgaXMgb2Z0ZW4gbWVzc3kgdG8gd29yayB3aXRoLiBUaGVyZWZvcmUsIHRoZXJlIGlzIG5vdCBvbmUgZm9vbC1wcm9vZiB3YXkgdG8gbG9hZCBpdCBpbnRvIFIgYnV0IFt0aGlzXShodHRwczovL2NyYW4uci1wcm9qZWN0Lm9yZy93ZWIvcGFja2FnZXMvanNvbmxpdGUvdmlnbmV0dGVzL2pzb24tYXBpcy5odG1sKSBwYWdlIG9mZmVycyBzb21lIGluc2lnaHQgdG8gd29ya2luZyB3aXRoIGRpZmZlcmVudCBmb3JtcyBvZiBtZXNzeSBKU09OIGRhdGEuIEluIGdlbmVyYWwsIHRoZSBganNvbmxpdGVgIHBhY2thZ2UgaXMgYSBnb29kIG9wdGlvbiBmb3IgcmV0cmlldmluZyB0aGUgaW5mb3JtYXRpb24gYW5kIHN0b3JpbmcgaXQgYXMgYW4gb2JqZWN0IGJ1dCB0aGUgY2xlYW5pbmcgYW5kIG9yZ2FuaXppbmcgZm9yIHVzZSBpbiBSIG1pZ2h0IHRha2UgbW9yZSBtYXNzYWdpbmcuDQoNCiMjIERhdGFiYXNlIA0KDQpUaGUgW2NvbmVjdGlvbnMgcGFuZV0oaHR0cHM6Ly9kYi5yc3R1ZGlvLmNvbS9yc3R1ZGlvL2Nvbm5lY3Rpb25zLykgb2ZmZXJzIGEgR1VJIG9wdGlvbiBmb3IgY29ubmVjdGluZyB0byBhIGRhdGFiYXNlIGJ1dCBiZWxvdyB5b3Ugd2lsbCBmaW5kIHRoZSBwcm9ncmFtbWF0aWMgd2F5IHRvIGRvIHNvLg0KDQpUaGUgcmVjb21tZW5kZWQgcGFja2FnZSBmb3IgdGhpcyB0YXNrIGNhbiBiZSBpbnN0YWxsZWQgdXNpbmcgYGluc3RhbGwucGFja2FnZXMoJ29kYmMnKWAuIEFnYWluLCB0aGlzIGhhcyBhbHJlYWR5IGJlZW4gaW5zdGFsbGVkIHNvIHdlIHdpbGwgc2ltcGx5IGxvYWQgaXQgdXNpbmc6IA0KDQpgYGB7ciBtZXNzYWdlPUZBTFNFfQ0KcmVxdWlyZShvZGJjKQ0KYGBgDQoNCkFsbCBjb2RlIGJlbG93IGlzIHBzZXVkby1jb2RlIGFuZCB3aWxsIG5vdCBhY3R1YWxseSBydW4uIFRoaXMgaXMgYmVjYXVzZSB3ZSBhcmUgbm90IGNvbm5lY3RpbmcgdG8gYSByZWFsIGRhdGFiYXNlLiBIb3dldmVyLCBpZiB5b3UgYXJlIHVzaW5nIG1vc3QgY29tbW9uIERiIG1hbmFnZW1lbnQgc29mdHdhcmUsIHlvdSBzaG91bGQgYmUgYWJsZSB0byByZXBsYWNlIHRoZSBwcm92aWRlZCBjb2RlIHdpdGggbmFtZXMgYW5kIGNvbm5lY3Rpb24gZGV0YWlscyBhcHByb3ByaWF0ZSBmb3IgeW91ciBzeXN0ZW0gYW5kIGJlIGdvb2QgdG8gZ28hIA0KDQpDcmVhdGluZyBhIGRhdGFiYXNlIGNvbm5lY3Rpb24gaXMgc2ltcGxlIGVub3VnaCwganVzdCBwYXNzIGl0IHRoZSBkcml2ZXIgaW5mb3JtYXRpb24sIHNlcnZlciBuYW1lLCBkYXRhYmFzZSBuYW1lLCBhbmQgd2hldGhlciBvciBub3QgaXQgaXMgYSB0cnVzdGVkIGNvbm5lY3Rpb24gKHNob3VsZCBpdCB1c2UgeW91ciB3aW5kb3dzIGxvZ29uKTogDQoNCmBgYCBkYmNvbm5lY3Rpb24gPC0gb2RiY0RyaXZlckNvbm5lY3QoJ2RyaXZlcj17U1FMIFNlcnZlcn07c2VydmVyPW15c3FsaG9zdDtkYXRhYmFzZT1teWRibmFtZTt0cnVzdGVkX2Nvbm5lY3Rpb249dHJ1ZScpIGBgYA0KDQpUaGVuLCB5b3UgY2FuIHF1ZXJ5IHlvdXIgZGF0YWJhc2UgdXNpbmcgdGhlIGBzcWxRdWVyeSgpYCBmdW5jdGlvbi4NCg0KYGBgIHJlc3VsdHMgPC0gc3FsUXVlcnkoZGJjb25uZWN0aW9uLCAnc2VsZWN0ICogZnJvbSBzY2hlbWEudGFibGUgd2hlcmUgY29uZGl0aW9uID0gMScgYGBgDQoNCk9uY2UgeW91IGFyZSBmaW5pc2hlZCB3aXRoIHlvdXIgY29ubmVjdGlvbiwgeW91IHdhbnQgdG8gbWFrZSBzdXJlIHRvIGNsb3NlIGl0IHdpdGggYG9kYmNDbG9zZShkYmNvbm5lY3Rpb24pYA0KDQoNCklmLCBsaWtlIHNvbWUsIHlvdSBhcmUgbW9yZSBjb21mb3J0YWJsZSBpbiB0U1FMIHRoYW4gaW4gUiwgeW91IGNhbiBhY3R1YWxseSBbcnVuIFIgY29kZSB3aXRoaW4geW91ciB0U1FMXShodHRwczovL3d3dy5kYXRhY2FtcC5jb20vY29tbXVuaXR5L3R1dG9yaWFscy9leGVjdXRlLXItcHl0aG9uLXNxbCkhIEkgd29uJ3QgY292ZXIgdGhpcyBoZXJlIGJ1dCBpdCBpcyBhbiBpbnRlcmVzdGluZyBvcHRpb24gdGhhdCBzb21lIG1pZ2h0IGZpbmQgdXNlZnVsISANCg0KDQo8ZGl2IGNsYXNzID0gInJvdyI+DQo8YSBocmVmID0gIi4vSW1wb3J0Lmh0bWwiPjxidXR0b24gY2xhc3M9ImJ0biBidG4tcHJpbWFyeSI+QmFjazwvYnV0dG9uPjwvYT4NCjxhIGhyZWYgPSAiLi9UcmFuc2Zvcm0uaHRtbCI+PGJ1dHRvbiBjbGFzcz0iYnRuIGJ0bi1EZWZhdWx0Ij5Db250aW51ZTwvYnV0dG9uPjwvYT4NCjwvZGl2Pg==</div>
 <div class = "footer">
   <p> Created by Michael Barrows </p>
 </div>
@@ -446,6 +554,28 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("Import.Rmd");
+});
+</script>
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
