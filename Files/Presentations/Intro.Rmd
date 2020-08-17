@@ -151,14 +151,13 @@ mtcars %>% filter(mpg > 20) %>%
 
 Code for the previous slide: 
 
-```{r results=F, eval=F, message=F, warning=F, echo = T}
-## RMarkdown
+
 <div class = "left">
-``{r echo = FALSE, message=F, warning=F}
+```{r echo = FALSE, message=F, warning=F}
 
 mtcars %>% filter(mpg > 20) %>%
   ggplot(.,aes(mpg,hp)) + geom_point()
-``
+```
 </div>
 <div class = "right">
   - .RMD file extension
@@ -167,7 +166,7 @@ mtcars %>% filter(mpg > 20) %>%
   - This presentation was written in an RMD file
   - Mostly common markdown language
 </div>
-```
+
 
 ---
 ## Shiny Apps

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -23,24 +22,25 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<script src="site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="site_libs/plotly-binding-4.9.0/plotly.js"></script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
-<link href="site_libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="site_libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
+<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -50,14 +50,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -69,7 +71,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-le
 div.sourceCode
   { color: #bdae9d; background-color: #2a211c; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffff00; } /* Alert */
 code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
@@ -322,6 +324,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -455,30 +458,39 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Transform and Visualize</h1>
-<h4 class="date">Updated: 2019-10-19</h4>
+<h4 class="date">Updated: 2020-08-17</h4>
 
 </div>
 
 
 <p>Welcome to the transformation step. This is where 90% of your time will likely be spent in R (and data science as a whole). Before you begin this step in any project, it is highly recommended to install necessary packages from <code>tidyverse</code>. While installing all of tidyverse is an option, it often takes a lot of time and space so it may not always be the <em>best</em> option. For now, we decided to be lazy and install the entire thing with <code>install.packages('tidyverse')</code> and load it with</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;forcats&#39; was built under R version 3.6.3</code></pre>
 <p>For beginner users, the main packages within tidyverse are dplyr and tidyr. An overview of each can be found below:</p>
 <div id="dplyr-tidyr" class="section level2">
 <h2>dplyr / tidyr</h2>
 <p><code>dplyr</code> and <code>tidyr</code> are two very powerful tools for data transformation as they use easy-to-write (and read) syntax and do a lot of behind-the-scenes work to make your job easier. For instance, say we have the large library dataset from the <a href="Import.html">import</a> page. We can import it with the same <code>read.csv()</code> function but then select only the columns we are interested in and rename them with the <code>select()</code> function. Additionally, instead of nesting functions inside one another, we can use the pipe (<code>%&gt;%</code>) operator to accomplish the same thing. The way the pipe operator works is by passing the object on the left into the first argument of the object on the right. This means that the first argument of the object on the right MUST take a data object. Otherwise, in most other cases you can specify <code>data = .</code>. Let’s look at this example below:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">library &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://data.sfgov.org/api/views/qzz6-2jup/rows.csv&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="st">  </span><span class="kw">select</span>(<span class="dt">Patron_Type =</span> Patron.Type.Definition, <span class="dt">checkouts =</span> Total.Checkouts,</a>
-<a class="sourceLine" id="cb2-3" title="3">         <span class="dt">active_month =</span> Circulation.Active.Month)</a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="kw">head</span>(library)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>library &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://data.sfgov.org/api/views/qzz6-2jup/rows.csv&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="dt">Patron_Type =</span> Patron.Type.Definition, <span class="dt">checkouts =</span> Total.Checkouts,</span>
+<span id="cb10-3"><a href="#cb10-3"></a>         <span class="dt">active_month =</span> Circulation.Active.Month)</span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="kw">head</span>(library)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Patron_Type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["checkouts"],"name":[2],"type":["int"],"align":["right"]},{"label":["active_month"],"name":[3],"type":["fctr"],"align":["left"]}],"data":[{"1":"ADULT","2":"1092","3":"July","_rn_":"1"},{"1":"ADULT","2":"0","3":"None","_rn_":"2"},{"1":"ADULT","2":"31","3":"April","_rn_":"3"},{"1":"ADULT","2":"0","3":"None","_rn_":"4"},{"1":"ADULT","2":"0","3":"None","_rn_":"5"},{"1":"ADULT","2":"126","3":"January","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Patron_Type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["checkouts"],"name":[2],"type":["int"],"align":["right"]},{"label":["active_month"],"name":[3],"type":["fctr"],"align":["left"]}],"data":[{"1":"JUVENILE","2":"518","3":"July","_rn_":"1"},{"1":"JUVENILE","2":"38","3":"June","_rn_":"2"},{"1":"ADULT","2":"38","3":"November","_rn_":"3"},{"1":"ADULT","2":"48","3":"February","_rn_":"4"},{"1":"JUVENILE","2":"28","3":"June","_rn_":"5"},{"1":"JUVENILE","2":"1","3":"May","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Now say that we wanted to shrink the data so that every observation (row) represented the average number of checkouts for a particular patron type in a particular month. We could accomplish this as such:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">head</span>(library &lt;-<span class="st"> </span>library <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(Patron_Type, active_month) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">checkouts_avg =</span> <span class="kw">floor</span>(<span class="kw">mean</span>(checkouts, <span class="dt">na.rm =</span> T))),<span class="dv">15</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">head</span>(library &lt;-<span class="st"> </span>library <span class="op">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">group_by</span>(Patron_Type, active_month) <span class="op">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">checkouts_avg =</span> <span class="kw">floor</span>(<span class="kw">mean</span>(checkouts, <span class="dt">na.rm =</span> T))),<span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;Patron_Type&#39; (override with `.groups` argument)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["Patron_Type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["active_month"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["checkouts_avg"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"ADULT","2":"April","3":"104"},{"1":"ADULT","2":"August","3":"94"},{"1":"ADULT","2":"December","3":"91"},{"1":"ADULT","2":"February","3":"94"},{"1":"ADULT","2":"January","3":"104"},{"1":"ADULT","2":"July","3":"358"},{"1":"ADULT","2":"June","3":"140"},{"1":"ADULT","2":"March","3":"97"},{"1":"ADULT","2":"May","3":"113"},{"1":"ADULT","2":"None","3":"0"},{"1":"ADULT","2":"November","3":"87"},{"1":"ADULT","2":"October","3":"90"},{"1":"ADULT","2":"September","3":"96"},{"1":"AT USER ADULT","2":"April","3":"122"},{"1":"AT USER ADULT","2":"August","3":"136"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -490,54 +502,54 @@ $(document).ready(function () {
 <p><strong>summarise():</strong></p>
 <p>applies a function for all observations within each group. If no group is present, then the function is applied column-wise. In this particular instance, we found the average (<code>mean(.,na.rm=T)</code>) number of checkouts per patron type for each month of the year (<code>group_by(Patron_Type, active_month)</code>). We then rounded all numbers down to the nearest whole number with the <code>floor()</code> function.</p>
 <p>If we wanted to pivot the data and have a column for each active month, we could do so using:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">head</span>(library <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="st">       </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="st">       </span><span class="kw">spread</span>(active_month,checkouts_avg) </a>
-<a class="sourceLine" id="cb4-4" title="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">head</span>(library <span class="op">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="st">       </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="st">       </span><span class="kw">spread</span>(active_month,checkouts_avg) </span>
+<span id="cb13-4"><a href="#cb13-4"></a>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["Patron_Type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["April"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["August"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["December"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["February"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["January"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["July"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["June"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["March"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["May"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["November"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["October"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["September"],"name":[13],"type":["dbl"],"align":["right"]}],"data":[{"1":"ADULT","2":"104","3":"94","4":"91","5":"94","6":"104","7":"358","8":"140","9":"97","10":"113","11":"87","12":"90","13":"96"},{"1":"AT USER ADULT","2":"122","3":"136","4":"115","5":"161","6":"172","7":"496","8":"350","9":"44","10":"182","11":"117","12":"66","13":"104"},{"1":"AT USER JUVENILE","2":"24","3":"27","4":"19","5":"1","6":"16","7":"205","8":"73","9":"121","10":"12","11":"5","12":"33","13":"27"},{"1":"AT USER SENIOR","2":"29","3":"345","4":"457","5":"61","6":"1049","7":"324","8":"74","9":"183","10":"16","11":"95","12":"12","13":"2"},{"1":"AT USER TEEN","2":"NA","3":"87","4":"14","5":"232","6":"69","7":"559","8":"64","9":"4","10":"45","11":"13","12":"7","13":"53"},{"1":"AT USER WELCOME","2":"3","3":"1","4":"NA","5":"NA","6":"521","7":"1","8":"1","9":"1","10":"2","11":"108","12":"1","13":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Additionally, we could add a total column with the <code>rowwise()</code> and <code>mutate()</code> functions:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">library <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="st">  </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw">spread</span>(active_month,checkouts_avg, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">select</span>(Patron_Type, January, February, March, April, May, June, July, August, September, October, November, December) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Total =</span> <span class="kw">sum</span>(January, February, March, April, May, June, July, August, September, October, November, December))</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>library <span class="op">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="st">  </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="st">  </span><span class="kw">spread</span>(active_month,checkouts_avg, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="st">  </span><span class="kw">select</span>(Patron_Type, January, February, March, April, May, June, July, August, September, October, November, December) <span class="op">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Total =</span> <span class="kw">sum</span>(January, February, March, April, May, June, July, August, September, October, November, December))</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["Patron_Type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["January"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["February"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["March"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["April"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["May"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["June"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["July"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["August"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["September"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["October"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["November"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["December"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["Total"],"name":[14],"type":["dbl"],"align":["right"]}],"data":[{"1":"ADULT","2":"104","3":"94","4":"97","5":"104","6":"113","7":"140","8":"358","9":"94","10":"96","11":"90","12":"87","13":"91","14":"1468"},{"1":"AT USER ADULT","2":"172","3":"161","4":"44","5":"122","6":"182","7":"350","8":"496","9":"136","10":"104","11":"66","12":"117","13":"115","14":"2065"},{"1":"AT USER JUVENILE","2":"16","3":"1","4":"121","5":"24","6":"12","7":"73","8":"205","9":"27","10":"27","11":"33","12":"5","13":"19","14":"563"},{"1":"AT USER SENIOR","2":"1049","3":"61","4":"183","5":"29","6":"16","7":"74","8":"324","9":"345","10":"2","11":"12","12":"95","13":"457","14":"2647"},{"1":"AT USER TEEN","2":"69","3":"232","4":"4","5":"0","6":"45","7":"64","8":"559","9":"87","10":"53","11":"7","12":"13","13":"14","14":"1147"},{"1":"AT USER WELCOME","2":"521","3":"0","4":"1","5":"3","6":"2","7":"1","8":"1","9":"1","10":"1","11":"1","12":"108","13":"0","14":"640"},{"1":"BOOKS BY MAIL","2":"296","3":"422","4":"82","5":"410","6":"257","7":"304","8":"844","9":"33","10":"62","11":"196","12":"75","13":"117","14":"3098"},{"1":"DIGITAL ACCESS CARD","2":"6","3":"30","4":"13","5":"0","6":"7","7":"49","8":"6","9":"1","10":"12","11":"41","12":"92","13":"7","14":"264"},{"1":"FRIENDS FOR LIFE","2":"1726","3":"810","4":"91","5":"204","6":"400","7":"238","8":"715","9":"481","10":"0","11":"356","12":"7","13":"0","14":"5028"},{"1":"JUVENILE","2":"94","3":"95","4":"89","5":"109","6":"142","7":"183","8":"330","9":"80","10":"85","11":"72","12":"80","13":"83","14":"1442"},{"1":"RETIRED STAFF","2":"848","3":"285","4":"627","5":"689","6":"672","7":"610","8":"1387","9":"711","10":"329","11":"470","12":"333","13":"584","14":"7545"},{"1":"SENIOR","2":"186","3":"179","4":"178","5":"191","6":"200","7":"241","8":"676","9":"164","10":"145","11":"157","12":"160","13":"166","14":"2643"},{"1":"SPECIAL","2":"174","3":"279","4":"231","5":"237","6":"346","7":"296","8":"553","9":"187","10":"80","11":"162","12":"135","13":"207","14":"2887"},{"1":"STAFF","2":"229","3":"162","4":"267","5":"304","6":"352","7":"440","8":"1207","9":"422","10":"187","11":"180","12":"202","13":"276","14":"4228"},{"1":"TEACHER CARD","2":"21","3":"29","4":"41","5":"42","6":"65","7":"86","8":"150","9":"29","10":"40","11":"61","12":"23","13":"27","14":"614"},{"1":"VISITOR","2":"11","3":"13","4":"21","5":"32","6":"9","7":"14","8":"19","9":"10","10":"14","11":"19","12":"8","13":"14","14":"184"},{"1":"WELCOME","2":"4","3":"4","4":"12","5":"4","6":"4","7":"7","8":"6","9":"7","10":"6","11":"3","12":"5","13":"11","14":"73"},{"1":"YOUNG ADULT","2":"203","3":"183","4":"188","5":"198","6":"230","7":"330","8":"506","9":"166","10":"174","11":"183","12":"170","13":"183","14":"2714"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>If we only care about the five patron types with the highest average number of annual checkouts, we could add the <code>top_n()</code> function. Then we might choose to arrange them from largest to smallest value and only display the patron type and total average number of checkouts:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">library <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="st">    </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="st">    </span><span class="kw">spread</span>(active_month,checkouts_avg, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="st">    </span><span class="kw">select</span>(Patron_Type, January, February, March, April, May, June, July, August, September, October, November, December) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="st">    </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Total =</span> <span class="kw">sum</span>(January, February, March, April, May, June, July, August, September, October, November, December)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="st">    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="st">    </span><span class="kw">top_n</span>(<span class="dv">5</span>,Total) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Total)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="st">    </span><span class="kw">select</span>(Patron_Type, Total)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>library <span class="op">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="st">    </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="st">    </span><span class="kw">spread</span>(active_month,checkouts_avg, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="st">    </span><span class="kw">select</span>(Patron_Type, January, February, March, April, May, June, July, August, September, October, November, December) <span class="op">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="st">    </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Total =</span> <span class="kw">sum</span>(January, February, March, April, May, June, July, August, September, October, November, December)) <span class="op">%&gt;%</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="st">    </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="st">    </span><span class="kw">top_n</span>(<span class="dv">5</span>,Total) <span class="op">%&gt;%</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Total)) <span class="op">%&gt;%</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="st">    </span><span class="kw">select</span>(Patron_Type, Total)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["Patron_Type"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["Total"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"RETIRED STAFF","2":"7545"},{"1":"FRIENDS FOR LIFE","2":"5028"},{"1":"STAFF","2":"4228"},{"1":"BOOKS BY MAIL","2":"3098"},{"1":"SPECIAL","2":"2887"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>As demonstrated by the process above, using plyr and dplyr creates a natural, readable code chunk that performs powerful transformations. Let’s take a look at our last code chunk again, this time with comments outlining the purpose of each step:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">library <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Select the library dataset</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="st">  </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filter for every month except those labled as &#39;None&#39;</span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">spread</span>(active_month,checkouts_avg, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Create new columns for every month containing the average checkouts as values</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="st">  </span><span class="kw">select</span>(Patron_Type, January, February, March, April, May, June, July, August, September, October, November, December) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># rearrange the month order</span></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># the following calculation will be done for each row instead of each column</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Total =</span> <span class="kw">sum</span>(January, February, March, April, May, June, July, August, September, October, November, December)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Add a total column that adds the values for each month</span></a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Stop calculating values on each row</span></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>,Total) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select the top 5 rows based on the total column</span></a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Total)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># sort them from greatest to least Total value</span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="st">  </span><span class="kw">select</span>(Patron_Type, Total) <span class="co"># display only the patron_type and total columns</span></a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>library <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Select the library dataset</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="st">  </span><span class="kw">filter</span>(active_month <span class="op">!=</span><span class="st"> &quot;None&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filter for every month except those labled as &#39;None&#39;</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="st">  </span><span class="kw">spread</span>(active_month,checkouts_avg, <span class="dt">fill =</span> <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Create new columns for every month containing the average checkouts as values</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="st">  </span><span class="kw">select</span>(Patron_Type, January, February, March, April, May, June, July, August, September, October, November, December) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># rearrange the month order</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># the following calculation will be done for each row instead of each column</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Total =</span> <span class="kw">sum</span>(January, February, March, April, May, June, July, August, September, October, November, December)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Add a total column that adds the values for each month</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Stop calculating values on each row</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">5</span>,Total) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select the top 5 rows based on the total column</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Total)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># sort them from greatest to least Total value</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="st">  </span><span class="kw">select</span>(Patron_Type, Total) <span class="co"># display only the patron_type and total columns</span></span></code></pre></div>
 <p>You can see that the dplyr syntax is almost as easily readable (and shorter) than plain English. This is what makes it so powerful.</p>
 </div>
 <div id="visualize" class="section level2">
@@ -546,45 +558,45 @@ $(document).ready(function () {
 <h3>Base R</h3>
 <p>The default plotting functions available in R are very powerful and are <em>usually</em> the choice of academic researchers as they are clear and to-the-point. However, the syntax for constructing figures in this framework is a bit cumbersome and the behavior of these figures can often be confusing.</p>
 <p>Below is a (fairly) simple scatter plot without much styling.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">plot</span>(mpg<span class="op">~</span>hp,<span class="dt">data =</span> mtcars,</a>
-<a class="sourceLine" id="cb8-2" title="2">     <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>,</a>
-<a class="sourceLine" id="cb8-3" title="3">     <span class="dt">xlab =</span> <span class="st">&#39;Horsepower&#39;</span>,</a>
-<a class="sourceLine" id="cb8-4" title="4">     <span class="dt">ylab =</span> <span class="st">&#39;Miles/Gallon&#39;</span>,</a>
-<a class="sourceLine" id="cb8-5" title="5">     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">350</span>),</a>
-<a class="sourceLine" id="cb8-6" title="6">     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">35</span>))</a>
-<a class="sourceLine" id="cb8-7" title="7"><span class="kw">abline</span>(<span class="kw">lm</span>(mpg<span class="op">~</span>hp,<span class="dt">data =</span> mtcars),</a>
-<a class="sourceLine" id="cb8-8" title="8">       <span class="dt">col =</span> <span class="st">&#39;Red&#39;</span>)</a>
-<a class="sourceLine" id="cb8-9" title="9"><span class="kw">text</span>(<span class="dt">x =</span> <span class="dv">250</span>, <span class="dt">y =</span> <span class="dv">30</span>,</a>
-<a class="sourceLine" id="cb8-10" title="10">     <span class="st">&#39;Efficiency vs. Power&#39;</span>)</a>
-<a class="sourceLine" id="cb8-11" title="11"><span class="kw">text</span>(mtcars<span class="op">$</span>hp, mtcars<span class="op">$</span>mpg, </a>
-<a class="sourceLine" id="cb8-12" title="12">     <span class="kw">row.names</span>(mtcars), </a>
-<a class="sourceLine" id="cb8-13" title="13">     <span class="dt">cex =</span> <span class="fl">0.6</span>, <span class="dt">pos =</span> <span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb8-14" title="14">     <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">plot</span>(mpg<span class="op">~</span>hp,<span class="dt">data =</span> mtcars,</span>
+<span id="cb17-2"><a href="#cb17-2"></a>     <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">cex =</span> <span class="fl">0.5</span>,</span>
+<span id="cb17-3"><a href="#cb17-3"></a>     <span class="dt">xlab =</span> <span class="st">&#39;Horsepower&#39;</span>,</span>
+<span id="cb17-4"><a href="#cb17-4"></a>     <span class="dt">ylab =</span> <span class="st">&#39;Miles/Gallon&#39;</span>,</span>
+<span id="cb17-5"><a href="#cb17-5"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">350</span>),</span>
+<span id="cb17-6"><a href="#cb17-6"></a>     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">35</span>))</span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="kw">abline</span>(<span class="kw">lm</span>(mpg<span class="op">~</span>hp,<span class="dt">data =</span> mtcars),</span>
+<span id="cb17-8"><a href="#cb17-8"></a>       <span class="dt">col =</span> <span class="st">&#39;Red&#39;</span>)</span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="kw">text</span>(<span class="dt">x =</span> <span class="dv">250</span>, <span class="dt">y =</span> <span class="dv">30</span>,</span>
+<span id="cb17-10"><a href="#cb17-10"></a>     <span class="st">&#39;Efficiency vs. Power&#39;</span>)</span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="kw">text</span>(mtcars<span class="op">$</span>hp, mtcars<span class="op">$</span>mpg, </span>
+<span id="cb17-12"><a href="#cb17-12"></a>     <span class="kw">row.names</span>(mtcars), </span>
+<span id="cb17-13"><a href="#cb17-13"></a>     <span class="dt">cex =</span> <span class="fl">0.6</span>, <span class="dt">pos =</span> <span class="dv">2</span>, </span>
+<span id="cb17-14"><a href="#cb17-14"></a>     <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
 <p><img src="Transform_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>As you can see, all of the necessary pieces are included but the sytax is a bit confusing and it looks a little boring. We can compare this implementation to the one in the next section which uses the <code>ggplot2</code> package.</p>
 </div>
 <div id="ggplot2" class="section level3">
 <h3>ggplot2</h3>
 <p>The <code>ggplot2</code> packages greatly streamlines the plotting process. It uses pipes (just like dplyr) to add various pieces to your figure. If we were to recreate the plot above in the ggplot syntax, it would like like so:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">require</span>(ggplot2) </a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="kw">require</span>(dplyr)</a>
-<a class="sourceLine" id="cb9-3" title="3">mtcars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(hp, mpg)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-6" title="6"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">rownames</span>(mtcars)),</a>
-<a class="sourceLine" id="cb9-7" title="7">    <span class="dt">hjust =</span> <span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb9-8" title="8">    <span class="dt">vjust =</span> <span class="fl">-0.5</span>,</a>
-<a class="sourceLine" id="cb9-9" title="9">    <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-10" title="10"><span class="st">  </span><span class="kw">geom_text</span>(</a>
-<a class="sourceLine" id="cb9-11" title="11">    <span class="dt">x =</span> <span class="dv">250</span>, <span class="dt">y =</span> <span class="dv">30</span>,</a>
-<a class="sourceLine" id="cb9-12" title="12">    <span class="kw">aes</span>(<span class="dt">label =</span> <span class="st">&quot;Efficiency vs. Power&quot;</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-13" title="13"><span class="st">  </span><span class="kw">geom_smooth</span>(</a>
-<a class="sourceLine" id="cb9-14" title="14">    <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, </a>
-<a class="sourceLine" id="cb9-15" title="15">    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,</a>
-<a class="sourceLine" id="cb9-16" title="16">    <span class="dt">se =</span> F) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-17" title="17"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Horsepower&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-18" title="18"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Miles/Gallon&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-19" title="19"><span class="st">  </span><span class="kw">theme_classic</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">require</span>(ggplot2) </span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">require</span>(dplyr)</span>
+<span id="cb18-3"><a href="#cb18-3"></a>mtcars <span class="op">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(hp, mpg)) <span class="op">+</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">rownames</span>(mtcars)),</span>
+<span id="cb18-7"><a href="#cb18-7"></a>    <span class="dt">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb18-8"><a href="#cb18-8"></a>    <span class="dt">vjust =</span> <span class="fl">-0.5</span>,</span>
+<span id="cb18-9"><a href="#cb18-9"></a>    <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a><span class="st">  </span><span class="kw">geom_text</span>(</span>
+<span id="cb18-11"><a href="#cb18-11"></a>    <span class="dt">x =</span> <span class="dv">250</span>, <span class="dt">y =</span> <span class="dv">30</span>,</span>
+<span id="cb18-12"><a href="#cb18-12"></a>    <span class="kw">aes</span>(<span class="dt">label =</span> <span class="st">&quot;Efficiency vs. Power&quot;</span>)) <span class="op">+</span></span>
+<span id="cb18-13"><a href="#cb18-13"></a><span class="st">  </span><span class="kw">geom_smooth</span>(</span>
+<span id="cb18-14"><a href="#cb18-14"></a>    <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, </span>
+<span id="cb18-15"><a href="#cb18-15"></a>    <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb18-16"><a href="#cb18-16"></a>    <span class="dt">se =</span> F) <span class="op">+</span></span>
+<span id="cb18-17"><a href="#cb18-17"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Horsepower&quot;</span>) <span class="op">+</span></span>
+<span id="cb18-18"><a href="#cb18-18"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Miles/Gallon&quot;</span>) <span class="op">+</span></span>
+<span id="cb18-19"><a href="#cb18-19"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
 <p><img src="Transform_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>While there is no <strong>correct</strong> way to plot in R, individuals are often drawn to one method over the other. The benefit of using ggplot is that you can pipe your data into the figure directly after altering it with dplyr commands. This is done with the pipe operator like we executed above (<code>mtcars %&gt;% ggplot(aes(hp,mpg)) + geom_point()</code>)</p>
 <p>You can read more about ggplot <a href="https://ggplot2.tidyverse.org/index.html">here</a> or brows their documentation <a href="https://ggplot2.tidyverse.org/reference/">here</a></p>
@@ -592,20 +604,20 @@ $(document).ready(function () {
 <div id="plotly" class="section level3">
 <h3>plotly</h3>
 <p>Plotly takes all of the benefits and syntax of ggplot and adds interactive functionality! This is great for a customer facing figure or one that is used for data discovery. However, take note that plotly figures are MUCH larger and take longer to render than base-r and ggplot figures. This is especially evident with large datasets. Additionally, an instance of R needs to be running in order to leverage a plotly figure.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">require</span>(plotly)</a>
-<a class="sourceLine" id="cb10-2" title="2">a &lt;-<span class="st"> </span><span class="kw">list</span>(  <span class="dt">gridcolor =</span> <span class="kw">toRGB</span>(<span class="st">&quot;white&quot;</span>), <span class="dt">linecolor =</span> <span class="kw">toRGB</span>(<span class="st">&quot;white&quot;</span>),</a>
-<a class="sourceLine" id="cb10-3" title="3">            <span class="dt">backgroundcolor =</span> <span class="kw">toRGB</span>(<span class="st">&quot;black&quot;</span>), <span class="dt">color =</span> <span class="kw">toRGB</span>(<span class="st">&#39;black&#39;</span>),</a>
-<a class="sourceLine" id="cb10-4" title="4">            <span class="dt">showbackground =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb10-5" title="5"><span class="kw">plot_ly</span>(mtcars, <span class="dt">x =</span> <span class="op">~</span>wt, <span class="dt">y =</span> <span class="op">~</span>hp, <span class="dt">z =</span> <span class="op">~</span>mpg, <span class="dt">text =</span> <span class="kw">rownames</span>(mtcars),</a>
-<a class="sourceLine" id="cb10-6" title="6">        <span class="dt">marker =</span> <span class="kw">list</span>(<span class="dt">color =</span> <span class="kw">toRGB</span>(<span class="st">&#39;green&#39;</span>),</a>
-<a class="sourceLine" id="cb10-7" title="7">                      <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">color =</span> <span class="kw">toRGB</span>(<span class="st">&#39;white&#39;</span>)),</a>
-<a class="sourceLine" id="cb10-8" title="8">                      <span class="dt">sizeref =</span> <span class="fl">0.15</span>, <span class="dt">sizemode =</span> <span class="st">&quot;area&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-9" title="9"><span class="st">  </span><span class="kw">add_markers</span>(<span class="dt">size =</span> <span class="op">~</span>cyl) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-10" title="10"><span class="st">  </span><span class="kw">layout</span>(<span class="dt">scene =</span> <span class="kw">list</span>(<span class="dt">xaxis =</span> a, <span class="dt">yaxis =</span> a, <span class="dt">zaxis =</span> a,</a>
-<a class="sourceLine" id="cb10-11" title="11">                      <span class="dt">bgcolor =</span> <span class="st">&#39;transparent&#39;</span>),</a>
-<a class="sourceLine" id="cb10-12" title="12">         <span class="dt">paper_bgcolor =</span> <span class="st">&#39;transparent&#39;</span>)</a></code></pre></div>
-<div id="htmlwidget-6a0dccc516936df3327e" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6a0dccc516936df3327e">{"x":{"visdat":{"3aa4113dedc":["function () ","plotlyVisDat"]},"cur_data":"3aa4113dedc","attrs":{"3aa4113dedc":{"x":{},"y":{},"z":{},"text":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280","Merc 280C","Merc 450SE","Merc 450SL","Merc 450SLC","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Fiat 128","Honda Civic","Toyota Corolla","Toyota Corona","Dodge Challenger","AMC Javelin","Camaro Z28","Pontiac Firebird","Fiat X1-9","Porsche 914-2","Lotus Europa","Ford Pantera L","Ferrari Dino","Maserati Bora","Volvo 142E"],"marker":{"color":"rgba(0,255,0,1)","line":{"color":"rgba(255,255,255,1)"},"sizeref":0.15,"sizemode":"area"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","size":{},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"gridcolor":"rgba(255,255,255,1)","linecolor":"rgba(255,255,255,1)","backgroundcolor":"rgba(0,0,0,1)","color":"rgba(0,0,0,1)","showbackground":true,"title":"wt"},"yaxis":{"gridcolor":"rgba(255,255,255,1)","linecolor":"rgba(255,255,255,1)","backgroundcolor":"rgba(0,0,0,1)","color":"rgba(0,0,0,1)","showbackground":true,"title":"hp"},"zaxis":{"gridcolor":"rgba(255,255,255,1)","linecolor":"rgba(255,255,255,1)","backgroundcolor":"rgba(0,0,0,1)","color":"rgba(0,0,0,1)","showbackground":true,"title":"mpg"},"bgcolor":"transparent"},"paper_bgcolor":"transparent","hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2.62,2.875,2.32,3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.2,1.615,1.835,2.465,3.52,3.435,3.84,3.845,1.935,2.14,1.513,3.17,2.77,3.57,2.78],"y":[110,110,93,110,175,105,245,62,95,123,123,180,180,180,205,215,230,66,52,65,97,150,150,245,175,66,91,113,264,175,335,109],"z":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],"text":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280","Merc 280C","Merc 450SE","Merc 450SL","Merc 450SLC","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Fiat 128","Honda Civic","Toyota Corolla","Toyota Corona","Dodge Challenger","AMC Javelin","Camaro Z28","Pontiac Firebird","Fiat X1-9","Porsche 914-2","Lotus Europa","Ford Pantera L","Ferrari Dino","Maserati Bora","Volvo 142E"],"marker":{"color":"rgba(0,255,0,1)","size":[55,55,10,55,100,55,100,10,10,55,55,100,100,100,100,100,100,10,10,10,10,100,100,100,100,10,10,10,100,55,100,10],"sizemode":"area","line":{"color":"rgba(255,255,255,1)"},"sizeref":0.15},"type":"scatter3d","mode":"markers","textfont":{"size":[55,55,10,55,100,55,100,10,10,55,55,100,100,100,100,100,100,10,10,10,10,100,100,100,100,10,10,10,100,55,100,10]},"error_y":{"color":"rgba(31,119,180,1)","width":[]},"error_x":{"color":"rgba(31,119,180,1)","width":[]},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">require</span>(plotly)</span>
+<span id="cb19-2"><a href="#cb19-2"></a>a &lt;-<span class="st"> </span><span class="kw">list</span>(  <span class="dt">gridcolor =</span> <span class="kw">toRGB</span>(<span class="st">&quot;white&quot;</span>), <span class="dt">linecolor =</span> <span class="kw">toRGB</span>(<span class="st">&quot;white&quot;</span>),</span>
+<span id="cb19-3"><a href="#cb19-3"></a>            <span class="dt">backgroundcolor =</span> <span class="kw">toRGB</span>(<span class="st">&quot;black&quot;</span>), <span class="dt">color =</span> <span class="kw">toRGB</span>(<span class="st">&#39;black&#39;</span>),</span>
+<span id="cb19-4"><a href="#cb19-4"></a>            <span class="dt">showbackground =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="kw">plot_ly</span>(mtcars, <span class="dt">x =</span> <span class="op">~</span>wt, <span class="dt">y =</span> <span class="op">~</span>hp, <span class="dt">z =</span> <span class="op">~</span>mpg, <span class="dt">text =</span> <span class="kw">rownames</span>(mtcars),</span>
+<span id="cb19-6"><a href="#cb19-6"></a>        <span class="dt">marker =</span> <span class="kw">list</span>(<span class="dt">color =</span> <span class="kw">toRGB</span>(<span class="st">&#39;green&#39;</span>),</span>
+<span id="cb19-7"><a href="#cb19-7"></a>                      <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">color =</span> <span class="kw">toRGB</span>(<span class="st">&#39;white&#39;</span>)),</span>
+<span id="cb19-8"><a href="#cb19-8"></a>                      <span class="dt">sizeref =</span> <span class="fl">0.15</span>, <span class="dt">sizemode =</span> <span class="st">&quot;area&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a><span class="st">  </span><span class="kw">add_markers</span>(<span class="dt">size =</span> <span class="op">~</span>cyl) <span class="op">%&gt;%</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a><span class="st">  </span><span class="kw">layout</span>(<span class="dt">scene =</span> <span class="kw">list</span>(<span class="dt">xaxis =</span> a, <span class="dt">yaxis =</span> a, <span class="dt">zaxis =</span> a,</span>
+<span id="cb19-11"><a href="#cb19-11"></a>                      <span class="dt">bgcolor =</span> <span class="st">&#39;transparent&#39;</span>),</span>
+<span id="cb19-12"><a href="#cb19-12"></a>         <span class="dt">paper_bgcolor =</span> <span class="st">&#39;transparent&#39;</span>)</span></code></pre></div>
+<div id="htmlwidget-138f8286effde323a9d0" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-138f8286effde323a9d0">{"x":{"visdat":{"20e016474315":["function () ","plotlyVisDat"]},"cur_data":"20e016474315","attrs":{"20e016474315":{"x":{},"y":{},"z":{},"text":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280","Merc 280C","Merc 450SE","Merc 450SL","Merc 450SLC","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Fiat 128","Honda Civic","Toyota Corolla","Toyota Corona","Dodge Challenger","AMC Javelin","Camaro Z28","Pontiac Firebird","Fiat X1-9","Porsche 914-2","Lotus Europa","Ford Pantera L","Ferrari Dino","Maserati Bora","Volvo 142E"],"marker":{"color":"rgba(0,255,0,1)","line":{"color":"rgba(255,255,255,1)"},"sizeref":0.15,"sizemode":"area"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","size":{},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"gridcolor":"rgba(255,255,255,1)","linecolor":"rgba(255,255,255,1)","backgroundcolor":"rgba(0,0,0,1)","color":"rgba(0,0,0,1)","showbackground":true,"title":"wt"},"yaxis":{"gridcolor":"rgba(255,255,255,1)","linecolor":"rgba(255,255,255,1)","backgroundcolor":"rgba(0,0,0,1)","color":"rgba(0,0,0,1)","showbackground":true,"title":"hp"},"zaxis":{"gridcolor":"rgba(255,255,255,1)","linecolor":"rgba(255,255,255,1)","backgroundcolor":"rgba(0,0,0,1)","color":"rgba(0,0,0,1)","showbackground":true,"title":"mpg"},"bgcolor":"transparent"},"paper_bgcolor":"transparent","hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2.62,2.875,2.32,3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.2,1.615,1.835,2.465,3.52,3.435,3.84,3.845,1.935,2.14,1.513,3.17,2.77,3.57,2.78],"y":[110,110,93,110,175,105,245,62,95,123,123,180,180,180,205,215,230,66,52,65,97,150,150,245,175,66,91,113,264,175,335,109],"z":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],"text":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280","Merc 280C","Merc 450SE","Merc 450SL","Merc 450SLC","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Fiat 128","Honda Civic","Toyota Corolla","Toyota Corona","Dodge Challenger","AMC Javelin","Camaro Z28","Pontiac Firebird","Fiat X1-9","Porsche 914-2","Lotus Europa","Ford Pantera L","Ferrari Dino","Maserati Bora","Volvo 142E"],"marker":{"color":"rgba(0,255,0,1)","size":[55,55,10,55,100,55,100,10,10,55,55,100,100,100,100,100,100,10,10,10,10,100,100,100,100,10,10,10,100,55,100,10],"sizemode":"area","line":{"color":"rgba(255,255,255,1)"},"sizeref":0.15},"type":"scatter3d","mode":"markers","textfont":{"size":[55,55,10,55,100,55,100,10,10,55,55,100,100,100,100,100,100,10,10,10,10,100,100,100,100,10,10,10,100,55,100,10]},"error_y":{"color":"rgba(31,119,180,1)","width":[]},"error_x":{"color":"rgba(31,119,180,1)","width":[]},"line":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="slide-deck" class="section level2">

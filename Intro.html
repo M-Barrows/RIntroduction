@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -23,6 +22,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
@@ -31,9 +31,9 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -43,14 +43,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -62,7 +64,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-le
 div.sourceCode
   { color: #bdae9d; background-color: #2a211c; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffff00; } /* Alert */
 code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
@@ -315,6 +317,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -448,7 +451,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Introduction</h1>
-<h4 class="date">Updated: 2019-10-19</h4>
+<h4 class="date">Updated: 2020-08-17</h4>
 
 </div>
 
@@ -551,6 +554,8 @@ $(document).ready(function () {
 <div id="shiny-app" class="section level3">
 <h3>Shiny App</h3>
 <p>Shiny Applications are a fantastic way to allow end users to not only view your data but to <em>interact</em> with it as well. Shiny apps can either be deployed locally on an end user’s machine or hosted on a server. They can function as stand alone objects or be embedded within other documents (like HTML or RNotebooks). For example, the default app that is created for you when you create a new shiny app is below:</p>
+<pre><code>## Warning: package &#39;shiny&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.</code></pre>
 <div style="width: 100% ; height: 700px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div>
 <p>Unfortunately, if you are viewing this page from GitHub pages, you won’t see the application. this is because you need to <em>run</em> the app first. You can accomplish this by downloading the code for this page and then running it in RStudio.</p>
 <p>As you can see (if you took the time to run it), the benefit of a shiny app is dynamic, interactive, and reproducible content. You will also notice that the image size of the figure is reactive to your window size. Shrink and expand the document to watch the layout of the figure change to fit the screen size! If you just want to create standalone applications instead of embedding them in markdown files, you can do that as well. You can find a bunch of great example apps <a href="https://shiny.rstudio.com/gallery/">here</a> or <a href="https://www.rstudio.com/products/shiny/shiny-user-showcase/">here</a> or <a href="https://www.showmeshiny.com/">here</a>.</p>
@@ -593,14 +598,14 @@ $(document).ready(function () {
 <div id="vector" class="section level3">
 <h3>Vector</h3>
 <p>This is a simple one-dimensional data structure used for storing <em>ordered</em> collections of items of the same data type. For instance, we can store the numbers 10 through 20 and then call the first item in that collection (10) by doing the following:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">x &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">20</span></a>
-<a class="sourceLine" id="cb3-2" title="2">x[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>x &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">20</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>x[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 <p>We can also store the letters A through J and retrieve either the fourth item or the index of the letter D.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">y &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a>
-<a class="sourceLine" id="cb5-2" title="2">y[<span class="dv">4</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>y &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</span>
+<span id="cb7-2"><a href="#cb7-2"></a>y[<span class="dv">4</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;d&quot;</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">which</span>(y <span class="op">==</span><span class="st"> &quot;d&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">which</span>(y <span class="op">==</span><span class="st"> &quot;d&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>Notice that the <em>R</em> language is 1-indexed, not 0-indexed like many other languages (Python, C#, JSON etc.)</p>
 </div>
@@ -638,20 +643,20 @@ $(document).ready(function () {
 </tbody>
 </table>
 <p>we can recall the value <code>8</code> by getting the value in the third row and second column. This can be accomplished as so:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">matrixData &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> T)</a>
-<a class="sourceLine" id="cb9-2" title="2">matrixData[<span class="dv">3</span>,<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>matrixData &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> T)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>matrixData[<span class="dv">3</span>,<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
 <p>As you can see, the <code>[]</code> operator is used to subset a data object. In the case of a vector, we only require one number (corresponding to the index). However, in the case of a matrix, we require two numbers. The first number is the row number and the second number is the column number.</p>
 <p>We can also subset matrices by name.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">colnames</span>(matrixData) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;col 1&quot;</span>, <span class="st">&quot;col 2&quot;</span>, <span class="st">&quot;col 3&quot;</span>)</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw">row.names</span>(matrixData) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;row 1&quot;</span>, <span class="st">&quot;row 2&quot;</span>, <span class="st">&quot;row 3&quot;</span>)</a>
-<a class="sourceLine" id="cb11-3" title="3">matrixData[<span class="st">&#39;row 3&#39;</span>,<span class="st">&#39;col 2&#39;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">colnames</span>(matrixData) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;col 1&quot;</span>, <span class="st">&quot;col 2&quot;</span>, <span class="st">&quot;col 3&quot;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">row.names</span>(matrixData) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;row 1&quot;</span>, <span class="st">&quot;row 2&quot;</span>, <span class="st">&quot;row 3&quot;</span>)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>matrixData[<span class="st">&#39;row 3&#39;</span>,<span class="st">&#39;col 2&#39;</span>]</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
 </div>
 <div id="data-frame" class="section level3">
 <h3>Data Frame</h3>
 <p>A data frame is a very popular data structure since it is like a matrix but can hold different types of data. This is a lot like what you expect to find in an Excel file. Below is a dataset that is built into R and is also an example of a data frame:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">head</span>(iris,<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">head</span>(iris,<span class="dv">10</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fctr"],"align":["left"]}],"data":[{"1":"5.1","2":"3.5","3":"1.4","4":"0.2","5":"setosa","_rn_":"1"},{"1":"4.9","2":"3.0","3":"1.4","4":"0.2","5":"setosa","_rn_":"2"},{"1":"4.7","2":"3.2","3":"1.3","4":"0.2","5":"setosa","_rn_":"3"},{"1":"4.6","2":"3.1","3":"1.5","4":"0.2","5":"setosa","_rn_":"4"},{"1":"5.0","2":"3.6","3":"1.4","4":"0.2","5":"setosa","_rn_":"5"},{"1":"5.4","2":"3.9","3":"1.7","4":"0.4","5":"setosa","_rn_":"6"},{"1":"4.6","2":"3.4","3":"1.4","4":"0.3","5":"setosa","_rn_":"7"},{"1":"5.0","2":"3.4","3":"1.5","4":"0.2","5":"setosa","_rn_":"8"},{"1":"4.4","2":"2.9","3":"1.4","4":"0.2","5":"setosa","_rn_":"9"},{"1":"4.9","2":"3.1","3":"1.5","4":"0.1","5":"setosa","_rn_":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -662,13 +667,13 @@ $(document).ready(function () {
 <div id="list" class="section level3">
 <h3>List</h3>
 <p>The last common data structure is a list. Like the data frame, lists can hold multiple data types and can even hold a Data Frame within it. For example, let’s create three different data sources: a vector, matrix, and data frame:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">v &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb14-2" title="2">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">3</span>,T)</a>
-<a class="sourceLine" id="cb14-3" title="3">df &lt;-<span class="st"> </span>iris</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>v &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">3</span>,T)</span>
+<span id="cb16-3"><a href="#cb16-3"></a>df &lt;-<span class="st"> </span>iris</span></code></pre></div>
 <p>Now, let’s add all three of these items to a list:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">l &lt;-<span class="st"> </span><span class="kw">list</span>(v,m,df)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>l &lt;-<span class="st"> </span><span class="kw">list</span>(v,m,df)</span></code></pre></div>
 <p>We can check the structure of our list with the <code>str()</code> command:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">str</span>(l)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">str</span>(l)</span></code></pre></div>
 <pre><code>## List of 3
 ##  $ : int [1:10] 1 2 3 4 5 6 7 8 9 10
 ##  $ : int [1:3, 1:3] 1 4 7 2 5 8 3 6 9
@@ -680,16 +685,16 @@ $(document).ready(function () {
 ##   ..$ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 <p>With this output, you can tell that <code>l</code> is a list with three items. The first item is an int vector, the second is an int matrix and the third is a data frame with 150 observations.</p>
 <p>If we wanted to recall one of these items in the list, we still use the <code>[]</code> operator but we need <strong>double</strong> brackets this time. For example, the following will simply print out the first and third items in the list.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">l[[<span class="dv">1</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>l[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">head</span>(l[[<span class="dv">3</span>]],<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">head</span>(l[[<span class="dv">3</span>]],<span class="dv">10</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fctr"],"align":["left"]}],"data":[{"1":"5.1","2":"3.5","3":"1.4","4":"0.2","5":"setosa","_rn_":"1"},{"1":"4.9","2":"3.0","3":"1.4","4":"0.2","5":"setosa","_rn_":"2"},{"1":"4.7","2":"3.2","3":"1.3","4":"0.2","5":"setosa","_rn_":"3"},{"1":"4.6","2":"3.1","3":"1.5","4":"0.2","5":"setosa","_rn_":"4"},{"1":"5.0","2":"3.6","3":"1.4","4":"0.2","5":"setosa","_rn_":"5"},{"1":"5.4","2":"3.9","3":"1.7","4":"0.4","5":"setosa","_rn_":"6"},{"1":"4.6","2":"3.4","3":"1.4","4":"0.3","5":"setosa","_rn_":"7"},{"1":"5.0","2":"3.4","3":"1.5","4":"0.2","5":"setosa","_rn_":"8"},{"1":"4.4","2":"2.9","3":"1.4","4":"0.2","5":"setosa","_rn_":"9"},{"1":"4.9","2":"3.1","3":"1.5","4":"0.1","5":"setosa","_rn_":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>but the following will print the item in the first row and fourth column of the data frame (third item in the list)</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">l[[<span class="dv">3</span>]][<span class="dv">1</span>,<span class="dv">4</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>l[[<span class="dv">3</span>]][<span class="dv">1</span>,<span class="dv">4</span>]</span></code></pre></div>
 <pre><code>## [1] 0.2</code></pre>
 </div>
 <div id="summary" class="section level3">
