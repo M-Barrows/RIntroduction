@@ -260,7 +260,7 @@ Comparisson_good <- TRUE > 1 | TRUE == FALSE #GOOD
 ## What are they? 
 
 - Small Addons that increase functionality
-- Usually targeted at one general purpose (cleaning, stats method, etc.)
+- Usually targeted at one specific purpose (cleaning, stats method, etc.)
 - Must be installed AND loaded before use
 
 ```{r echo = T, eval = F}

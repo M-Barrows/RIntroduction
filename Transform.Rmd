@@ -11,7 +11,7 @@ knitr::opts_chunk$set()
 
 Welcome to the transformation step. This is where 90% of your time will likely be spent in R (and data science as a whole). Before you begin this step in any project, it is highly recommended to install necessary packages from `tidyverse`. While installing all of tidyverse is an option, it often takes a lot of time and space so it may not always be the *best* option. For now, we decided to be lazy and install the entire thing with `install.packages('tidyverse')` and load it with 
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
 
@@ -161,12 +161,12 @@ Plotly takes all of the benefits and syntax of ggplot and adds interactive funct
 
 ```{r warning=FALSE, message=FALSE}
 require(plotly)
-a <- list(  gridcolor = toRGB("white"), linecolor = toRGB("white"),
-            backgroundcolor = toRGB("black"), color = toRGB('black'),
+a <- list(  gridcolor = toRGB("black"), linecolor = toRGB("black"),
+            backgroundcolor = toRGB("white"), color = toRGB('black'),
             showbackground = TRUE)
 plot_ly(mtcars, x = ~wt, y = ~hp, z = ~mpg, text = rownames(mtcars),
-        marker = list(color = toRGB('green'),
-                      line = list(color = toRGB('white')),
+        marker = list(color = toRGB('blue'),
+                      line = list(color = toRGB('black')),
                       sizeref = 0.15, sizemode = "area")) %>%
   add_markers(size = ~cyl) %>%
   layout(scene = list(xaxis = a, yaxis = a, zaxis = a,

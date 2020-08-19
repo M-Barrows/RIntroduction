@@ -280,10 +280,10 @@ Per-machine installation is probably the largest downside of packages. This mean
 * Write an install command in your script that runs every time (very bad idea)
 * Instruct the user to install the packages themselves (better but not fool-proof)
 * Write a command to install packages only if they are not already installed (fairly good)
-* use [Packrat](https://rstudio.github.io/packrat/) to manage packages (Best option)
+* use [renv](https://rstudio.github.io/renv/articles/renv.html) to manage packages (Best option)
 * Run scripts on a server with all necessary packages already installed (Great if you have this option)
 
-Through the use of both R Projects and Packrat, you can greatly reduce the amount of work your end-user needs to do in order to reproduce the hard work you've done. The magic behind Packrat is that it installs all packages and relevant system information (R version, OS version, etc.) necessary to duplicate working conditions as closely as possible. While you can do so at anytime, it is highly recommended to use both Packrat and R Projects before you start work as it reduces the chance of incompatibility or issues during the setup process.
+Through the use of both R Projects and renv, you can greatly reduce the amount of work your end-user needs to do in order to reproduce the hard work you've done. The magic behind renv is that it installs all packages and relevant system information (R version, OS version, etc.) necessary to duplicate working conditions as closely as possible. While you can do so at anytime, it is highly recommended to use both renv and R Projects before you start work as it reduces the chance of incompatibility or issues during the setup process.
 
 ## Slide Deck
 
